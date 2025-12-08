@@ -151,113 +151,92 @@
         </div>
 
         <div class="footer">
-            <p>ISO Control Set Analyzer | Comprehensive mapping of normative requirements and controls | December 2025</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+                <p style="margin:0;">ISO Control Set Analyzer | Comprehensive mapping of normative requirements and controls | December 2025</p>
+                <div id="analyticsPanel" style="min-width:200px; text-align:right;"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        const standardsData = {
-            "ISO 9001": {
-                type: "Quality Management System",
-                clauses: 7,
-                requirements: 11,
-                description: "Establishes quality management system requirements for organizations to ensure customer satisfaction and continuous improvement.",
-                normativeRequirements: [
-                    { clause: "4.1", title: "Understanding the organization and its context", description: "Determine external and internal issues relevant to purpose and strategic direction", mandatory: "Documented context analysis" },
-                    { clause: "4.2", title: "Understanding needs of interested parties", description: "Determine interested parties and their relevant requirements", mandatory: "Documented interested party requirements" },
-                    { clause: "4.3", title: "Determining QMS scope", description: "Determine scope of QMS and applicability of requirements", mandatory: "QMS scope statement" },
-                    { clause: "5.1", title: "Leadership commitment", description: "Top management demonstrates commitment to QMS development and implementation", mandatory: "Evidence of leadership actions" },
-                    { clause: "5.2", title: "Quality policy", description: "Establish, implement, and communicate quality policy", mandatory: "Quality policy document" },
-                    { clause: "6.1", title: "Actions to address risks", description: "Plan actions to address risks and opportunities in context", mandatory: "Risk assessment documentation" },
-                    { clause: "7.1", title: "Resources", description: "Determine and provide resources needed for QMS", mandatory: "Resource allocation records" },
-                    { clause: "8.1", title: "Operational planning", description: "Plan, implement, control processes to meet requirements", mandatory: "Process documentation" },
-                    { clause: "9.1", title: "Monitoring and measurement", description: "Determine what needs monitoring, methods, and analyze results", mandatory: "Monitoring records" },
-                    { clause: "9.2", title: "Internal audit", description: "Conduct internal audits at planned intervals", mandatory: "Audit schedule and records" },
-                    { clause: "10.2", title: "Non-conformity and corrective action", description: "React to non-conformities and take corrective action", mandatory: "CAPA records" }
-                ],
-                stats: { totalControls: "11 Requirements", totalClauses: "7 Clauses", uniqueFeatures: "Product/Service Focus" },
-                overlappingControls: [
-                    { control: "5.2 (Quality Policy)", overlaps: "ISO 14001:5.2, ISO 45001:5.2, ISO 27001:A.5.1, ISO 42001:A.2.1, ISO 37001:5.2, ISO 27701:5.1", reason: "Policy establishment framework common to all standards" },
-                    { control: "6.1 (Risk Assessment)", overlaps: "ISO 14001:6.1, ISO 45001:6.1, ISO 27001:A.12.6.1, ISO 42001:A.6.1, ISO 37001:6.1", reason: "Unified risk register with multi-label approach reduces effort by ~50%" },
-                    { control: "7.2 (Competence)", overlaps: "ISO 14001:7.2, ISO 45001:7.2, ISO 27001:A.6.3, ISO 42001:A.3.2, ISO 37001:8.10, ISO 20000:7.2", reason: "Modular training program with role-specific modules" },
-                    { control: "9.1 (Monitoring)", overlaps: "ISO 14001:9.1, ISO 45001:9.1, ISO 27001:A.12.4.1, ISO 42001:A.10.2, ISO 22301:9.1, ISO 20000:9.1", reason: "Unified KPI dashboard across all standards" },
-                    { control: "9.2 (Internal Audit)", overlaps: "ISO 14001:9.2, ISO 45001:9.2, ISO 27001:A.14.2, ISO 42001:9.2, ISO 37001:9.2, ISO 22301:9.2", reason: "Integrated annual audit program with single evidence library" }
-                ]
-            },
-            "ISO 27001": {
-                type: "Information Security Management System",
-                clauses: 10,
-                controls: 93,
-                description: "Establishes comprehensive information security management system with 93 controls across organizational, people, physical, and technological domains.",
-                normativeRequirements: [
-                    { clause: "4.1", title: "Understanding organization and context", description: "Determine external/internal issues and interested parties relevant to ISMS", mandatory: "Documented context analysis" },
-                    { clause: "6.1", title: "Actions to address risks", description: "Establish information security risk assessment and treatment process", mandatory: "Risk assessment and treatment plan" },
-                    { clause: "8.1", title: "Operational planning", description: "Implement controls selected from Annex A; ensure subject to security processes", mandatory: "Control implementation records" },
-                    { clause: "9.1", title: "Monitoring and measurement", description: "Monitor effectiveness of information security processes and controls", mandatory: "Monitoring records and metrics" },
-                    { clause: "9.2", title: "Internal audit", description: "Conduct periodic internal audits to evaluate conformity and control effectiveness", mandatory: "Audit schedule, records, findings" },
-                    { clause: "10.2", title: "Non-conformity and corrective action", description: "Address non-conformities and implement corrective actions", mandatory: "CAPA records" }
-                ],
-                controlCategories: { "Organizational (37)": "Policies, roles, IAM, asset management, governance", "People (8)": "User awareness, training, privileges, endpoint security", "Physical (14)": "Perimeters, entry control, equipment, environmental protection", "Technological (34)": "Cryptography, access control, malware, monitoring, logging" },
-                stats: { totalControls: "93 Controls", totalClauses: "10 Clauses", controlThemes: "4 Themes (OPPT)" },
-                overlappingControls: [
-                    { control: "A.5.1 (Security Policy)", overlaps: "ISO 9001:5.2, ISO 14001:5.2, ISO 45001:5.2, ISO 42001:A.2.1, ISO 37001:5.2, ISO 27701:5.1", reason: "Master policy with dedicated security section" },
-                    { control: "A.12.6.1 (Security Risk Assessment)", overlaps: "ISO 9001:6.1, ISO 14001:6.1, ISO 45001:6.1, ISO 42001:A.6.1, ISO 37001:6.1, ISO 22301:6.1", reason: "Integrated risk register includes security threats and vulnerabilities" },
-                    { control: "A.6.3 (Security Awareness Training)", overlaps: "ISO 9001:7.2, ISO 14001:7.2, ISO 45001:7.2, ISO 42001:A.3.2, ISO 37001:8.10, ISO 20000:7.2", reason: "Base training + security module delivered simultaneously" },
-                    { control: "A.14.2 (Internal Audit)", overlaps: "ISO 9001:9.2, ISO 14001:9.2, ISO 45001:9.2, ISO 42001:9.2, ISO 37001:9.2, ISO 22301:9.2", reason: "Single audit covers all standards; security controls audited alongside others" }
-                ]
-            },
-            "ISO 42001": {
-                type: "AI Management System",
-                clauses: 10,
-                controls: 38,
-                description: "Establishes AI management system with 38 controls focused on ethical AI, transparency, fairness, and accountability in AI systems.",
-                normativeRequirements: [
-                    { clause: "5.1", title: "Leadership and commitment", description: "Establish AI governance framework; define risk appetite for AI systems", mandatory: "AI governance policy and risk appetite" },
-                    { clause: "6.1", title: "Actions to address risks", description: "Perform AI risk assessment and treatment; manage AI-specific risks", mandatory: "AI risk assessment and treatment plan" },
-                    { clause: "8.1", title: "Operational planning", description: "Implement 38 Annex A controls; manage AI development, deployment, operation", mandatory: "Control implementation records" },
-                    { clause: "9.1", title: "Monitoring and measurement", description: "Monitor AI system performance, model drift, data quality; measure control effectiveness", mandatory: "AI performance metrics and monitoring records" }
-                ],
-                controlObjectives: { "A.2 AI Policies": "Ethical use, transparency, governance (2 controls)", "A.3 AI Organization": "Roles, responsibilities, competencies (3 controls)", "A.6 Risk & Impact": "AI risk assessment, impact assessment, treatment (4 controls)", "A.7 Data Governance": "Lineage, quality, suitability (3 controls)", "A.8 Model Management": "Development, testing, deployment, monitoring (6 controls)", "A.10 Monitoring": "Performance monitoring, drift detection, security testing (8 controls)" },
-                stats: { totalControls: "38 Controls", totalClauses: "10 Clauses", uniqueFeatures: "AI Lifecycle Focus" },
-                overlappingControls: [
-                    { control: "A.2.1 (AI Policy)", overlaps: "ISO 9001:5.2, ISO 14001:5.2, ISO 45001:5.2, ISO 27001:A.5.1, ISO 37001:5.2, ISO 27701:5.1", reason: "Master policy includes AI ethics and governance section" },
-                    { control: "A.6.1 (AI Risk Assessment)", overlaps: "ISO 9001:6.1, ISO 14001:6.1, ISO 45001:6.1, ISO 27001:A.12.6.1, ISO 37001:6.1, ISO 22301:6.1", reason: "Integrated risk register categorizes AI-specific risks alongside other risk types" },
-                    { control: "A.3.2 (AI Competency)", overlaps: "ISO 9001:7.2, ISO 14001:7.2, ISO 45001:7.2, ISO 27001:A.6.3, ISO 37001:8.10, ISO 20000:7.2", reason: "Role-specific AI module added to base training curriculum" },
-                    { control: "A.10.2 (AI Performance Monitoring)", overlaps: "ISO 9001:9.1, ISO 14001:9.1, ISO 45001:9.1, ISO 27001:A.12.4.1, ISO 22301:9.1, ISO 20000:9.1", reason: "Dashboard includes AI model performance metrics alongside operational KPIs" }
-                ]
-            },
-            "ISO 27701": {
-                type: "Privacy Information Management",
-                clauses: 8,
-                controls: 33,
-                description: "Extends ISO 27001 with privacy-specific requirements for managing PII, implementing GDPR/CCPA compliance, and data subject rights.",
-                normativeRequirements: [
-                    { clause: "5.1", title: "PII Controller/Processor roles", description: "Define and communicate controller/processor roles and responsibilities", mandatory: "Role definitions and communication records" },
-                    { clause: "6.1", title: "Privacy risk assessment", description: "Conduct Data Protection Impact Assessment (DPIA) and privacy risk assessment", mandatory: "DPIA documentation and risk register" },
-                    { clause: "8.1", title: "Privacy operational planning", description: "Implement privacy controls; manage data subject lifecycle", mandatory: "Privacy control records and data inventory" }
-                ],
-                uniqueRequirements: [ "PII inventory and mapping (A.1.1)", "Data Processing Agreements (A.2.1)", "Data Subject Access Request procedures (A.3.1)", "Privacy by Design implementation (A.4.1)", "Consent management for processing (A.5.1)", "Data retention and disposal schedules (A.6.1)", "International data transfer mechanisms (A.7.1)", "Personal data breach notification (A.8.1)" ],
-                stats: { totalControls: "33 Controls", extends: "ISO 27001", complianceFrameworks: "GDPR, CCPA, LGPD" },
-                overlappingControls: [
-                    { control: "5.1 (Privacy Policy)", overlaps: "ISO 9001:5.2, ISO 14001:5.2, ISO 45001:5.2, ISO 27001:A.5.1, ISO 42001:A.2.1, ISO 37001:5.2", reason: "Master policy includes privacy and data protection requirements" },
-                    { control: "A.1.1 (PII Records Management)", overlaps: "ISO 9001:7.5, ISO 27001:A.8.2, ISO 42001:A.5.1, ISO 37001:8.1, ISO 20000:8.2", reason: "Single DMS with PII classification taxonomy serves all standards" },
-                    { control: "6.1 (Privacy Risk Assessment)", overlaps: "ISO 9001:6.1, ISO 27001:A.12.6.1, ISO 42001:A.6.1, ISO 37001:6.1, ISO 22301:6.1", reason: "Unified risk register includes privacy impact assessments (DPIA)" }
-                ]
-            },
-            "ISO 14001": {
-                type: "Environmental Management System",
-                clauses: 7,
-                requirements: 8,
-                description: "Establishes environmental management system for organizations to reduce environmental impact and ensure regulatory compliance.",
-                normativeRequirements: [
-                    { clause: "4.1", title: "Understanding organization and context", description: "Identify external/internal environmental issues and interested parties", mandatory: "Environmental context analysis" },
-                    { clause: "6.1", title: "Environmental aspects and impacts", description: "Identify environmental aspects; assess legal/regulatory requirements", mandatory: "Environmental aspects register" },
-                    { clause: "6.2", title: "Environmental objectives", description: "Establish environmental objectives aligned to policy", mandatory: "Environmental objectives and targets" },
-                    { clause: "8.1", title: "Operational planning", description: "Control processes affecting environmental aspects; implement objectives", mandatory: "Environmental procedure documentation" }
-                ],
-                stats: { totalControls: "8 Core Requirements", totalClauses: "7 Clauses", focus: "Environmental Aspects & Legal Compliance" },
-                overlappingControls: [
-                    { control: "5.2 (Environmental Policy)", overlaps: "ISO 9001:5.2, ISO 45001:5.2, ISO 27001:A.5.1, ISO 42001:A.2.1, ISO 37001:5.2, ISO 27701:5.1", reason: "Master policy with environmental management section" },
+        // Load standards data from external JSON and provide client-side search/filter and analytics
+        let standardsData = {};
+        let overlapAnalysis = null;
+        let integrationStrategy = null;
+
+        async function loadStandardsData() {
+            try {
+                const res = await fetch('iso-analyzer-data.json');
+                const json = await res.json();
+                const list = json.analyzer && json.analyzer.standards ? json.analyzer.standards : [];
+                overlapAnalysis = json.analyzer && json.analyzer.overlapAnalysis ? json.analyzer.overlapAnalysis : null;
+                integrationStrategy = json.analyzer && json.analyzer.integrationStrategy ? json.analyzer.integrationStrategy : null;
+                list.forEach(s => {
+                    const key = (s.code || s.id || s.title).split(':')[0];
+                    standardsData[key] = {
+                        type: s.title,
+                        clauses: s.clausesCount || s.clauses || null,
+                        controls: s.controlsCount || s.controls || null,
+                        description: s.description || '',
+                        normativeRequirements: s.normativeRequirements || [],
+                        controlObjectives: s.controlObjectives || null,
+                        controlCategories: s.controlCategories || null,
+                        overlappingControls: s.overlappingControls || s.overlapControls || s.highOverlapWith ? (s.highOverlapWith.map(h => ({ control: h, overlaps: '', reason: '' }))) : []
+                    };
+                });
+                updateButtonStates();
+                renderOverview();
+                // Attach live search listeners (if present)
+                const reqInput = document.getElementById('requirementSearch');
+                if (reqInput) reqInput.addEventListener('input', filterRequirements);
+                const ctrlInput = document.getElementById('controlSearch');
+                if (ctrlInput) ctrlInput.addEventListener('input', filterControls);
+                // Initialize analytics panel and record page view
+                updateAnalyticsPanel();
+                logEvent('page_view');
+            } catch (err) {
+                console.error('Failed to load standards data:', err);
+                document.getElementById('overviewContent').innerHTML = '<p class="no-results">Failed to load analyzer data.</p>';
+            }
+        }
+
+        // Simple analytics stored in localStorage and shown in footer
+        function logEvent(action, details) {
+            try {
+                const key = 'iso_analyzer_analytics_v1';
+                const data = JSON.parse(localStorage.getItem(key) || '{}');
+                data[action] = (data[action] || 0) + 1;
+                localStorage.setItem(key, JSON.stringify(data));
+                updateAnalyticsPanel();
+                console.log('Analytics event:', action, details || '');
+            } catch (e) { console.warn('Analytics error', e); }
+        }
+
+        function updateAnalyticsPanel() {
+            const key = 'iso_analyzer_analytics_v1';
+            const data = JSON.parse(localStorage.getItem(key) || '{}');
+            const panel = document.getElementById('analyticsPanel');
+            if (!panel) return;
+            let html = '<div style="font-size:0.9em;color:#666;">';
+            Object.entries(data).forEach(([k,v]) => { html += `<div><strong>${k}:</strong> ${v}</div>`; });
+            if (Object.keys(data).length === 0) html += '<div>No events yet</div>';
+            html += '</div>';
+            panel.innerHTML = html;
+        }
+
+        // Wire up searches
+        function filterRequirements() {
+            logEvent('search_requirements');
+            renderRequirements();
+        }
+
+        function filterControls() {
+            logEvent('search_controls');
+            renderControls();
+        }
+
+        // Start loading data immediately
+        loadStandardsData();
                     { control: "6.1 (Environmental Aspects & Impacts)", overlaps: "ISO 9001:6.1, ISO 45001:6.1, ISO 27001:A.12.6.1, ISO 42001:A.6.1, ISO 37001:6.1", reason: "Integrated risk register includes environmental aspects alongside other risk categories" },
                     { control: "7.2 (Environmental Competence)", overlaps: "ISO 9001:7.2, ISO 45001:7.2, ISO 27001:A.6.3, ISO 42001:A.3.2, ISO 37001:8.10, ISO 20000:7.2", reason: "Environmental module integrated into base training program" },
                     { control: "9.1 (Environmental Monitoring)", overlaps: "ISO 9001:9.1, ISO 45001:9.1, ISO 27001:A.12.4.1, ISO 42001:A.10.2, ISO 22301:9.1, ISO 20000:9.1", reason: "Environmental KPIs included in unified dashboard" }
@@ -356,6 +335,7 @@
             currentStandard = standard;
             document.querySelectorAll('.standard-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+            try { logEvent('select_standard', standard); } catch(e){}
             // Reset to overview tab
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector('[onclick="switchTab(' + "'overview'" + ')"]').classList.add('active');
@@ -429,28 +409,43 @@
 
         function renderRequirements() {
             const data = standardsData[currentStandard];
-            if (!data.normativeRequirements) {
+            if (!data || !data.normativeRequirements) {
                 document.getElementById('requirementsContent').innerHTML = '<p class="no-results">No detailed requirements available</p>';
                 return;
             }
+            const query = (document.getElementById('requirementSearch') && document.getElementById('requirementSearch').value || '').trim().toLowerCase();
+            let list = data.normativeRequirements.slice();
+            if (query) {
+                list = list.filter(req => {
+                    const combined = `${req.clause} ${req.title} ${req.description} ${req.mandatory || ''}`.toLowerCase();
+                    return combined.indexOf(query) !== -1;
+                });
+            }
             let html = '<h2 class="section-title">Normative Requirements</h2>';
-            html += `<p style="color: #666; margin-bottom: 20px;">Total Requirements: <strong>${data.normativeRequirements.length}</strong></p>`;
-            data.normativeRequirements.forEach((req, idx) => {
-                html += `
+            html += `<p style="color: #666; margin-bottom: 20px;">Total Requirements: <strong>${list.length}</strong>${query ? ` <span style="color:#999;">(filtered)</span>` : ''}</p>`;
+            if (list.length === 0) {
+                html += '<p class="no-results">No requirements match your search.</p>';
+            } else {
+                list.forEach((req, idx) => {
+                    html += `
                     <div class="requirement-box">
                         <div class="requirement-clause">Clause ${req.clause}</div>
                         <div class="requirement-title">${req.title}</div>
                         <div class="requirement-text"><strong>Requirement:</strong> ${req.description}</div>
-                        <div class="requirement-text"><strong>Mandatory Evidence:</strong> ${req.mandatory}</div>
+                        <div class="requirement-text"><strong>Mandatory Evidence:</strong> ${req.mandatory || '—'}</div>
                     </div>
                 `;
-            });
+                });
+            }
             document.getElementById('requirementsContent').innerHTML = html;
         }
 
         function renderControls() {
             const data = standardsData[currentStandard];
             let html = '<h2 class="section-title">Control Sets</h2>';
+            const query = (document.getElementById('controlSearch') && document.getElementById('controlSearch').value || '').trim().toLowerCase();
+            const catFilter = (document.getElementById('categoryFilter') && document.getElementById('categoryFilter').value || '').trim().toLowerCase();
+
             if (data.controlCategories) {
                 html += '<div class="legend">';
                 Object.entries(data.controlCategories).forEach(([name, desc]) => {
@@ -459,11 +454,21 @@
                 });
                 html += '</div>';
             }
+
             if (data.controlObjectives) {
-                html += '<div class="control-grid">';
-                Object.entries(data.controlObjectives).forEach(([objective, desc]) => {
-                    const controlName = objective.split(' (')[0];
-                    html += `
+                const items = Object.entries(data.controlObjectives).filter(([objective, desc]) => {
+                    const combined = `${objective} ${desc}`.toLowerCase();
+                    const matchesQuery = !query || combined.indexOf(query) !== -1;
+                    const matchesCat = !catFilter || objective.toLowerCase().indexOf(catFilter) !== -1 || desc.toLowerCase().indexOf(catFilter) !== -1;
+                    return matchesQuery && matchesCat;
+                });
+                if (items.length === 0) {
+                    html += '<p class="no-results">No controls match your filters.</p>';
+                } else {
+                    html += '<div class="control-grid">';
+                    items.forEach(([objective, desc]) => {
+                        const controlName = objective.split(' (')[0];
+                        html += `
                         <div class="control-card" onclick="showControlComparison('${controlName.replace(/'/g, "\\'")}')">
                             <div class="control-header">
                                 <span class="control-id">${objective.split(' ')[0]}</span>
@@ -473,12 +478,22 @@
                             <div class="control-description">${desc}</div>
                         </div>
                     `;
-                });
-                html += '</div>';
+                    });
+                    html += '</div>';
+                }
             } else if (data.controlCategories) {
-                html += '<div class="control-grid">';
-                Object.entries(data.controlCategories).forEach(([category, desc]) => {
-                    html += `
+                const items = Object.entries(data.controlCategories).filter(([category, desc]) => {
+                    const combined = `${category} ${desc}`.toLowerCase();
+                    const matchesQuery = !query || combined.indexOf(query) !== -1;
+                    const matchesCat = !catFilter || category.toLowerCase().indexOf(catFilter) !== -1;
+                    return matchesQuery && matchesCat;
+                });
+                if (items.length === 0) {
+                    html += '<p class="no-results">No control categories match your filters.</p>';
+                } else {
+                    html += '<div class="control-grid">';
+                    items.forEach(([category, desc]) => {
+                        html += `
                         <div class="control-card" onclick="showControlComparison('${category.replace(/'/g, "\\'")}')">
                             <div class="control-header">
                                 <span class="control-category">${category.split(' ')[0]}</span>
@@ -488,8 +503,9 @@
                             <div class="control-description">${desc}</div>
                         </div>
                     `;
-                });
-                html += '</div>';
+                    });
+                    html += '</div>';
+                }
             } else {
                 html += '<p class="no-results">Detailed controls data not available</p>';
             }
@@ -743,6 +759,7 @@
 
         function downloadFile(content, filename) {
             const element = document.createElement('a');
+            try { logEvent('download_output', filename); } catch(e){}
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
             element.setAttribute('download', filename);
             element.style.display = 'none';
@@ -797,6 +814,7 @@
         };
 
         function showControlComparison(controlName) {
+            try { logEvent('compare_control', controlName); } catch(e){}
             const comparisonData = controlComparisonData[controlName];
             if (!comparisonData) { alert('Comparison data not available for this control'); return; }
             let html = `
@@ -861,6 +879,7 @@
         function downloadControlComparison(controlName, standardCount) {
             const comparisonData = controlComparisonData[controlName];
             if (!comparisonData) return;
+            try { logEvent('download_control_comparison', controlName); } catch(e){}
             let csv = 'Control Comparison: ' + controlName + '\n\n';
             csv += 'ISO Standard,Clause,Control Title,Description,Evidence Required\n';
             comparisonData.forEach(row => {
