@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO Clause and Control Mapping Matrix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover, .control-btn.active {
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th {
+            background: #f5f5f5;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .standard-name {
+            font-weight: 600;
+            color: #667eea;
+            min-width: 120px;
+        }
+
+        .overlap {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .unique {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .matrix-cell {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .matrix-cell:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .cell-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .cell-content {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .legend {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-box.overlap {
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+        }
+
+        .legend-box.unique {
+            background: #fff3e0;
+            border: 2px solid #e65100;
+        }
+
+        .legend-box.shared {
+            background: #e3f2fd;
+            border: 2px solid #1976d2;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .standards-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .standard-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .standard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .standard-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .standard-card p {
+            font-size: 0.9em;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ISO Clause & Control Mapping Matrix</h1>
+            <p>Visualize overlaps and unique requirements across ISO management system standards</p>
+            <div class="controls">
+                <button class="control-btn active" onclick="filterView('all')">All Standards</button>
+                <button class="control-btn" onclick="filterView('core')">Core ISO (Annex SL)</button>
+                <button class="control-btn" onclick="filterView('specialized')">Specialized</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-box overlap"></div>
+                    <span><strong>Overlapping:</strong> Requirements shared across multiple standards</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box unique"></div>
+                    <span><strong>Unique:</strong> Domain-specific requirements</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box shared"></div>
+                    <span><strong>Shared Structure:</strong> Common Annex SL clauses</span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+                <button class="tab-btn" onclick="switchTab('annex-sl')">Annex SL Mapping</button>
+                <button class="tab-btn" onclick="switchTab('overlap-matrix')">Overlap Matrix</button>
+                <button class="tab-btn" onclick="switchTab('implementation')">Implementation Guide</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <h2 class="section-title">ISO Standards Overview & Relationships</h2>
+                <div class="standards-list all-standards">
+                    <div class="standard-card core">
+                        <h3>ISO 9001</h3>
+                        <p><strong>Quality Management</strong><br> Customer satisfaction, consistent quality, continuous improvement. Base standard for many organizations.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 14001</h3>
+                        <p><strong>Environmental Management</strong><br> Reduce environmental impact, ensure compliance, sustainable operations. Complements ISO 9001.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 27001</h3>
+                        <p><strong>Information Security Management</strong><br> Protect CIA (confidentiality, integrity, availability) of information assets. 93 Annex A controls.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 27701</h3>
+                        <p><strong>Privacy Information Management</strong><br> PII protection, GDPR/CCPA compliance. Extends ISO 27001 with privacy-specific controls.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 42001</h3>
+                        <p><strong>AI Management Systems</strong><br> Ethical AI use, transparency, fairness. 39 AI-specific controls, overlaps with ISO 27001.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 45001</h3>
+                        <p><strong>Occupational Health & Safety</strong><br> Prevent work-related injury, provide safe workplaces. Integrates well with 9001/14001.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 50001</h3>
+                        <p><strong>Energy Management</strong><br> Improve energy performance, reduce costs. Deeper than ISO 14001 energy aspects.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 20000</h3>
+                        <p><strong>IT Service Management</strong><br> Quality IT service delivery, ITIL alignment. Overlaps with ISO 27001 in continuity.</p>
+                    </div>
+                    <div class="standard-card core">
+                        <h3>ISO 22301</h3>
+                        <p><strong>Business Continuity Management</strong><br> Ensure resilience, minimize disruption. Complementary to ISO 27001 (ops vs. data focus).</p>
+                    </div>
+                    <div class="standard-card specialized">
+                        <h3>ISO 13485</h3>
+                        <p><strong>Medical Device Quality Management</strong><br> Patient safety, regulatory compliance. Based on ISO 9001 but evolved separately.</p>
+                    </div>
+                    <div class="standard-card specialized">
+                        <h3>ISO 37001</h3>
+                        <p><strong>Anti-Bribery Management</strong><br> Prevent corruption, compliance with anti-bribery laws. Integrates with other systems.</p>
+                    </div>
+                    <div class="standard-card specialized">
+                        <h3>ISO/SAE 21434</h3>
+                        <p><strong>Automotive Cybersecurity</strong><br> Vehicle-level cybersecurity engineering. Complements ISO 27001 at product level.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annex SL Mapping Tab -->
+            <div id="annex-sl" class="tab-content">
+                <h2 class="section-title">Annex SL Shared Structure (10 Clauses)</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Most modern ISO management system standards follow the Annex SL framework, enabling efficient integration through shared structural elements.
+                </p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Clause</th>
+                                <th style="width: 30%;">Title</th>
+                                <th style="width: 55%;">Description & Overlap Potential</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="standard-name">Clause 1</td>
+                                <td><strong>Scope</strong></td>
+                                <td>
+                                    <span class="overlap">Shared Structure</span> Sets boundaries and intended outcomes. Domain-specific but identical structure across all Annex SL standards.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 2</td>
+                                <td><strong>Normative References</strong></td>
+                                <td>
+                                    <span class="overlap">Shared Structure</span> Lists reference standards and publications. Can be consolidated for multi-standard implementations.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 3</td>
+                                <td><strong>Terms & Definitions</strong></td>
+                                <td>
+                                    <span class="overlap">Shared Structure</span> Common terms enable easier integration. Standards share core definitions while adding domain-specific ones.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 4</td>
+                                <td><strong>Context of Organization</strong></td>
+                                <td>
+                                    <span class="overlap">High Overlap</span> Understanding internal/external factors, stakeholders, scope. Unified context analysis benefits all standards simultaneously.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 5</td>
+                                <td><strong>Leadership</strong></td>
+                                <td>
+                                    <span class="overlap">High Overlap</span> Leadership commitment, policy establishment, role assignment. Single policy framework can satisfy all standards with domain-specific sections.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 6</td>
+                                <td><strong>Planning</strong></td>
+                                <td>
+                                    <span class="overlap">High Overlap</span> Risk assessment, objective setting, action planning. Unified risk register with standard-specific labeling enables efficient planning.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 7</td>
+                                <td><strong>Support</strong></td>
+                                <td>
+                                    <span class="overlap">High Overlap</span> Resources, competence, awareness, communication, documented information. Consolidated training, documentation, and evidence collection.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 8</td>
+                                <td><strong>Operation</strong></td>
+                                <td>
+                                    <span class="unique">Domain-Specific</span> Planning & control, operational requirements. Significant divergence—ISO 9001 covers product design, ISO 27001 covers access control, ISO 42001 covers AI lifecycle.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 9</td>
+                                <td><strong>Performance Evaluation</strong></td>
+                                <td>
+                                    <span class="overlap">Medium Overlap</span> Monitoring, measurement, internal audits, management reviews. Integrated audit schedules and consolidated performance metrics reduce duplication.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">Clause 10</td>
+                                <td><strong>Improvement</strong></td>
+                                <td>
+                                    <span class="overlap">High Overlap</span> Non-conformities, corrective actions, continual improvement. Unified CAPA process with standard-specific categorization maximizes efficiency.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Overlap Matrix Tab -->
+            <div id="overlap-matrix" class="tab-content">
+                <h2 class="section-title">Clause-by-Clause Overlap Analysis</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Detailed breakdown showing where standards overlap and where unique requirements emerge. This guides integration strategy.
+                </p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Standards Pair</th>
+                                <th style="width: 25%;">Overlapping Areas</th>
+                                <th style="width: 25%;">Where They Diverge</th>
+                                <th style="width: 30%;">Integration Opportunity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="standard-name">9001 & 14001</td>
+                                <td>
+                                    <span class="overlap">Context (Cl. 4)</span>
+                                    <span class="overlap">Leadership (Cl. 5)</span>
+                                    <span class="overlap">Planning (Cl. 6)</span>
+                                    <span class="overlap">Support (Cl. 7)</span>
+                                    <span class="overlap">Improvement (Cl. 10)</span>
+                                </td>
+                                <td>
+                                    <span class="unique">Product/Service Design</span>
+                                    <span class="unique">Environmental Aspects</span>
+                                </td>
+                                <td>One quality policy covering both. Unified risk register. Combined training & audits.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">9001 & 27001</td>
+                                <td>
+                                    <span class="overlap">Context (Cl. 4)</span>
+                                    <span class="overlap">Leadership (Cl. 5)</span>
+                                    <span class="overlap">Planning (Cl. 6)</span>
+                                    <span class="overlap">Support (Cl. 7)</span>
+                                    <span class="overlap">Improvement (Cl. 10)</span>
+                                </td>
+                                <td>
+                                    <span class="unique">Quality Controls</span>
+                                    <span class="unique">93 Security Controls (Annex A)</span>
+                                </td>
+                                <td>Shared governance framework. Joint documentation management. Integrated audits for Clauses 4-7, 10; separate audits for Clause 8.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">27001 & 27701</td>
+                                <td>
+                                    <span class="overlap">All Clauses (27701 extends)</span>
+                                    <span class="overlap">Risk Assessment</span>
+                                    <span class="overlap">Access Control</span>
+                                    <span class="overlap">Incident Management</span>
+                                </td>
+                                <td>
+                                    <span class="unique">PII Mapping (27701)</span>
+                                    <span class="unique">DPIA (27701)</span>
+                                    <span class="unique">Data Subject Rights (27701)</span>
+                                </td>
+                                <td>27701 as extension. Single ISMS with privacy module. Shared asset registry with PII classification. One audit with privacy focus.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">27001 & 42001</td>
+                                <td>
+                                    <span class="overlap">Risk Management (Cl. 6)</span>
+                                    <span class="overlap">Asset Management</span>
+                                    <span class="overlap">Access Control</span>
+                                    <span class="overlap">Incident Response</span>
+                                </td>
+                                <td>
+                                    <span class="unique">AI Risk Assessment (42001)</span>
+                                    <span class="unique">AI Lifecycle Controls (42001)</span>
+                                    <span class="unique">Bias Testing (42001)</span>
+                                </td>
+                                <td>42001 overlaps ~40% with 27001. Reuse risk framework. Separate AI model documentation. Combined audits save 30-40% effort.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">9001, 14001, 45001, 50001</td>
+                                <td>
+                                    <span class="overlap">Clauses 4-7, 10 (full)</span>
+                                    <span class="overlap">Risk & Planning</span>
+                                    <span class="overlap">Performance Eval.</span>
+                                </td>
+                                <td>
+                                    <span class="unique">Quality specifics (9001)</span>
+                                    <span class="unique">Environmental (14001)</span>
+                                    <span class="unique">H&S Hazards (45001)</span>
+                                    <span class="unique">Energy Baselines (50001)</span>
+                                </td>
+                                <td>Single integrated management system (IMS). One policy framework with 4 sections. Joint context analysis. Annual integrated audit covers all.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">27001 & 22301</td>
+                                <td>
+                                    <span class="overlap">Business Continuity planning</span>
+                                    <span class="overlap">Risk Assessment</span>
+                                    <span class="overlap">Incident Response</span>
+                                </td>
+                                <td>
+                                    <span class="unique">IT Security Focus (27001)</span>
+                                    <span class="unique">All Business Operations (22301)</span>
+                                    <span class="unique">RTO/RPO (22301)</span>
+                                </td>
+                                <td>27001 handles data recovery; 22301 handles ops recovery. Complementary frameworks. Joint business continuity plan with security & ops sections.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name">27001 & 20000</td>
+                                <td>
+                                    <span class="overlap">IT Service Management</span>
+                                    <span class="overlap">Availability/Continuity</span>
+                                    <span class="overlap">Change Management</span>
+                                </td>
+                                <td>
+                                    <span class="unique">Security Focus (27001)</span>
+                                    <span class="unique">Service Delivery (20000)</span>
+                                </td>
+                                <td>20000 = service-based; 27001 = risk-based. Both needed for full IT governance. Joint framework with overlapping ITIL processes tagged.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Implementation Guide Tab -->
+            <div id="implementation" class="tab-content">
+                <h2 class="section-title">Integration Implementation Strategy</h2>
+                <div style="margin: 20px 0; padding: 20px; background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 4px;">
+                    <h3 style="color: #1565c0; margin-bottom: 10px;">Best Practices for Multi-Standard Integration</h3>
+                    <p style="color: #555; line-height: 1.7;">
+                        Organizations implementing multiple ISO standards benefit from treating shared elements as a unified framework while maintaining domain-specific rigor. The key is identifying where standards converge (Annex SL clauses 4-7, 10) and where they require distinct evidence and controls (Clause 8).
+                    </p>
+                </div>
+
+                <div class="matrix-grid">
+                    <div class="matrix-cell">
+                        <div class="cell-title">1. Unified Policy Framework</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> One master policy with domain-specific sections<br><br>
+                            <strong>How:</strong> Structure: Management Policy → Quality Section → Security Section → Environmental Section → H&S Section<br><br>
+                            <strong>Benefit:</strong> Single approval point, consistent messaging, easier updates
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">2. Consolidated Risk Register</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Single risk register with multi-label categorization<br><br>
+                            <strong>How:</strong> Each risk tagged: [Quality] [Security] [Environment] [H&S]<br><br>
+                            <strong>Benefit:</strong> See cross-domain risks, unified mitigation, single risk review
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">3. Clause-Tagged Evidence Library</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> All documents, logs, records tagged for relevant clauses<br><br>
+                            <strong>How:</strong> Evidence tagged: [4.1] [4.4] [7.5] [9.2] (cross-standard)<br><br>
+                            <strong>Benefit:</strong> One audit finds all relevant evidence instantly
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">4. Integrated Internal Audit Program</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Annual audit covers all standards simultaneously<br><br>
+                            <strong>How:</strong> Audit schedule matrix shows each process against relevant clauses<br><br>
+                            <strong>Benefit:</strong> 40-50% audit time savings, holistic view of risks
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">5. Role & Responsibility Mapping</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Single RACI matrix for all standards<br><br>
+                            <strong>How:</strong> Each role mapped to clauses across all standards<br><br>
+                            <strong>Benefit:</strong> Clear accountability, succession planning, no gaps
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">6. Unified Training Program</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Core training covers all standards together<br><br>
+                            <strong>How:</strong> "ISO Management Systems Fundamentals" + role-specific modules<br><br>
+                            <strong>Benefit:</strong> Consistent mindset, reduced training burden, better engagement
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">7. Integrated CAPA Process</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Single non-conformity & corrective action system<br><br>
+                            <strong>How:</strong> CAPA tagged for affected standards + root cause analysis<br><br>
+                            <strong>Benefit:</strong> Prevent recurring issues across all domains
+                        </div>
+                    </div>
+                    <div class="matrix-cell">
+                        <div class="cell-title">8. Management Review Integration</div>
+                        <div class="cell-content">
+                            <strong>What:</strong> Single management review covering all standards<br><br>
+                            <strong>How:</strong> Agenda: Context → Common Clauses → Domain-Specific Performance<br><br>
+                            <strong>Benefit:</strong> Holistic decision-making, strategic alignment
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 40px;">Integration Maturity Roadmap</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Phase</th>
+                                <th style="width: 25%;">Timeline</th>
+                                <th style="width: 30%;">Focus Areas</th>
+                                <th style="width: 30%;">Key Deliverables</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="standard-name"><strong>Assessment</strong></td>
+                                <td>Month 1-2</td>
+                                <td>Map current state documentation against standards. Identify overlaps & gaps. Analyze resource requirements.</td>
+                                <td>Gap analysis report. Integration roadmap. Resource plan. Budget estimate.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name"><strong>Design</strong></td>
+                                <td>Month 2-3</td>
+                                <td>Create integrated policy framework. Design unified risk register. Plan evidence tagging structure.</td>
+                                <td>Master policy document. Risk template. Evidence taxonomy. Clause-mapping matrix.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name"><strong>Build</strong></td>
+                                <td>Month 3-5</td>
+                                <td>Develop procedures. Create templates. Build evidence library. Setup audit schedule.</td>
+                                <td>Integrated procedures. Evidence library. Audit schedule. Training materials.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name"><strong>Launch</strong></td>
+                                <td>Month 5-6</td>
+                                <td>Train all staff. Roll out new processes. Begin integrated operations.</td>
+                                <td>Training completion. Process adoption. Performance baseline metrics.</td>
+                            </tr>
+                            <tr>
+                                <td class="standard-name"><strong>Optimize</strong></td>
+                                <td>Month 6-12</td>
+                                <td>Internal audits. Management reviews. Continuous refinement. Certification preparation.</td>
+                                <td>First internal audit results. Management review outcomes. Certification audit passing.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>ISO Clause & Control Mapping Matrix | Built to help organizations efficiently manage multiple ISO standards | Last Updated: December 2025</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function filterView(filter) {
+            const cards = document.querySelectorAll('.standard-card');
+            const btns = document.querySelectorAll('.control-btn');
+
+            // Update button active states
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                } else if (filter === 'core' && card.classList.contains('core')) {
+                    card.style.display = 'block';
+                } else if (filter === 'specialized' && card.classList.contains('specialized')) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
