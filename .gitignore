@@ -1,0 +1,27 @@
+# Personal/Sensitive Information
+personal_notes.md
+private/
+.env
+.env.local
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary Files
+*.tmp
+*.bak
+~$*
+
+# Node/Python (if applicable)
+node_modules/
+__pycache__/
+*.pyc
+venv/
+env/

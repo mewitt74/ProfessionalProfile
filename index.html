@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melissa Witte-Spencer | Professional Profile & Work Product</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2180C3;
+            --primary-dark: #1a65a3;
+            --accent: #32B8C6;
+            --success: #2D6A6F;
+            --warning: #E67E23;
+            --text: #1f2121;
+            --text-light: #626c71;
+            --bg-light: #fcfcf9;
+            --bg-white: #ffffff;
+            --border: #a7a9a9;
+            --shadow-sm: 0 2px 8px rgba(31, 33, 33, 0.08);
+            --shadow-md: 0 4px 16px rgba(31, 33, 33, 0.12);
+            --shadow-lg: 0 12px 32px rgba(31, 33, 33, 0.15);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fcfcf9 0%, #f5f5f5 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--bg-white);
+            padding: 20px 0;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            flex-wrap: wrap;
+            max-width: 900px;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        nav button:hover {
+            color: var(--primary);
+            background: rgba(33, 128, 195, 0.08);
+        }
+
+        nav button.active {
+            color: var(--primary);
+            background: rgba(33, 128, 195, 0.12);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(100px, -100px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            margin-bottom: 40px;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .section.hidden {
+            display: none;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 16px;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 32px;
+        }
+
+        .section h3 {
+            font-size: 18px;
+            color: var(--text);
+            margin-bottom: 8px;
+            margin-top: 24px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .expertise-card {
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .expertise-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .expertise-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 8px;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 32px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -48px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border: 3px solid var(--bg-white);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .achievement-item {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            padding-top: 4px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .achievement-description {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .cert-card {
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .cert-card::before {
+            content: '✓';
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 20px;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .cert-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .cert-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .cert-issuer {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .reference-card {
+            background: linear-gradient(135deg, rgba(50, 184, 198, 0.08) 0%, rgba(33, 128, 195, 0.08) 100%);
+            border: 1px solid #d0e8ef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .reference-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .reference-quote {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            padding-left: 12px;
+        }
+
+        .reference-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .reference-title {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        .filter-btn {
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: var(--primary) !important;
+            color: white !important;
+            border-color: var(--primary) !important;
+        }
+
+        .formal-letter-card {
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.06) 0%, rgba(50, 184, 198, 0.06) 100%);
+            border: 2px solid rgba(50, 184, 198, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .formal-letter-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .letter-preview {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 24px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            nav {
+                gap: 8px;
+            }
+
+            nav button {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filter-btn {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <div class="logo">Melissa Witte-Spencer</div>
+                <div class="logo-subtitle">Senior Compliance Technical Program Manager</div>
+            </div>
+            <nav>
+                <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
+                <button class="nav-btn" onclick="showSection('experience')">Experience</button>
+                <button class="nav-btn" onclick="showSection('expertise')">Expertise</button>
+                <button class="nav-btn" onclick="showSection('achievements')">Achievements</button>
+                <button class="nav-btn" onclick="showSection('certifications')">Certifications</button>
+                <button class="nav-btn" onclick="showSection('references')">References</button>
+                <button class="nav-btn" onclick="showSection('work-product')">Work Product</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Transformational Compliance & Automation Leader</h1>
+                    <p class="hero-subtitle">18+ Years of Excellence at Microsoft</p>
+                    <p>Elite-level Senior Compliance Technical Program Manager orchestrating transformative compliance and automation initiatives across 21 international regions impacting millions of assets. Pioneering AI-driven automation and advanced analytics solutions while delivering measurable results in regulatory compliance, operational efficiency, and enterprise-wide digital transformation.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-value">96.5%</span>
+                            <span class="stat-label">Compliance Accuracy</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">99.6%</span>
+                            <span class="stat-label">Data Integrity</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">46%</span>
+                            <span class="stat-label">YoY Growth</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">18+</span>
+                            <span class="stat-label">Years Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Executive Summary</h2>
+            <p>Distinguished by delivering exceptional compliance accuracy and pioneering AI-driven automation solutions that reduce manual workload by up to 40%. Recognized enterprise-wide as a subject matter expert who transforms ambiguous, high-stakes programs into scalable, efficient operations through strategic vision, technical innovation, and exceptional cross-functional leadership.</p>
+
+            <h3 style="margin-top: 32px; color: var(--primary);">Key Capabilities</h3>
+            <div class="expertise-grid" style="margin-top: 16px;">
+                <div class="expertise-card">
+                    <div class="expertise-label">Program Management</div>
+                    <div class="expertise-value">Dual Global Programs</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Compliance Excellence</div>
+                    <div class="expertise-value">96.5% Pass Rate</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">AI & Automation</div>
+                    <div class="expertise-value">40% Workload Reduction</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Analytics & BI</div>
+                    <div class="expertise-value">Advanced Power BI</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Data Quality</div>
+                    <div class="expertise-value">99.6% Accuracy</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Risk Management</div>
+                    <div class="expertise-value">GRC Leadership</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 32px; color: var(--primary);">Contact Information</h3>
+            <p style="margin-top: 16px;">
+                <strong>Location:</strong> Kirkland, Washington<br>
+                <strong>Phone:</strong> 425-894-3566<br>
+                <strong>Email:</strong> melissaspencer2@msn.com<br>
+                <strong>LinkedIn:</strong> linkedin.com/in/mewitt
+            </p>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">💼</div>
+                <h2>Professional Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2024 - October 2025</div>
+                    <div class="timeline-title">Senior Compliance Technical Program Manager</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Microsoft Corporation, Remote</div>
+                    <div class="timeline-description">
+                        <strong>Dual Global Program Leadership:</strong> Orchestrated end-to-end ownership of Controls Monitoring Framework (CMF) and Policy Exception Request (PXR) programs ensuring regulatory adherence across 21+ international regions with 96.5% compliance pass rate.<br><br>
+                        <strong>Unprecedented Volume Achievement:</strong> Delivered 122 PXRs in FY25 (projected 155), representing 46% year-over-year growth while reducing cycle time by 21%.<br><br>
+                        <strong>AI-Driven Innovation:</strong> Designed AI-driven process agents reducing manual workload by 40% and facilitated policy exceptions supporting 500% growth in AI Dedicated site usage.<br><br>
+                        <strong>Strategic Modernization:</strong> Led Enablon GRC migration planning, published updated PXR SOP, and pioneered Assurance Testing process for high-risk exceptions.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2018 - May 2024</div>
+                    <div class="timeline-title">Senior Compliance Manager</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Microsoft Corporation, Remote</div>
+                    <div class="timeline-description">
+                        <strong>Controls Framework Excellence:</strong> Achieved 92.16% compliance pass rate across 487 tests with perfect completion rate and reduced campaign management time by 80%.<br><br>
+                        <strong>Program Transformation:</strong> Processed 88 PXRs with 84% approval rate, optimized workflow efficiency reducing processing time by 30%, and increased user satisfaction by 40%.<br><br>
+                        <strong>Advanced Analytics:</strong> Pioneered PXR Data Insights capability with Power BI dashboards using complex DAX coding, creating role-based actionable views for all organizational levels.<br><br>
+                        <strong>Engineering Leadership:</strong> Authored multiple PXR engineering features and built comprehensive prioritization tracker for cross-stakeholder alignment.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">January 2018 - May 2018</div>
+                    <div class="timeline-title">Engineering Program Manager (MCIO)</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Microsoft Corporation, Remote</div>
+                    <div class="timeline-description">Led global data center engineering strategy for data-bearing device management across worldwide operations, driving cross-functional collaboration with Risk, Compliance, Security, and Inventory teams. Orchestrated end-to-end implementation across all global locations.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2011 - December 2017</div>
+                    <div class="timeline-title">Senior Program Manager</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Microsoft Corporation, Remote</div>
+                    <div class="timeline-description">
+                        <strong>Data Quality Transformation:</strong> Introduced Global Asset Data Quality Program, driving data accuracy from 65% to 99.6% for 3.4M devices across hundreds of locations.<br><br>
+                        <strong>Technical Innovation:</strong> Self-learned SQL expertise, built comprehensive reporting solutions, discovered critical process gaps affecting data integrity.<br><br>
+                        <strong>Strategic Projects:</strong> Managed BOM restructuring for 65% of GFS datacenter fixed assets and developed End-of-Life processes preventing procurement escalations.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2007 - July 2011</div>
+                    <div class="timeline-title">Program Manager - Capacity Planning</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Microsoft Corporation, Remote</div>
+                    <div class="timeline-description">Collaborated with 300+ business planners and engineers across 500+ business groups to create multi-million USD capital plans. Delivered strategic insights through data analysis, developed KPIs influencing organizational strategy, and led quarterly training to 50-100 global participants.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2023 - Present</div>
+                    <div class="timeline-title">Non-Relative Adult Legal Guardian</div>
+                    <div style="color: var(--accent); font-weight: 500; margin-bottom: 12px;">Volunteer, Seattle, Washington</div>
+                    <div class="timeline-description">Administering comprehensive healthcare coordination, daily living support, benefits management, crisis intervention, and legal compliance for an adult ward with complex medical and accessibility needs while maintaining 24/7 responsiveness.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">⚡</div>
+                <h2>Technical Expertise & Competencies</h2>
+            </div>
+
+            <h3>Compliance & Risk Management</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card"><div class="expertise-label">Framework Leadership</div><div class="expertise-value">CMF, PXR, GRC</div></div>
+                <div class="expertise-card"><div class="expertise-label">Risk Assessment</div><div class="expertise-value">High-Risk Exceptions</div></div>
+                <div class="expertise-card"><div class="expertise-label">Control Testing</div><div class="expertise-value">310+ Procedures</div></div>
+                <div class="expertise-card"><div class="expertise-label">Regulatory Adherence</div><div class="expertise-value">21 Regions</div></div>
+                <div class="expertise-card"><div class="expertise-label">Policy Management</div><div class="expertise-value">155 Annual PXRs</div></div>
+                <div class="expertise-card"><div class="expertise-label">Assurance Testing</div><div class="expertise-value">Evidence Validation</div></div>
+            </div>
+
+            <h3>Data & Analytics</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card"><div class="expertise-label">Power BI</div><div class="expertise-value">Advanced Dashboards</div></div>
+                <div class="expertise-card"><div class="expertise-label">DAX Coding</div><div class="expertise-value">Complex Metrics</div></div>
+                <div class="expertise-card"><div class="expertise-label">SQL Expertise</div><div class="expertise-value">Data Mining</div></div>
+                <div class="expertise-card"><div class="expertise-label">Data Quality</div><div class="expertise-value">99.6% Accuracy</div></div>
+                <div class="expertise-card"><div class="expertise-label">Executive Reporting</div><div class="expertise-value">QBR Insights</div></div>
+                <div class="expertise-card"><div class="expertise-label">KPI Development</div><div class="expertise-value">Trend Analysis</div></div>
+            </div>
+
+            <h3>AI & Automation</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card"><div class="expertise-label">AI Agents</div><div class="expertise-value">Process Automation</div></div>
+                <div class="expertise-card"><div class="expertise-label">Co-Pilot Integration</div><div class="expertise-value">DAX Coding</div></div>
+                <div class="expertise-card"><div class="expertise-label">Workflow Automation</div><div class="expertise-value">40% Reduction</div></div>
+                <div class="expertise-card"><div class="expertise-label">Process Agents</div><div class="expertise-value">Scalable Solutions</div></div>
+                <div class="expertise-card"><div class="expertise-label">RPA Implementation</div><div class="expertise-value">Administrative Tasks</div></div>
+                <div class="expertise-card"><div class="expertise-label">System Efficiency</div><div class="expertise-value">20% Improvement</div></div>
+            </div>
+
+            <h3>Platform & Systems</h3>
+            <div class="expertise-grid">
+                <div class="expertise-card"><div class="expertise-label">Enablon GRC</div><div class="expertise-value">Migration Planning</div></div>
+                <div class="expertise-card"><div class="expertise-label">eGRC/RSA Archer</div><div class="expertise-value">Legacy Expertise</div></div>
+                <div class="expertise-card"><div class="expertise-label">Power Apps</div><div class="expertise-value">Custom Solutions</div></div>
+                <div class="expertise-card"><div class="expertise-label">SharePoint Online</div><div class="expertise-value">Content Management</div></div>
+                <div class="expertise-card"><div class="expertise-label">ADO Integration</div><div class="expertise-value">System Automation</div></div>
+                <div class="expertise-card"><div class="expertise-label">Microsoft Forms</div><div class="expertise-value">Data Collection</div></div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">🏆</div>
+                <h2>Major Achievements & Impact</h2>
+            </div>
+
+            <h3>FY25 Accomplishments (Current)</h3>
+            <div class="achievement-item">
+                <div class="achievement-title">Dual Program Ownership & Execution</div>
+                <div class="achievement-description">Sustained end-to-end ownership of Controls Monitoring Framework (CMF) and Policy Exception Request (PXR) programs across 21+ international regions, ensuring operational continuity and quality execution while driving modernization initiatives. Achieved 96.5% compliance pass rate across 310+ control procedures with 100% quarterly test launch success.</div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-title">PXR Program Retooling & 20% Efficiency Gain</div>
+                <div class="achievement-description">Rebuilt and streamlined PXR workflows delivering 20% improvement in case processing time with increased auditability. Implemented design updates and automation features reducing manual entry by 30% while improving approval transparency and raising reporting accuracy to exceptional levels.</div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-title">AI Agent Design & 40% Workload Reduction</div>
+                <div class="achievement-description">Developed and deployed two AI-driven process agents to automate administrative workload across CMF and PXR programs. These innovations reduced manual reporting and tracking tasks by 40%, accelerating review cycles and freeing operational capacity for higher-impact analysis and strategic work.</div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-title">46% Year-Over-Year Growth</div>
+                <div class="achievement-description">Processed 122 PXRs in FY25 (projected 155 by year-end) representing 46% year-over-year growth—the highest program volume to date. Simultaneously reduced cycle time by 21% while maintaining 84% approval rate and enhancing stakeholder satisfaction by 40%.</div>
+            </div>
+
+            <h3>Historical Achievements (2007-2024)</h3>
+            <div class="achievement-item">
+                <div class="achievement-title">Data Quality Transformation: 65% → 99.6%</div>
+                <div class="achievement-description">Introduced Global Asset Data Quality Program, driving Data Center Inventory and Asset accuracy from 65% to 99.6% for 3.4M devices across hundreds of locations. Implemented strategic validation systems preventing errors before propagation.</div>
+            </div>
+
+            <div class="achievement-item">
+                <div class="achievement-title">Campaign Management Time: 80% Reduction</div>
+                <div class="achievement-description">Reduced campaign management time by 80%—from 80 hours to under 10 hours—through scalable testing methodology. Returned 695 labor-hours annually to the organization while maintaining 100% quarterly campaign launch success.</div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">📜</div>
+                <h2>Professional Certifications & Credentials</h2>
+            </div>
+
+            <h3>ISO & Compliance Certifications</h3>
+            <div class="cert-grid">
+                <div class="cert-card"><div class="cert-icon">🔐</div><div class="cert-name">ISO 27001:2022 Lead Auditor</div><div class="cert-issuer">Mastermind Assurance | 2028-12-05</div></div>
+                <div class="cert-card"><div class="cert-icon">🛡️</div><div class="cert-name">ISO 37001 Lead Implementer</div><div class="cert-issuer">PECB | 2020-02-07</div></div>
+                <div class="cert-card"><div class="cert-icon">🤖</div><div class="cert-name">ISO/IEC 42001:2023 AIMS</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+            </div>
+
+            <h3>AI & Advanced Technology Certifications</h3>
+            <div class="cert-grid">
+                <div class="cert-card"><div class="cert-icon">🧠</div><div class="cert-name">Everyday AI Concepts</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">⚖️</div><div class="cert-name">Navigating AI Regulations</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">🔒</div><div class="cert-name">DORA Requirements & AI Security</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">🇪🇺</div><div class="cert-name">Preparing for the EU AI Act</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">💡</div><div class="cert-name">Problem-Solving with Generative AI</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">💬</div><div class="cert-name">Top Ten AI Prompts</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">📝</div><div class="cert-name">ChatGPT Prompts for Jobseekers</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">📚</div><div class="cert-name">Research & Writing with Generative AI</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">🧪</div><div class="cert-name">Introduction to Large Language Models</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+                <div class="cert-card"><div class="cert-icon">🎯</div><div class="cert-name">Prompt Engineering</div><div class="cert-issuer">LinkedIn Learning | Nov 2025</div></div>
+            </div>
+        </section>
+
+        <!-- References Section -->
+        <section id="references" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">⭐</div>
+                <h2>Professional References & Testimonials</h2>
+            </div>
+
+            <div style="margin-bottom: 24px;">
+                <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
+                <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (7)</button>
+                <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
+            </div>
+
+            <h3>Formal Reference Letters - 7 Senior Leadership Endorsements</h3>
+            <div class="reference-grid formal-refs">
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Kanika Jain</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Compliance | Microsoft Cloud Operations + Innovation (Nov 13, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">Melissa is not only highly skilled in program management, but she is also a true technology enthusiast. Her ability to define processes from a technical perspective, identify and resolve ambiguities, and establish clear, structured frameworks has been instrumental in driving efficiency and compliance within our organization. She has a unique talent for turning complex challenges into well-defined, actionable solutions. Her work ethic and reliability set her apart.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Ryan Huff</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Assurance | Microsoft (Nov 7, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I had the privilege of working with Melissa for over 10 years at Microsoft. Her ability to lead complex projects and drive operational excellence set her apart. She consistently took on new challenges, quickly learning new requirements and pain points. She has demonstrated the ability to quickly learn and incorporate AI-driven solutions into her projects. Her strategic thinking and attention to detail ensured that deliverables were not only timely but exceeded expectations.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Ann Morrell</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Compliance & Assurance | Microsoft (Nov 7, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">Melissa led day-to-day execution of critical programs, managing control testing cycles, exception intake and evaluation, and the analytics needed to support leadership decisions. She brought strong analytical rigor developing Power BI dashboards that improved visibility and clarified trends. She enhanced tooling and process maturity by refining dashboards, simplifying workflows, and introducing automation that reduced manual work.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Tamara McBride</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Risk & Compliance | Microsoft (Nov 12, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">Melissa developed and implemented data management standards for accurately tracking inventory and assets. Her data analytics skills were invaluable as she investigated the entire data set, grouped error types, and presented strategies to senior leadership. Melissa's leadership on the data integrity maturity initiative consistently resulted in a 99%+ asset accuracy rate in both internal and external audits.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">R. Mark Plesnicher</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">GM, Critical Infrastructure & Risk | Microsoft (Nov 4, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to wholeheartedly recommend Melissa. She has consistently demonstrated exceptional dedication, professionalism, and remarkable ability to collaborate. She is highly organized, detail-oriented, and always willing to go the extra mile. Her contributions were critical to the success of the Microsoft Cloud Business.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Ron Munro</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Compliance | Microsoft (Dec 2, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">Melissa has consistently demonstrated exceptional expertise in compliance, governance, and risk management. Her strategic mindset, coupled with technical acumen in Power BI and Risk Management, positions her as a leader who drives innovation within the field.</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Marco Amaral</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Operations Assurance | Microsoft (Oct 29, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am delighted to highly recommend Melissa. She has played a critical role in major projects, expertly navigating complex compliance requirements. Her forward-thinking contributions in risk management and compliance frameworks have shaped organizational best practices. Her blend of technical depth and strategic vision makes her an invaluable asset to any organization.</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 32px;">Leadership Testimonials</h3>
+            <div class="reference-grid testimonials-refs">
+                <div class="reference-card">
+                    <div class="reference-quote">"Melissa's end-to-end ownership of the PXR program demonstrated by her successful processing of 122 requests in FY25, with 46% YoY growth projected to 155."</div>
+                    <div class="reference-author">Roman Denenberg</div>
+                    <div class="reference-title">Manager, Microsoft</div>
+                </div>
+
+                <div class="reference-card">
+                    <div class="reference-quote">"Melissa's data-driven storytelling through Power BI is incredibly impactful. The way she distilled complex insights using DAX into actionable trends shows dedication."</div>
+                    <div class="reference-author">Roman Denenberg</div>
+                    <div class="reference-title">Manager, Microsoft</div>
+                </div>
+
+                <div class="reference-card">
+                    <div class="reference-quote">"Melissa consistently demonstrates a collaborative, solution-oriented approach. She partners effectively with engineering, compliance, and assurance teams."</div>
+                    <div class="reference-author">Roman Denenberg</div>
+                    <div class="reference-title">Manager, Microsoft</div>
+                </div>
+
+                <div class="reference-card">
+                    <div class="reference-quote">"Her efforts in exploring Microsoft Forms and actively participating in control monitoring have been impactful and positively influenced our team."</div>
+                    <div class="reference-author">Ron Munro</div>
+                    <div class="reference-title">Manager, Microsoft</div>
+                </div>
+
+                <div class="reference-card">
+                    <div class="reference-quote">"Melissa does not shy away from learning new technologies. Her use of Co-Pilot to develop requirements demonstrates her technical innovation."</div>
+                    <div class="reference-author">Brian Nowak</div>
+                    <div class="reference-title">Sr. Compliance Manager, Microsoft</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Product Section -->
+        <section id="work-product" class="section hidden">
+            <div class="section-header">
+                <div class="section-icon">🧩</div>
+                <h2>Work Product</h2>
+            </div>
+            <p style="color: var(--text-light); margin-bottom: 24px;">Live ISO analysis tools showcasing management system integration, control-set mapping, and overlap visualization.</p>
+            <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+                <button class="filter-btn active" onclick="showWorkApp('analyzer')" style="padding: 10px 18px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">ISO Control Set Analyzer</button>
+                <button class="filter-btn" onclick="showWorkApp('matrix')" style="padding: 10px 18px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Clause & Control Mapping Matrix</button>
+            </div>
+
+            <div id="work-analyzer" style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 30px; color: white; min-height: 400px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);">
+                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">ISO Control Set Analyzer</h3>
+                <p style="margin-bottom: 16px; font-size: 1.05em; line-height: 1.6;">Comprehensive analysis of normative requirements and controls across 9 ISO standards: 9001, 27001, 42001, 27701, 14001, 45001, 20000, 22301, 37001.</p>
+                <p style="margin-bottom: 24px; opacity: 0.95;"><strong>Key Insight:</strong> 40-50% of Clause 4-7 and 10 requirements overlap across standards, enabling unified frameworks. Organizations can achieve 30-50% implementation efficiency gains.</p>
+                <button onclick="alert('Full ISO Analyzer application would load here. This demonstrates your advanced work in compliance framework integration.')" style="padding: 12px 24px; background: white; color: #667eea; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open Full Analyzer →</button>
+            </div>
+
+            <div id="work-matrix" style="display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 30px; color: white; min-height: 400px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);">
+                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">ISO Clause & Control Mapping Matrix</h3>
+                <p style="margin-bottom: 16px; font-size: 1.05em; line-height: 1.6;">Visualizes overlaps and unique requirements across ISO management system standards using Annex SL framework.</p>
+                <p style="margin-bottom: 24px; opacity: 0.95;"><strong>Integration Best Practices:</strong> Unified policy framework, consolidated risk register, clause-tagged evidence library, integrated audit program, unified training, integrated CAPA process.</p>
+                <button onclick="alert('Full ISO Mapping Matrix application would load here. This demonstrates your expertise in compliance integration.')" style="padding: 12px 24px; background: white; color: #667eea; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open Full Mapping Matrix →</button>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>&copy; 2025 Melissa Witte-Spencer. All rights reserved.</p>
+            <p style="margin-top: 12px; font-size: 12px;">Last Updated: December 8, 2025</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.add('hidden'));
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) selectedSection.classList.remove('hidden');
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showWorkApp(which) {
+            document.getElementById('work-analyzer').style.display = which === 'analyzer' ? 'block' : 'none';
+            document.getElementById('work-matrix').style.display = which === 'matrix' ? 'block' : 'none';
+            document.querySelectorAll('#work-product .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function filterReferences(type) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const formalRefs = document.querySelector('.formal-refs');
+            const testimonialRefs = document.querySelectorAll('.testimonials-refs');
+            if (type === 'all') {
+                formalRefs.style.display = 'grid';
+                testimonialRefs.forEach(el => el.style.display = 'grid');
+            } else if (type === 'formal') {
+                formalRefs.style.display = 'grid';
+                testimonialRefs.forEach(el => el.style.display = 'none');
+            } else if (type === 'testimonials') {
+                formalRefs.style.display = 'none';
+                testimonialRefs.forEach(el => el.style.display = 'grid');
+            }
+        }
+
+        function toggleLetter(element) {
+            const preview = element.querySelector('.letter-preview');
+            const fullText = element.querySelector('.letter-full');
+            if (fullText.style.display === 'none') {
+                fullText.style.display = 'block';
+                preview.style.opacity = '0.5';
+            } else {
+                fullText.style.display = 'none';
+                preview.style.opacity = '1';
+            }
+        }
+    </script>
+</body>
+</html>
