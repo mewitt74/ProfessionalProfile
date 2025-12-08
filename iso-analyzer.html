@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISO Control Set Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .standard-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .standard-btn {
+            padding: 10px 18px;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .standard-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .standard-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .standard-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .standard-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .standard-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .standard-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .standard-type {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .standard-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .expertise-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+
+        .expertise-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .expertise-text {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .overlap-highlight {
+            background: #fffbea;
+            border-left: 4px solid #f57c00;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .overlap-title {
+            font-weight: 600;
+            color: #f57c00;
+            margin-bottom: 5px;
+        }
+
+        .overlap-text {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .error {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ISO Control Set Analyzer</h1>
+            <p>Comprehensive analysis of normative requirements and controls across 9 ISO standards</p>
+        </div>
+
+        <div class="content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: #333; margin: 0;">Select ISO Standard</h2>
+                <div style="display: flex; gap: 10px;">
+                    <button class="standard-btn" onclick="selectAllStandards()" style="background: #42a5f5; color: white; border-color: #42a5f5; font-weight: 600;">✓ Select All</button>
+                    <button class="standard-btn" onclick="clearSelection()" style="background: #ef5350; color: white; border-color: #ef5350; font-weight: 600;">✕ Clear</button>
+                </div>
+            </div>
+
+            <div class="standard-selector" id="standardButtons"></div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+                <button class="tab-btn" onclick="switchTab('comparison')">Comparison</button>
+                <button class="tab-btn" onclick="switchTab('overlap')">Control Overlap</button>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div id="overviewContent" class="loading">Loading standards...</div>
+            </div>
+
+            <!-- Comparison Tab -->
+            <div id="comparison" class="tab-content">
+                <div id="comparisonContent"></div>
+            </div>
+
+            <!-- Overlap Tab -->
+            <div id="overlap" class="tab-content">
+                <div id="overlapContent"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>ISO Control Set Analyzer | Powered by Melissa Witte-Spencer | December 2025</p>
+        </div>
+    </div>
+
+    <script>
+        let analyzerData = null;
+        let selectedStandards = new Set();
+
+        // Load JSON data
+        async function loadData() {
+            try {
+                const response = await fetch('iso-analyzer-data.json');
+                analyzerData = await response.json();
+                initializeUI();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('overviewContent').innerHTML = 
+                    '<div class="error">Error loading analyzer data. Please ensure iso-analyzer-data.json is in the same directory.</div>';
+            }
+        }
+
+        function initializeUI() {
+            // Create standard buttons
+            const buttonsContainer = document.getElementById('standardButtons');
+            analyzerData.analyzer.standards.forEach(standard => {
+                const btn = document.createElement('button');
+                btn.className = 'standard-btn';
+                btn.textContent = standard.code;
+                btn.onclick = () => selectStandard(standard.code);
+                buttonsContainer.appendChild(btn);
+            });
+
+            // Select first standard by default
+            selectStandard(analyzerData.analyzer.standards[0].code);
+        }
+
+        function selectStandard(code) {
+            selectedStandards.clear();
+            selectedStandards.add(code);
+            updateButtonStates();
+            switchTab('overview');
+        }
+
+        function selectAllStandards() {
+            selectedStandards.clear();
+            analyzerData.analyzer.standards.forEach(s => selectedStandards.add(s.code));
+            updateButtonStates();
+            switchTab('comparison');
+        }
+
+        function clearSelection() {
+            selectedStandards.clear();
+            selectedStandards.add(analyzerData.analyzer.standards[0].code);
+            updateButtonStates();
+            switchTab('overview');
+        }
+
+        function updateButtonStates() {
+            document.querySelectorAll('.standard-btn').forEach(btn => {
+                btn.classList.toggle('active', selectedStandards.has(btn.textContent));
+            });
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabName === 'overview') renderOverview();
+            else if (tabName === 'comparison') renderComparison();
+            else if (tabName === 'overlap') renderOverlap();
+        }
+
+        function findStandardByCode(code) {
+            return analyzerData.analyzer.standards.find(s => s.code === code);
+        }
+
+        function renderOverview() {
+            let html = '';
+            selectedStandards.forEach(code => {
+                const standard = findStandardByCode(code);
+                if (!standard) return;
+
+                html += `
+                    <div class="standard-card">
+                        <div class="standard-icon">${standard.icon}</div>
+                        <div class="standard-title">${standard.code}: ${standard.title}</div>
+                        <div class="standard-type">${standard.description}</div>
+                        <div class="standard-description">${standard.expertise.description}</div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">${standard.clausesCount}</div>
+                                <div class="stat-label">Clauses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${standard.controlsCount}</div>
+                                <div class="stat-label">Controls</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${standard.overlapPercentage}%</div>
+                                <div class="stat-label">Overlap</div>
+                            </div>
+                        </div>
+
+                        <div class="expertise-box">
+                            <div class="expertise-title">🎯 ${standard.expertise.title}</div>
+                            <div class="expertise-text">${standard.expertise.description}</div>
+                        </div>
+
+                        <div class="feature-grid" style="margin-top: 15px;">
+                            ${standard.keyFeatures.map(f => `
+                                <div class="feature-item">
+                                    <strong>✓ ${f}</strong>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        ${standard.overlappingControls ? `
+                            <div class="overlap-highlight">
+                                <div class="overlap-title">📊 Control Overlap Detection</div>
+                                <div class="overlap-text">
+                                    This standard shares ${standard.overlappingControls.length} major control areas with other standards.
+                                    Integrated implementation could save 30-50% effort.
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            document.getElementById('overviewContent').innerHTML = html || '<p style="color: #999;">Select a standard to view details</p>';
+        }
+
+        function renderComparison() {
+            if (selectedStandards.size === 1) {
+                document.getElementById('comparisonContent').innerHTML = 
+                    '<p style="color: #999; text-align: center; padding: 40px;">Select multiple standards to compare them</p>';
+                return;
+            }
+
+            let html = '<h2 class="section-title">Standard Comparison</h2>';
+            html += `<p style="color: #666; margin-bottom: 20px;">Comparing ${selectedStandards.size} standards</p>`;
+
+            html += '<div style="overflow-x: auto;"><table style="width: 100%; border-collapse: collapse;">';
+            html += '<thead><tr style="background: #f5f5f5; border-bottom: 2px solid #ddd;">';
+            html += '<th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Standard</th>';
+            html += '<th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Clauses</th>';
+            html += '<th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Controls</th>';
+            html += '<th style="padding: 12px; text-align: left; font-weight: 600; color: #333;">Focus</th>';
+            html += '</tr></thead><tbody>';
+
+            selectedStandards.forEach(code => {
+                const standard = findStandardByCode(code);
+                if (!standard) return;
+                html += `
+                    <tr style="border-bottom: 1px solid #e0e0e0;">
+                        <td style="padding: 12px; font-weight: 600; color: #333;">${standard.code}</td>
+                        <td style="padding: 12px; color: #666;">${standard.clausesCount}</td>
+                        <td style="padding: 12px; color: #666;">${standard.controlsCount}</td>
+                        <td style="padding: 12px; color: #666;">${standard.title}</td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table></div>';
+
+            // Integration benefits
+            html += `
+                <h3 class="section-title" style="margin-top: 40px;">Integration Benefits</h3>
+                <div class="feature-grid">
+                    <div class="feature-item" style="border-left-color: #2e7d32;">
+                        <strong>📋 Unified Policy</strong>
+                        <p>Single master policy with sections for each standard = 40% documentation reduction</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color: #1565c0;">
+                        <strong>📊 Consolidated Risk Register</strong>
+                        <p>Multi-label risk register eliminates duplication = 50% effort savings</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color: #f57c00;">
+                        <strong>👥 Integrated Training</strong>
+                        <p>Base module + role-specific sections = 30-50% training time reduction</p>
+                    </div>
+                    <div class="feature-item" style="border-left-color: #7b1fa2;">
+                        <strong>✓ Single Audit Program</strong>
+                        <p>Annual integrated audits with unified evidence library = 35% audit time reduction</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('comparisonContent').innerHTML = html;
+        }
+
+        function renderOverlap() {
+            let html = '<h2 class="section-title">Control Overlap Analysis</h2>';
+            html += '<p style="color: #666; margin-bottom: 20px;">Identifying controls that serve multiple standards simultaneously</p>';
+
+            // Common clauses analysis
+            const commonClauses = analyzerData.analyzer.overlapAnalysis.commonClauses;
+            html += '<h3 style="font-size: 1.1em; font-weight: 600; color: #333; margin: 30px 0 15px 0;">Common Clauses (Annex SL)</h3>';
+            html += '<div class="feature-grid">';
+            
+            commonClauses.forEach(clause => {
+                html += `
+                    <div class="feature-item">
+                        <strong>${clause.clause}: ${clause.title}</strong>
+                        <p><strong>Overlap:</strong> ${clause.overlapPercentage}% across ${clause.applicableStandards} standards</p>
+                        <p>${clause.description}</p>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+
+            // Opportunity value
+            html += '<h3 style="font-size: 1.1em; font-weight: 600; color: #333; margin: 30px 0 15px 0;">Integration Opportunity Value</h3>';
+            const opportunity = analyzerData.analyzer.overlapAnalysis.opportunityValue;
+            html += `<p style="color: #666; margin-bottom: 15px;">${opportunity.description}</p>`;
+            html += '<ul style="list-style: none; padding: 0;">';
+            opportunity.benefits.forEach(benefit => {
+                html += `<li style="padding: 8px 0; color: #666;">✓ ${benefit}</li>`;
+            });
+            html += '</ul>';
+
+            document.getElementById('overlapContent').innerHTML = html;
+        }
+
+        // Load data on page load
+        window.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+{
+  "analyzer": {
+    "title": "ISO Control Set Analyzer",
+    "description": "Comprehensive analysis of 9 ISO management system standards with control overlap mapping and integration strategies.",
+    "standards": [
+      {
+        "id": "ISO-9001",
+        "code": "ISO 9001:2015",
+        "title": "Quality Management",
+        "icon": "🎯",
+        "description": "Foundational quality management system covering organizational context, leadership, planning, support, operation, performance evaluation, and improvement.",
+        "clausesCount": 10,
+        "controlsCount": 50,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Led quality control integration for dual global programs (CMF & PXR) with 96.5% pass rate. Developed standardized testing methodologies reducing campaign management by 80% while maintaining 100% quarterly launch success."
+        },
+        "keyFeatures": [
+          "Organizational context definition",
+          "Leadership & commitment",
+          "Planning & risk management",
+          "Support & resources",
+          "Operational control",
+          "Performance evaluation",
+          "Improvement & effectiveness"
+        ],
+        "overlapPercentage": 45,
+        "highOverlapWith": ["ISO 27001", "ISO 14001", "ISO 45001", "ISO 20000", "ISO 22301"]
+      },
+      {
+        "id": "ISO-27001",
+        "code": "ISO 27001:2022",
+        "title": "Information Security",
+        "icon": "🔐",
+        "description": "Information security management system with focus on confidentiality, integrity, and availability through systematic risk management and control implementation.",
+        "clausesCount": 14,
+        "controlsCount": 93,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "ISO 27001:2022 Lead Auditor certified. Designed advanced Power BI dashboards for security compliance tracking with complex DAX coding. Achieved 99.6% data integrity across 3.4M assets through rigorous control frameworks."
+        },
+        "keyFeatures": [
+          "Information security policies",
+          "Access control",
+          "Cryptography",
+          "Physical & environmental security",
+          "Operations security",
+          "Communications security",
+          "System acquisition & development",
+          "Supplier relationships",
+          "Information security incident management",
+          "Business continuity management",
+          "Compliance"
+        ],
+        "overlapPercentage": 48,
+        "highOverlapWith": ["ISO 9001", "ISO 27701", "ISO 42001", "ISO 20000", "ISO 22301"]
+      },
+      {
+        "id": "ISO-42001",
+        "code": "ISO 42001:2023",
+        "title": "AI Management",
+        "icon": "🤖",
+        "description": "Artificial intelligence management system addressing risk management for AI systems throughout their lifecycle with governance and control frameworks.",
+        "clausesCount": 10,
+        "controlsCount": 44,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "AI innovation pioneer: designed and deployed AI-driven process agents reducing manual workload by 40%. Holds 10 LinkedIn Learning certifications in AI governance, prompt engineering, and LLM fundamentals. Facilitated 500% growth in AI Dedicated site usage through policy exception support."
+        },
+        "keyFeatures": [
+          "AI governance structure",
+          "AI risk management",
+          "Data quality & governance",
+          "AI system development & testing",
+          "AI system monitoring",
+          "Supply chain management",
+          "Incident management",
+          "Transparency & accountability",
+          "Human oversight controls"
+        ],
+        "overlapPercentage": 50,
+        "highOverlapWith": ["ISO 27001", "ISO 9001", "ISO 37001", "ISO 14001", "ISO 45001"]
+      },
+      {
+        "id": "ISO-27701",
+        "code": "ISO 27701:2019",
+        "title": "Privacy Extension",
+        "icon": "🔒",
+        "description": "Extension to ISO 27001 for personal data protection and privacy management with regulatory compliance and stakeholder trust.",
+        "clausesCount": 8,
+        "controlsCount": 40,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Managed privacy controls across 21+ international regions ensuring GDPR and multi-jurisdictional compliance. Engineered privacy exception workflows supporting rapid policy evaluation while maintaining data protection standards."
+        },
+        "keyFeatures": [
+          "Privacy by design",
+          "Personal data handling",
+          "Data subject rights",
+          "Privacy impact assessments",
+          "Consent management",
+          "Data breach response",
+          "Third-party management",
+          "Privacy compliance monitoring"
+        ],
+        "overlapPercentage": 52,
+        "highOverlapWith": ["ISO 27001", "ISO 9001", "ISO 45001"]
+      },
+      {
+        "id": "ISO-14001",
+        "code": "ISO 14001:2015",
+        "title": "Environmental Management",
+        "icon": "🌱",
+        "description": "Environmental management system for systematic environmental impact reduction and compliance with regulatory requirements.",
+        "clausesCount": 10,
+        "controlsCount": 35,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Integrated environmental compliance into multi-standard framework architecture. Developed consolidated risk assessment methodologies applicable to environmental hazard identification and mitigation."
+        },
+        "keyFeatures": [
+          "Environmental policy",
+          "Organizational context",
+          "Leadership & commitment",
+          "Planning",
+          "Support & resources",
+          "Operational control",
+          "Emergency preparedness",
+          "Monitoring & measurement",
+          "Evaluation of compliance",
+          "Continual improvement"
+        ],
+        "overlapPercentage": 44,
+        "highOverlapWith": ["ISO 9001", "ISO 45001", "ISO 20000", "ISO 22301"]
+      },
+      {
+        "id": "ISO-45001",
+        "code": "ISO 45001:2018",
+        "title": "Occupational Health & Safety",
+        "icon": "⚠️",
+        "description": "Workplace health and safety management system with hazard identification and worker protection controls.",
+        "clausesCount": 10,
+        "controlsCount": 78,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Architected integrated safety compliance frameworks across global operations. Built quantitative risk models identifying high-risk exceptions and enabling proactive safety interventions at scale."
+        },
+        "keyFeatures": [
+          "OH&S policy",
+          "Hazard identification & risk assessment",
+          "Legal & regulatory requirements",
+          "Worker participation",
+          "Work environment controls",
+          "Hazardous substances management",
+          "PPE management",
+          "Emergency procedures",
+          "Incident investigation",
+          "Performance monitoring",
+          "Management review"
+        ],
+        "overlapPercentage": 46,
+        "highOverlapWith": ["ISO 9001", "ISO 14001", "ISO 20000", "ISO 22301"]
+      },
+      {
+        "id": "ISO-20000",
+        "code": "ISO/IEC 20000:2018",
+        "title": "IT Service Management",
+        "icon": "💻",
+        "description": "Service management system for IT service providers with service design, delivery, and continuous improvement processes.",
+        "clausesCount": 9,
+        "controlsCount": 34,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Led global data center engineering strategy for IT service reliability. Designed automated service monitoring systems with Power BI intelligence reducing incident response time by 21% while maintaining 100% operational continuity."
+        },
+        "keyFeatures": [
+          "Service management system",
+          "Service design & transition",
+          "Service delivery",
+          "Relationship management",
+          "Resolution & fulfillment",
+          "Metrics & reporting",
+          "Improvement management",
+          "Risk management",
+          "Compliance"
+        ],
+        "overlapPercentage": 42,
+        "highOverlapWith": ["ISO 9001", "ISO 27001", "ISO 22301"]
+      },
+      {
+        "id": "ISO-22301",
+        "code": "ISO 22301:2019",
+        "title": "Business Continuity",
+        "icon": "🔄",
+        "description": "Business continuity management system for disaster preparedness, resilience, and operational continuity planning.",
+        "clausesCount": 10,
+        "controlsCount": 39,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "Engineered business continuity frameworks ensuring operational resilience across 21+ regions. Designed failover protocols and recovery procedures supporting 500% growth in critical AI operations while maintaining zero-downtime deployment."
+        },
+        "keyFeatures": [
+          "BCM policy & objectives",
+          "Organizational roles",
+          "Business continuity strategy",
+          "Incident response",
+          "Business continuity procedures",
+          "Testing & drills",
+          "Supplier continuity",
+          "Crisis communication",
+          "Performance monitoring",
+          "Improvement & change management"
+        ],
+        "overlapPercentage": 47,
+        "highOverlapWith": ["ISO 9001", "ISO 27001", "ISO 20000"]
+      },
+      {
+        "id": "ISO-37001",
+        "code": "ISO 37001:2016",
+        "title": "Anti-Bribery",
+        "icon": "🛡️",
+        "description": "Anti-bribery management system with corruption prevention controls, due diligence, and compliance monitoring.",
+        "clausesCount": 10,
+        "controlsCount": 39,
+        "expertise": {
+          "title": "Melissa's Expertise",
+          "description": "ISO 37001 Lead Implementer certified (PECB). Developed enterprise-wide anti-bribery compliance frameworks with automated exception handling supporting 122 policy reviews (FY25) with 84% approval rate."
+        },
+        "keyFeatures": [
+          "Anti-bribery policy",
+          "Leadership & commitment",
+          "Due diligence",
+          "Gifts & hospitality",
+          "Facilitation payments",
+          "Political contributions",
+          "Sponsorships & donations",
+          "Business partner due diligence",
+          "Third-party management",
+          "Incident response & reporting",
+          "Training & communication"
+        ],
+        "overlapPercentage": 43,
+        "highOverlapWith": ["ISO 9001", "ISO 27001", "ISO 42001"]
+      }
+    ],
+    "overlapAnalysis": {
+      "title": "Overlap Analysis",
+      "description": "40-50% of Clause 4-7 and 10 requirements overlap across standards",
+      "commonClauses": [
+        {
+          "clause": "Clause 4",
+          "title": "Context of the Organization",
+          "overlapPercentage": 95,
+          "applicableStandards": 9,
+          "description": "Understanding organizational context, interested parties, and defining management system scope"
+        },
+        {
+          "clause": "Clause 5",
+          "title": "Leadership & Commitment",
+          "overlapPercentage": 92,
+          "applicableStandards": 9,
+          "description": "Top management commitment, policy establishment, and role definition"
+        },
+        {
+          "clause": "Clause 6",
+          "title": "Planning & Risk Management",
+          "overlapPercentage": 88,
+          "applicableStandards": 9,
+          "description": "Strategic planning, risk & opportunity assessment, and objective setting"
+        },
+        {
+          "clause": "Clause 7",
+          "title": "Support & Resources",
+          "overlapPercentage": 90,
+          "applicableStandards": 9,
+          "description": "Resource allocation, competence development, awareness, and communication"
+        },
+        {
+          "clause": "Clause 10",
+          "title": "Continuous Improvement",
+          "overlapPercentage": 85,
+          "applicableStandards": 9,
+          "description": "Non-conformity management, corrective actions, and continuous improvement"
+        }
+      ],
+      "opportunityValue": {
+        "title": "Integration Opportunity Value",
+        "description": "Organizations can achieve 30-50% efficiency gains by integrating common elements",
+        "benefits": [
+          "Unified policy framework reduces documentation by 40%",
+          "Consolidated risk register saves 25 hours annually",
+          "Single audit schedule reduces audit time by 35%",
+          "Integrated training reduces training costs by 30%",
+          "Unified CAPA process saves 15 hours quarterly",
+          "Single evidence library reduces evidence management by 45%"
+        ]
+      }
+    },
+    "integrationStrategy": {
+      "title": "Integrated Management System Strategy",
+      "description": "Unified framework for common clauses with modular domain-specific controls",
+      "approach": [
+        {
+          "phase": "Phase 1: Foundation",
+          "duration": "Months 1-3",
+          "activities": [
+            "Map all 9 standards to Annex SL framework",
+            "Identify high-overlap requirements (Clauses 4-7, 10)",
+            "Create unified context analysis",
+            "Define integrated leadership structure"
+          ]
+        },
+        {
+          "phase": "Phase 2: Integration",
+          "duration": "Months 4-6",
+          "activities": [
+            "Develop unified policies for common clauses",
+            "Create integrated risk framework",
+            "Build consolidated resource model",
+            "Design unified training program"
+          ]
+        },
+        {
+          "phase": "Phase 3: Implementation",
+          "duration": "Months 7-9",
+          "activities": [
+            "Deploy modular domain-specific controls",
+            "Implement integrated audit schedule",
+            "Establish consolidated evidence library",
+            "Launch unified improvement program"
+          ]
+        },
+        {
+          "phase": "Phase 4: Optimization",
+          "duration": "Months 10-12",
+          "activities": [
+            "Continuous improvement based on metrics",
+            "Stakeholder feedback integration",
+            "Process refinement",
+            "Certification audit preparation"
+          ]
+        }
+      ],
+      "efficiencyGains": {
+        "documentationReduction": "40%",
+        "auditTimeReduction": "35%",
+        "trainingCostReduction": "30%",
+        "implementationTimeReduction": "45%",
+        "complianceCostReduction": "38%"
+      }
+    }
+  }
+}
