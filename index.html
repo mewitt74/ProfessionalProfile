@@ -28,12 +28,63 @@
             --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Accessibility: Link styles */
+        a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration-thickness: 2px;
+            color: var(--primary-dark);
+        }
+
+        a:focus {
+            background: rgba(33, 128, 195, 0.1);
+            border-radius: 2px;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #fcfcf9 0%, #f5f5f5 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+        }
+
+        /* Accessibility: Focus styles for keyboard navigation */
+        *:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Accessibility: Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
         }
 
         .container {
@@ -82,7 +133,7 @@
 
         nav button {
             background: none;
-            border: none;
+            border: 2px solid transparent;
             font-size: 13px;
             font-weight: 500;
             color: var(--text-light);
@@ -96,6 +147,12 @@
         nav button:hover {
             color: var(--primary);
             background: rgba(33, 128, 195, 0.08);
+            border-color: rgba(33, 128, 195, 0.2);
+        }
+
+        nav button:focus {
+            border-color: var(--primary);
+            background: rgba(33, 128, 195, 0.1);
         }
 
         nav button.active {
@@ -548,7 +605,7 @@
         .cta-btn {
             background: white;
             color: var(--primary);
-            border: 2px solid white;
+            border: 3px solid white;
             padding: 20px 24px;
             border-radius: 12px;
             font-size: 15px;
@@ -561,6 +618,19 @@
             gap: 10px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         .cta-btn:hover {
@@ -568,7 +638,16 @@
             color: var(--primary);
             transform: translateY(-4px);
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-            border-color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .cta-btn:hover::after {
+            width: 80%;
+        }
+
+        .cta-btn:focus {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.3), 0 12px 28px rgba(0, 0, 0, 0.25);
         }
 
         .cta-btn-icon {
@@ -654,7 +733,7 @@
         .nav-toggle {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            border: none;
+            border: 3px solid white;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -670,6 +749,16 @@
         .nav-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 30px rgba(33, 128, 195, 0.6);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-toggle:focus {
+            border-color: white;
+            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.5), 0 6px 30px rgba(33, 128, 195, 0.6);
+        }
+
+        .nav-toggle[aria-expanded="true"] {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
         }
 
         .nav-menu {
@@ -707,6 +796,7 @@
             padding: 14px 18px;
             background: white;
             border: none;
+            border-left: 4px solid transparent;
             width: 100%;
             text-align: left;
             cursor: pointer;
@@ -723,12 +813,22 @@
         .nav-menu-item:hover {
             background: linear-gradient(90deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
             color: var(--primary);
+            border-left-color: var(--primary);
+            padding-left: 22px;
+        }
+
+        .nav-menu-item:focus {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
+            border-left-color: var(--primary);
+            outline-offset: -3px;
         }
 
         .nav-menu-item.active {
             background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
             color: var(--primary);
             font-weight: 600;
+            border-left-color: var(--primary);
+            border-left-width: 4px;
         }
 
         .nav-menu-icon {
@@ -757,7 +857,9 @@
     </style>
 </head>
 <body>
-    <header>
+    <a href="#overview" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
         <div class="header-content">
             <div>
                 <div class="logo">Melissa Witte-Spencer</div>
@@ -768,7 +870,7 @@
 
     <div class="container">
         <!-- Overview Section -->
-        <section id="overview" class="section">
+        <section id="overview" class="section" role="main" aria-label="Professional Overview">
             <div class="hero">
                 <div class="hero-content">
                     <h1>Transformational Compliance & Automation Leader</h1>
@@ -1644,26 +1746,26 @@
     </div>
 
     <!-- Floating Navigation -->
-    <div class="floating-nav" id="floatingNav">
-        <div class="nav-menu" id="navMenu">
-            <button class="nav-menu-item" onclick="navigateToSection('overview')">
-                <span class="nav-menu-icon">🏠</span>
+    <nav class="floating-nav" id="floatingNav" aria-label="Quick navigation menu">
+        <div class="nav-menu" id="navMenu" role="menu">
+            <button class="nav-menu-item" onclick="navigateToSection('overview')" role="menuitem" aria-label="Navigate to Home">
+                <span class="nav-menu-icon" aria-hidden="true">🏠</span>
                 <span>Home</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('experience')">
-                <span class="nav-menu-icon">💼</span>
+            <button class="nav-menu-item" onclick="navigateToSection('experience')" role="menuitem" aria-label="Navigate to Experience">
+                <span class="nav-menu-icon" aria-hidden="true">💼</span>
                 <span>Experience</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('certifications')">
-                <span class="nav-menu-icon">🎓</span>
+            <button class="nav-menu-item" onclick="navigateToSection('certifications')" role="menuitem" aria-label="Navigate to Certifications">
+                <span class="nav-menu-icon" aria-hidden="true">🎓</span>
                 <span>Certifications</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('achievements')">
-                <span class="nav-menu-icon">🏆</span>
+            <button class="nav-menu-item" onclick="navigateToSection('achievements')" role="menuitem" aria-label="Navigate to Achievements">
+                <span class="nav-menu-icon" aria-hidden="true">🏆</span>
                 <span>Achievements</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('references')">
-                <span class="nav-menu-icon">⭐</span>
+            <button class="nav-menu-item" onclick="navigateToSection('references')" role="menuitem" aria-label="Navigate to References">
+                <span class="nav-menu-icon" aria-hidden="true">⭐</span>
                 <span>References</span>
             </button>
             <button class="nav-menu-item" onclick="navigateToSection('work-product')">
@@ -1674,15 +1776,15 @@
                 <span class="nav-menu-icon">💡</span>
                 <span>Expertise</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('volunteer')">
-                <span class="nav-menu-icon">🤝</span>
+            <button class="nav-menu-item" onclick="navigateToSection('volunteer')" role="menuitem" aria-label="Navigate to Volunteer Work">
+                <span class="nav-menu-icon" aria-hidden="true">🤝</span>
                 <span>Volunteer</span>
             </button>
         </div>
-        <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()">
-            ☰
+        <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true">☰</span>
         </button>
-    </div>
+    </nav>
 
     <script>
         let currentSection = 'overview';
@@ -1713,7 +1815,11 @@
 
         function toggleNavMenu() {
             const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('navToggle');
+            const isExpanded = menu.classList.contains('show');
+            
             menu.classList.toggle('show');
+            toggle.setAttribute('aria-expanded', !isExpanded);
         }
 
         function updateFloatingNav() {
@@ -1745,6 +1851,20 @@
             
             if (floatingNav && !floatingNav.contains(event.target)) {
                 navMenu.classList.remove('show');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const navMenu = document.getElementById('navMenu');
+                const navToggle = document.getElementById('navToggle');
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.focus();
+                }
             }
         });
 
