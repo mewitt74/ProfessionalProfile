@@ -602,7 +602,7 @@
 
         .cta-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             max-width: 1100px;
             margin: 0 auto;
@@ -888,13 +888,18 @@
             </div>
 
             <div class="cta-section">
-                <h2 class="cta-title">Explore My Professional Portfolio</h2>
+                <h2 class="cta-title" style="color: white;">Explore My Professional Portfolio</h2>
                 <p class="cta-subtitle">Discover comprehensive documentation of leadership excellence, certifications, and proven results</p>
                 <div class="cta-buttons">
                     <button class="cta-btn" onclick="showSection('experience')">
                         <span class="cta-btn-icon">💼</span>
                         <span class="cta-btn-label">Experience</span>
                         <span class="cta-btn-desc">18+ years at Microsoft</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('references')">
+                        <span class="cta-btn-icon">⭐</span>
+                        <span class="cta-btn-label">References</span>
+                        <span class="cta-btn-desc">Leadership testimonials</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('certifications')">
                         <span class="cta-btn-icon">🎓</span>
@@ -905,11 +910,6 @@
                         <span class="cta-btn-icon">💡</span>
                         <span class="cta-btn-label">Expertise & Achievements</span>
                         <span class="cta-btn-desc">Skills and impact</span>
-                    </button>
-                    <button class="cta-btn" onclick="showSection('references')">
-                        <span class="cta-btn-icon">⭐</span>
-                        <span class="cta-btn-label">References</span>
-                        <span class="cta-btn-desc">Leadership testimonials</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('volunteer')">
                         <span class="cta-btn-icon">🤝</span>
@@ -1208,65 +1208,143 @@
         <section id="expertise" class="section hidden">
             <div class="section-header">
                 <div class="section-icon">💡</div>
-                <h2>Expertise & Key Achievements</h2>
+                <h2>Professional Expertise & Impact</h2>
             </div>
 
-            <h3>Major Impact & Results</h3>
-            <div class="expertise-grid" style="margin-bottom: 32px;">
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">Dual Program Leadership</div>
-                    <div class="expertise-value">CMF & PXR Ownership</div>
-                </div>
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">Volume Growth</div>
-                    <div class="expertise-value">46% YoY Increase</div>
-                </div>
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">AI Automation</div>
-                    <div class="expertise-value">40% Workload Reduction</div>
-                </div>
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">Efficiency Gains</div>
-                    <div class="expertise-value">20% Process Improvement</div>
-                </div>
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">Cycle Time</div>
-                    <div class="expertise-value">21% Reduction</div>
-                </div>
-                <div class="expertise-card" style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);">
-                    <div class="expertise-label">Data Quality</div>
-                    <div class="expertise-value">65% → 99.6%</div>
+            <!-- Executive Summary Metrics -->
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 32px; border-radius: 16px; margin-bottom: 40px; box-shadow: var(--shadow-lg);">
+                <h3 style="color: white; margin-top: 0; margin-bottom: 24px; text-align: center; font-size: 24px;">Transformational Leadership Impact</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px;">155</div>
+                        <div style="font-size: 13px; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; letter-spacing: 0.5px;">Policy Exceptions Processed</div>
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.8); margin-top: 4px;">46% YoY Growth</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px;">40%</div>
+                        <div style="font-size: 13px; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; letter-spacing: 0.5px;">Workload Automation</div>
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.8); margin-top: 4px;">AI-Driven Process Agents</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px;">310+</div>
+                        <div style="font-size: 13px; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; letter-spacing: 0.5px;">Control Procedures</div>
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.8); margin-top: 4px;">21+ Global Regions</div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 12px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.25); text-align: center;">
+                        <div style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 8px;">99.6%</div>
+                        <div style="font-size: 13px; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; letter-spacing: 0.5px;">Data Accuracy</div>
+                        <div style="font-size: 12px; color: rgba(255, 255, 255, 0.8); margin-top: 4px;">From 65% Baseline</div>
+                    </div>
                 </div>
             </div>
 
-            <h3>Compliance & Risk Management</h3>
-            <div class="expertise-grid">
-                <div class="expertise-card"><div class="expertise-label">Framework Leadership</div><div class="expertise-value">CMF, PXR, GRC</div></div>
-                <div class="expertise-card"><div class="expertise-label">Risk Assessment</div><div class="expertise-value">High-Risk Exceptions</div></div>
-                <div class="expertise-card"><div class="expertise-label">Control Testing</div><div class="expertise-value">310+ Procedures</div></div>
-                <div class="expertise-card"><div class="expertise-label">Global Reach</div><div class="expertise-value">21+ Regions</div></div>
-                <div class="expertise-card"><div class="expertise-label">Policy Management</div><div class="expertise-value">155 Annual PXRs</div></div>
-                <div class="expertise-card"><div class="expertise-label">Assurance Testing</div><div class="expertise-value">Evidence Validation</div></div>
+            <!-- Signature Achievements -->
+            <h3 style="color: var(--primary); margin-bottom: 24px; font-size: 22px;">🏆 Signature Achievements</h3>
+            <div style="display: grid; gap: 20px; margin-bottom: 40px;">
+                <div style="background: white; border-left: 4px solid var(--primary); padding: 24px; border-radius: 8px; box-shadow: var(--shadow-sm); transition: var(--transition);">
+                    <div style="display: flex; align-items: start; gap: 16px;">
+                        <div style="font-size: 36px; min-width: 50px;">🚀</div>
+                        <div>
+                            <h4 style="color: var(--primary); margin: 0 0 8px 0; font-size: 18px;">Scaled Program Volume by 46% While Reducing Cycle Time 21%</h4>
+                            <p style="margin: 0; color: var(--text); line-height: 1.6;">Processed record-breaking 155 policy exceptions (up from 122) through workflow redesign and intelligent automation—achieving highest program volume to date while simultaneously improving processing speed and maintaining 84% approval rate.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; border-left: 4px solid var(--accent); padding: 24px; border-radius: 8px; box-shadow: var(--shadow-sm); transition: var(--transition);">
+                    <div style="display: flex; align-items: start; gap: 16px;">
+                        <div style="font-size: 36px; min-width: 50px;">🤖</div>
+                        <div>
+                            <h4 style="color: var(--accent); margin: 0 0 8px 0; font-size: 18px;">Pioneered AI Automation Reducing Manual Workload 40%</h4>
+                            <p style="margin: 0; color: var(--text); line-height: 1.6;">Designed and deployed two AI-driven process agents automating administrative reporting and tracking tasks across CMF and PXR programs—freeing operational capacity for strategic analysis and enabling scalable growth under exponential demand.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; border-left: 4px solid var(--success); padding: 24px; border-radius: 8px; box-shadow: var(--shadow-sm); transition: var(--transition);">
+                    <div style="display: flex; align-items: start; gap: 16px;">
+                        <div style="font-size: 36px; min-width: 50px;">📊</div>
+                        <div>
+                            <h4 style="color: var(--success); margin: 0 0 8px 0; font-size: 18px;">Transformed Data Quality from 65% to 99.6% Accuracy</h4>
+                            <p style="margin: 0; color: var(--text); line-height: 1.6;">Introduced Global Asset Data Quality Program managing 3.4M devices across hundreds of locations. Implemented strategic validation systems preventing errors before propagation—delivering enterprise-grade data integrity supporting billions in asset valuation.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h3>Data Analytics & Business Intelligence</h3>
-            <div class="expertise-grid">
-                <div class="expertise-card"><div class="expertise-label">Power BI</div><div class="expertise-value">Advanced Dashboards</div></div>
-                <div class="expertise-card"><div class="expertise-label">DAX Coding</div><div class="expertise-value">Co-Pilot Integration</div></div>
-                <div class="expertise-card"><div class="expertise-label">SQL Expertise</div><div class="expertise-value">Data Mining</div></div>
-                <div class="expertise-card"><div class="expertise-label">Executive Reporting</div><div class="expertise-value">QBR Insights</div></div>
-                <div class="expertise-card"><div class="expertise-label">KPI Development</div><div class="expertise-value">Trend Analysis</div></div>
-                <div class="expertise-card"><div class="expertise-label">Predictive Metrics</div><div class="expertise-value">Strategic Planning</div></div>
+            <!-- Core Competencies -->
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">💼 Core Competencies</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+                <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; border: 1px solid rgba(33, 128, 195, 0.1);">
+                    <h4 style="color: var(--primary); margin: 0 0 16px 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 20px;">🛡️</span> GRC Program Leadership
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; color: var(--text); line-height: 1.8; font-size: 14px;">
+                        <li>Controls Monitoring Framework (CMF)</li>
+                        <li>Policy Exception Requests (PXR)</li>
+                        <li>Risk Assessment & Mitigation</li>
+                        <li>Compliance Testing (310+ procedures)</li>
+                        <li>Regulatory Adherence (21+ regions)</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; border: 1px solid rgba(33, 128, 195, 0.1);">
+                    <h4 style="color: var(--primary); margin: 0 0 16px 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 20px;">📈</span> Data Analytics & BI
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; color: var(--text); line-height: 1.8; font-size: 14px;">
+                        <li>Power BI (Advanced DAX, Co-Pilot)</li>
+                        <li>SQL & Data Mining</li>
+                        <li>Executive Dashboards & QBR Reporting</li>
+                        <li>Predictive Analytics & KPIs</li>
+                        <li>Trend Analysis & Strategic Insights</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; border: 1px solid rgba(33, 128, 195, 0.1);">
+                    <h4 style="color: var(--primary); margin: 0 0 16px 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 20px;">⚡</span> AI & Automation
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; color: var(--text); line-height: 1.8; font-size: 14px;">
+                        <li>AI Process Agent Design</li>
+                        <li>RPA Implementation & Workflow Automation</li>
+                        <li>Co-Pilot Integration (Azure, M365)</li>
+                        <li>ISO 42001:2023 AI Governance</li>
+                        <li>Intelligent Process Optimization</li>
+                    </ul>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; border: 1px solid rgba(33, 128, 195, 0.1);">
+                    <h4 style="color: var(--primary); margin: 0 0 16px 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 20px;">🔧</span> Platform & Systems
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; color: var(--text); line-height: 1.8; font-size: 14px;">
+                        <li>Enablon GRC (Migration Planning)</li>
+                        <li>eGRC/RSA Archer</li>
+                        <li>Power Platform (Apps, Automate)</li>
+                        <li>SharePoint Online & ADO</li>
+                        <li>Microsoft 365 Ecosystem</li>
+                    </ul>
+                </div>
             </div>
 
-            <h3>AI, Automation & Innovation</h3>
-            <div class="expertise-grid">
-                <div class="expertise-card"><div class="expertise-label">AI Process Agents</div><div class="expertise-value">Autonomous Workflows</div></div>
-                <div class="expertise-card"><div class="expertise-label">Workflow Automation</div><div class="expertise-value">RPA Implementation</div></div>
-                <div class="expertise-card"><div class="expertise-label">System Efficiency</div><div class="expertise-value">20% Improvement</div></div>
-                <div class="expertise-card"><div class="expertise-label">AI Governance</div><div class="expertise-value">ISO 42001 Certified</div></div>
-                <div class="expertise-card"><div class="expertise-label">Enablon GRC</div><div class="expertise-value">Migration Planning</div></div>
-                <div class="expertise-card"><div class="expertise-label">Power Platform</div><div class="expertise-value">Custom Solutions</div></div>
+            <!-- Certifications Highlight -->
+            <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">🎓 Professional Credentials</h3>
+            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 24px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.2);">
+                <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 16px 24px; border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+                        <div style="font-weight: 700; color: var(--primary); font-size: 14px;">ISO/IEC 27001:2022</div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Lead Auditor</div>
+                    </div>
+                    <div style="background: white; padding: 16px 24px; border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+                        <div style="font-weight: 700; color: var(--primary); font-size: 14px;">ISO/IEC 42001:2023</div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Lead Auditor (AI Management)</div>
+                    </div>
+                    <div style="background: white; padding: 16px 24px; border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+                        <div style="font-weight: 700; color: var(--primary); font-size: 14px;">ISO 37001</div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Lead Implementer (Anti-Bribery)</div>
+                    </div>
+                </div>
             </div>
         </section>
 
