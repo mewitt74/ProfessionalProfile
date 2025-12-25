@@ -494,6 +494,76 @@
             font-size: 14px;
         }
 
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 48px 0;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-title {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 18px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cta-btn {
+            background: white;
+            color: var(--primary);
+            border: 2px solid white;
+            padding: 16px 24px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn-icon {
+            font-size: 32px;
+        }
+
+        .cta-btn-label {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cta-btn-desc {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 32px;
@@ -528,6 +598,22 @@
                 font-size: 11px;
                 padding: 6px 12px;
             }
+
+            .cta-section {
+                padding: 32px 24px;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+
+            .cta-subtitle {
+                font-size: 16px;
+            }
+
+            .cta-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -538,16 +624,6 @@
                 <div class="logo">Melissa Witte-Spencer</div>
                 <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
             </div>
-            <nav>
-                <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
-                <button class="nav-btn" onclick="showSection('experience')">Experience</button>
-                <button class="nav-btn" onclick="showSection('volunteer')">Volunteer</button>
-                <button class="nav-btn" onclick="showSection('expertise')">Expertise</button>
-                <button class="nav-btn" onclick="showSection('achievements')">Achievements</button>
-                <button class="nav-btn" onclick="showSection('certifications')">Certifications</button>
-                <button class="nav-btn" onclick="showSection('references')">References</button>
-                <button class="nav-btn" onclick="showSection('work-product')">Work Product</button>
-            </nav>
         </div>
     </header>
 
@@ -582,9 +658,6 @@
 
             <div class="divider"></div>
 
-            <h2>Professional Summary</h2>
-            <p>ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
-
             <h3 style="margin-top: 32px; color: var(--primary);">Key Capabilities</h3>
             <div class="expertise-grid" style="margin-top: 16px;">
                 <div class="expertise-card">
@@ -610,6 +683,48 @@
                 <div class="expertise-card">
                     <div class="expertise-label">Risk Management</div>
                     <div class="expertise-value">GRC Leadership</div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2 class="cta-title">Explore My Professional Portfolio</h2>
+                <p class="cta-subtitle">Discover comprehensive documentation of leadership excellence, certifications, and proven results</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn" onclick="showSection('experience')">
+                        <span class="cta-btn-icon">💼</span>
+                        <span class="cta-btn-label">Experience</span>
+                        <span class="cta-btn-desc">18+ years at Microsoft</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('certifications')">
+                        <span class="cta-btn-icon">🎓</span>
+                        <span class="cta-btn-label">Certifications</span>
+                        <span class="cta-btn-desc">ISO Lead Auditor credentials</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('achievements')">
+                        <span class="cta-btn-icon">🏆</span>
+                        <span class="cta-btn-label">Achievements</span>
+                        <span class="cta-btn-desc">96.5% compliance accuracy</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('references')">
+                        <span class="cta-btn-icon">⭐</span>
+                        <span class="cta-btn-label">References</span>
+                        <span class="cta-btn-desc">Leadership testimonials</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('work-product')">
+                        <span class="cta-btn-icon">📁</span>
+                        <span class="cta-btn-label">Work Product</span>
+                        <span class="cta-btn-desc">Deliverables & artifacts</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('expertise')">
+                        <span class="cta-btn-icon">💡</span>
+                        <span class="cta-btn-label">Expertise</span>
+                        <span class="cta-btn-desc">Technical capabilities</span>
+                    </button>
+                    <button class="cta-btn" onclick="showSection('volunteer')">
+                        <span class="cta-btn-icon">🤝</span>
+                        <span class="cta-btn-label">Volunteer Work</span>
+                        <span class="cta-btn-desc">Community leadership</span>
+                    </button>
                 </div>
             </div>
 
