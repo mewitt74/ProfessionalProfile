@@ -496,41 +496,61 @@
 
         .cta-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 16px;
-            padding: 48px;
-            margin: 48px 0;
+            border-radius: 20px;
+            padding: 56px 48px;
+            margin: 40px 0;
             text-align: center;
             box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .cta-title {
             color: white;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-subtitle {
             color: rgba(255, 255, 255, 0.95);
-            font-size: 18px;
-            margin-bottom: 32px;
+            font-size: 19px;
+            margin-bottom: 40px;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-btn {
             background: white;
             color: var(--primary);
             border: 2px solid white;
-            padding: 16px 24px;
-            border-radius: 10px;
+            padding: 20px 24px;
+            border-radius: 12px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -538,15 +558,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .cta-btn:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            border-color: white;
         }
 
         .cta-btn-icon {
@@ -634,7 +656,6 @@
                 <div class="hero-content">
                     <h1>Transformational Compliance & Automation Leader</h1>
                     <p class="hero-subtitle">18+ Years of Excellence at Microsoft</p>
-                    <p>ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
                     <div class="hero-stats">
                         <div class="stat">
                             <span class="stat-value">96.5%</span>
@@ -653,36 +674,6 @@
                             <span class="stat-label">Years Leadership</span>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <h3 style="margin-top: 32px; color: var(--primary);">Key Capabilities</h3>
-            <div class="expertise-grid" style="margin-top: 16px;">
-                <div class="expertise-card">
-                    <div class="expertise-label">Program Management</div>
-                    <div class="expertise-value">Dual Global Programs</div>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-label">Compliance Excellence</div>
-                    <div class="expertise-value">96.5% Pass Rate</div>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-label">AI & Automation</div>
-                    <div class="expertise-value">40% Workload Reduction</div>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-label">Analytics & BI</div>
-                    <div class="expertise-value">Advanced Power BI</div>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-label">Data Quality</div>
-                    <div class="expertise-value">99.6% Accuracy</div>
-                </div>
-                <div class="expertise-card">
-                    <div class="expertise-label">Risk Management</div>
-                    <div class="expertise-value">GRC Leadership</div>
                 </div>
             </div>
 
@@ -728,12 +719,45 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 32px; color: var(--primary);">Contact Information</h3>
-            <p style="margin-top: 16px;">
+            <div class="divider"></div>
+
+            <h3 style="margin-top: 32px; color: var(--primary); text-align: center; font-size: 28px;">Professional Summary</h3>
+            <p style="margin-top: 20px; font-size: 16px; line-height: 1.8; text-align: justify;">ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
+
+            <h3 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Key Capabilities</h3>
+            <div class="expertise-grid" style="margin-top: 16px;">
+                <div class="expertise-card">
+                    <div class="expertise-label">Program Management</div>
+                    <div class="expertise-value">Dual Global Programs</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Compliance Excellence</div>
+                    <div class="expertise-value">96.5% Pass Rate</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">AI & Automation</div>
+                    <div class="expertise-value">40% Workload Reduction</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Analytics & BI</div>
+                    <div class="expertise-value">Advanced Power BI</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Data Quality</div>
+                    <div class="expertise-value">99.6% Accuracy</div>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-label">Risk Management</div>
+                    <div class="expertise-value">GRC Leadership</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Contact Information</h3>
+            <p style="margin-top: 20px; text-align: center; font-size: 15px; line-height: 2;">
                 <strong>Location:</strong> Kirkland, Washington<br>
                 <strong>Phone:</strong> 425-894-3566<br>
                 <strong>Email:</strong> melissaspencer2@msn.com<br>
-                <strong>LinkedIn:</strong> linkedin.com/in/mewitt
+                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mewitt" target="_blank" style="color: var(--primary); text-decoration: none;">linkedin.com/in/mewitt</a>
             </p>
         </section>
 
