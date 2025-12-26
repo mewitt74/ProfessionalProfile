@@ -2526,33 +2526,6 @@
                 <p style="margin: 0; line-height: 1.8;">Proactively dedicated this period to advanced technical upskilling and certification in emerging compliance domains. Successfully attained ISO/IEC 42001 (AI Management System) and ISO/IEC 27001 (Information Security) Lead Auditor credentials to address the critical intersection of AI governance and cybersecurity. This focused initiative ensures immediate readiness to lead enterprise-scale compliance programs within rapidly changing regulatory landscapes.</p>
             </div>
 
-            <!-- Search and Filter -->
-            <div class="cert-search-container">
-                <input type="text" 
-                       id="certSearch" 
-                       class="cert-search" 
-                       placeholder="🔍 Search certifications by name, organization, or keyword..." 
-                       onkeyup="filterCertifications()"
-                       aria-label="Search certifications">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-                    <div class="cert-filter-tags">
-                        <span class="cert-tag active" onclick="filterByCategory('all')">All (30+)</span>
-                        <span class="cert-tag" onclick="filterByCategory('lead-auditor')">Lead Auditor</span>
-                        <span class="cert-tag" onclick="filterByCategory('isaca')">ISACA</span>
-                        <span class="cert-tag" onclick="filterByCategory('ai-governance')">AI Governance</span>
-                        <span class="cert-tag" onclick="filterByCategory('security')">Security & GRC</span>
-                        <span class="cert-tag" onclick="filterByCategory('ai-automation')">AI Automation</span>
-                        <span class="cert-tag" onclick="filterByCategory('regulations')">Regulations</span>
-                        <span class="cert-tag" onclick="filterByCategory('leadership')">Leadership</span>
-                    </div>
-                    <button class="download-btn" onclick="printCertifications()" style="padding: 8px 16px;">
-                        <span class="download-btn-icon">📋</span>
-                        <span>Print Credentials</span>
-                    </button>
-                </div>
-                <div class="cert-count" id="certCount">Showing all certifications</div>
-            </div>
-
             <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 16px 24px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid var(--primary);">
                 <p style="margin: 0; color: var(--text); font-size: 14px;">💡 <strong>Click any certificate card</strong> to view and download the official PDF credential document</p>
             </div>
@@ -2747,6 +2720,33 @@
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Core database administration and management</div>
                     </div>
                 </a>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="cert-search-container" style="margin-top: 32px;">
+                <input type="text" 
+                       id="certSearch" 
+                       class="cert-search" 
+                       placeholder="🔍 Search certifications by name, organization, or keyword..." 
+                       onkeyup="filterCertifications()"
+                       aria-label="Search certifications">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                    <div class="cert-filter-tags">
+                        <span class="cert-tag active" onclick="filterByCategory('all')">All (30+)</span>
+                        <span class="cert-tag" onclick="filterByCategory('lead-auditor')">Lead Auditor</span>
+                        <span class="cert-tag" onclick="filterByCategory('isaca')">ISACA</span>
+                        <span class="cert-tag" onclick="filterByCategory('ai-governance')">AI Governance</span>
+                        <span class="cert-tag" onclick="filterByCategory('security')">Security & GRC</span>
+                        <span class="cert-tag" onclick="filterByCategory('ai-automation')">AI Automation</span>
+                        <span class="cert-tag" onclick="filterByCategory('regulations')">Regulations</span>
+                        <span class="cert-tag" onclick="filterByCategory('leadership')">Leadership</span>
+                    </div>
+                    <button class="download-btn" onclick="printCertifications()" style="padding: 8px 16px;">
+                        <span class="download-btn-icon">📋</span>
+                        <span>Print Credentials</span>
+                    </button>
+                </div>
+                <div class="cert-count" id="certCount">Showing all certifications</div>
             </div>
         </section>
 
