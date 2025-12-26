@@ -1049,8 +1049,32 @@
                 border: 1px solid #ddd;
             }
 
+            /* When printing certifications only */
+            body.printing-certifications .section:not(#certifications) {
+                display: none !important;
+            }
+
+            body.printing-certifications #certifications {
+                display: block !important;
+            }
+
+            body.printing-certifications .section-header {
+                margin-bottom: 20px;
+            }
+
+            body.printing-certifications .cert-card {
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            body.printing-certifications .cert-search-container {
+                display: none !important;
+            }
+
             /* For full profile printing */
-            body:not(.printing-testimonials) .section {
+            body:not(.printing-testimonials):not(.printing-certifications) .section {
                 page-break-inside: avoid;
                 box-shadow: none;
                 border: 1px solid #ddd;
@@ -1058,7 +1082,7 @@
                 padding: 20px;
             }
 
-            body:not(.printing-testimonials) .section.hidden {
+            body:not(.printing-testimonials):not(.printing-certifications) .section.hidden {
                 display: block !important;
             }
 
@@ -1928,15 +1952,21 @@
                        placeholder="🔍 Search certifications by name, organization, or keyword..." 
                        onkeyup="filterCertifications()"
                        aria-label="Search certifications">
-                <div class="cert-filter-tags">
-                    <span class="cert-tag active" onclick="filterByCategory('all')">All (30+)</span>
-                    <span class="cert-tag" onclick="filterByCategory('lead-auditor')">Lead Auditor</span>
-                    <span class="cert-tag" onclick="filterByCategory('isaca')">ISACA</span>
-                    <span class="cert-tag" onclick="filterByCategory('ai-governance')">AI Governance</span>
-                    <span class="cert-tag" onclick="filterByCategory('security')">Security & GRC</span>
-                    <span class="cert-tag" onclick="filterByCategory('ai-automation')">AI Automation</span>
-                    <span class="cert-tag" onclick="filterByCategory('regulations')">Regulations</span>
-                    <span class="cert-tag" onclick="filterByCategory('leadership')">Leadership</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                    <div class="cert-filter-tags">
+                        <span class="cert-tag active" onclick="filterByCategory('all')">All (30+)</span>
+                        <span class="cert-tag" onclick="filterByCategory('lead-auditor')">Lead Auditor</span>
+                        <span class="cert-tag" onclick="filterByCategory('isaca')">ISACA</span>
+                        <span class="cert-tag" onclick="filterByCategory('ai-governance')">AI Governance</span>
+                        <span class="cert-tag" onclick="filterByCategory('security')">Security & GRC</span>
+                        <span class="cert-tag" onclick="filterByCategory('ai-automation')">AI Automation</span>
+                        <span class="cert-tag" onclick="filterByCategory('regulations')">Regulations</span>
+                        <span class="cert-tag" onclick="filterByCategory('leadership')">Leadership</span>
+                    </div>
+                    <button class="download-btn" onclick="printCertifications()" style="padding: 8px 16px;">
+                        <span class="download-btn-icon">📋</span>
+                        <span>Print Credentials</span>
+                    </button>
                 </div>
                 <div class="cert-count" id="certCount">Showing all certifications</div>
             </div>
@@ -2659,6 +2689,21 @@
                             full.style.display = 'none';
                         }
                     });
+                }, 100);
+            }, 50);
+        }
+
+        function printCertifications() {
+            // Add a print-only class to body
+            document.body.classList.add('printing-certifications');
+            
+            // Trigger print dialog
+            setTimeout(() => {
+                window.print();
+                
+                // Restore after print
+                setTimeout(() => {
+                    document.body.classList.remove('printing-certifications');
                 }, 100);
             }, 50);
         }
