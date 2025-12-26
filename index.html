@@ -2088,10 +2088,16 @@
                 <h2>Professional Testimonials</h2>
             </div>
 
-            <div style="margin-bottom: 24px;">
-                <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
-                <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (8)</button>
-                <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
+            <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
+                    <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (8)</button>
+                    <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
+                </div>
+                <button class="download-btn" onclick="printTestimonials()" style="padding: 8px 16px;">
+                    <span class="download-btn-icon">📝</span>
+                    <span>Print Testimonials</span>
+                </button>
             </div>
 
             <h3>Formal Reference Letters - 8 Senior Leadership Endorsements</h3>
@@ -2568,6 +2574,60 @@
                     section.classList.add('hidden');
                 });
                 document.getElementById(currentSection).classList.remove('hidden');
+            }, 100);
+        }
+
+        function printTestimonials() {
+            // Expand all formal letters
+            document.querySelectorAll('.formal-letter-card').forEach(card => {
+                const preview = card.querySelector('.letter-preview');
+                const full = card.querySelector('.letter-full');
+                if (preview && full) {
+                    preview.style.display = 'none';
+                    full.style.display = 'block';
+                }
+            });
+
+            // Hide all sections except references
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.id !== 'references') {
+                    section.style.display = 'none';
+                }
+            });
+            document.getElementById('references').classList.remove('hidden');
+            document.getElementById('references').style.display = 'block';
+
+            // Hide filter buttons and print button for printing
+            const filterContainer = document.querySelector('#references > div:nth-child(2)');
+            if (filterContainer) filterContainer.style.display = 'none';
+
+            // Trigger print dialog
+            window.print();
+
+            // Restore original view after print
+            setTimeout(() => {
+                // Collapse all letters back
+                document.querySelectorAll('.formal-letter-card').forEach(card => {
+                    const preview = card.querySelector('.letter-preview');
+                    const full = card.querySelector('.letter-full');
+                    if (preview && full) {
+                        preview.style.display = 'block';
+                        full.style.display = 'none';
+                    }
+                });
+
+                // Show filter buttons again
+                if (filterContainer) filterContainer.style.display = 'flex';
+
+                // Restore sections
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = '';
+                    if (section.id !== currentSection) {
+                        section.classList.add('hidden');
+                    }
+                });
+            }, 100);
+        }
             }, 1000);
         }
 
