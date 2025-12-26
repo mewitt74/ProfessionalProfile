@@ -776,20 +776,17 @@
 
         .cta-btn-icon {
             font-size: 32px;
-            pointer-events: none;
         }
 
         .cta-btn-label {
             font-size: 16px;
             font-weight: 600;
-            pointer-events: none;
         }
 
         .cta-btn-desc {
             font-size: 12px;
             font-weight: 400;
             opacity: 0.8;
-            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -2439,12 +2436,8 @@
             const floatingNav = document.getElementById('floatingNav');
             const navMenuItems = document.querySelectorAll('.nav-menu-item');
             
-            // Show floating nav only when not on overview
-            if (currentSection === 'overview') {
-                floatingNav.classList.remove('visible');
-            } else {
-                floatingNav.classList.add('visible');
-            }
+            // Always show floating nav
+            floatingNav.classList.add('visible');
 
             // Update active state in menu
             navMenuItems.forEach(item => {
