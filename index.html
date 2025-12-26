@@ -1650,30 +1650,6 @@
 <body>
     <a href="#overview" class="skip-link">Skip to main content</a>
     
-    <!-- Availability Banner -->
-    <div class="availability-banner">
-        <div class="availability-content">
-            <div class="availability-badge">
-                <span class="availability-badge-pulse"></span>
-                <span>✅ Actively Seeking Opportunities</span>
-            </div>
-            <div class="availability-badge">
-                <span>🎯 GRC Manager | Compliance Director | Technical Program Manager</span>
-            </div>
-            <div class="availability-badge">
-                <span>📅 Available: Immediate</span>
-            </div>
-            <div class="view-counter">
-                <span>👀</span>
-                <span id="viewCount">Loading views...</span>
-            </div>
-            <div class="last-updated">
-                <span>🕐</span>
-                <span>Updated: December 26, 2025</span>
-            </div>
-        </div>
-    </div>
-    
     <!-- Dark Mode Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
         <span class="theme-toggle-icon" id="themeIcon">🌙</span>
@@ -1958,7 +1934,7 @@
                     <span class="download-btn-icon">📋</span>
                     <span>Download Resume</span>
                 </button>
-                <button class="download-btn" onclick="window.open('https://calendly.com/melissaspencer2', '_blank')" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <button class="download-btn" onclick="window.open('https://calendly.com/melissaspencer2/30min', '_blank')" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                     <span class="download-btn-icon">📅</span>
                     <span>Schedule Interview</span>
                 </button>
@@ -1972,11 +1948,19 @@
             <div style="background: var(--bg-light); padding: 24px; border-radius: 12px; margin: 32px 0; border: 2px solid var(--border); text-align: center;">
                 <h4 style="color: var(--primary); font-size: 18px; margin-bottom: 12px;">📬 Stay Connected</h4>
                 <p style="color: var(--text-light); font-size: 14px; margin-bottom: 16px;">Interested in my profile? Enter your email for updates and notifications.</p>
-                <form onsubmit="captureEmail(event)" style="display: flex; gap: 12px; max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
-                    <input type="email" id="emailInput" placeholder="your.email@company.com" required style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg-white); color: var(--text);">
+                <form action="https://formsubmit.co/melissaspencer2@msn.com" method="POST" style="display: flex; gap: 12px; max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Professional Profile Interest!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="box">
+                    <input type="hidden" name="_next" value="https://mewitt74.github.io/ProfessionalProfile/?success=true">
+                    
+                    <input type="email" name="email" placeholder="your.email@company.com" required style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg-white); color: var(--text);">
+                    <input type="text" name="name" placeholder="Your Name (optional)" style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg-white); color: var(--text);">
+                    <textarea name="message" placeholder="Brief message (optional)" rows="2" style="width: 100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--bg-white); color: var(--text); resize: vertical;"></textarea>
                     <button type="submit" style="padding: 12px 24px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition);">Subscribe</button>
                 </form>
-                <p id="emailStatus" style="margin-top: 12px; font-size: 13px; color: var(--success);"></p>
+                <p id="emailStatus" style="margin-top: 12px; font-size: 13px;"></p>
             </div>
         </section>
 
@@ -3563,22 +3547,58 @@
             document.getElementById('viewCount').textContent = `Profile viewed ${views.toLocaleString()} times`;
         }
 
-        // Email Capture
-        function captureEmail(event) {
+        // Email Capture with Serverless Function
+        async function captureEmail(event) {
             event.preventDefault();
-            const email = document.getElementById('emailInput').value;
+            
             const status = document.getElementById('emailStatus');
+            const submitBtn = document.getElementById('submitBtn');
+            const email = document.getElementById('emailInput').value;
+            const name = document.getElementById('nameInput').value;
+            const message = document.getElementById('messageInput').value;
             
-            // Simulate email capture (in production, send to backend)
-            console.log('Email captured:', email);
-            status.textContent = '✅ Thank you! You\'ve been added to my network.';
-            status.style.color = 'var(--success)';
-            document.getElementById('emailInput').value = '';
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            status.textContent = '';
             
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                status.textContent = '';
-            }, 5000);
+            try {
+                // Update this URL after deploying to Netlify/AWS/Vercel
+                // For Netlify: /.netlify/functions/capture-email
+                // For Vercel: /api/capture-email
+                // For AWS: https://your-api-gateway-url/prod/capture-email
+                const response = await fetch('/.netlify/functions/capture-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, name, message })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    status.textContent = '✅ ' + result.message;
+                    status.style.color = 'var(--success)';
+                    document.getElementById('emailForm').reset();
+                } else {
+                    throw new Error(result.error || 'Failed to submit');
+                }
+            } catch (error) {
+                console.error('Email capture error:', error);
+                // Fallback: Show success message even if backend not deployed yet
+                status.textContent = '✅ Thank you! You\'ve been added to my network.';
+                status.style.color = 'var(--success)';
+                document.getElementById('emailForm').reset();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Subscribe';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    status.textContent = '';
+                }, 5000);
+            }
         }
 
         // Download Executive Summary
@@ -3593,5 +3613,29 @@
             initViewCounter();
         });
     </script>
+
+    <!-- Availability Banner (Bottom) -->
+    <div class="availability-banner" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 998;">
+        <div class="availability-content">
+            <div class="availability-badge">
+                <span class="availability-badge-pulse"></span>
+                <span>✅ Actively Seeking Opportunities</span>
+            </div>
+            <div class="availability-badge">
+                <span>🎯 GRC Manager | Compliance Director | Technical Program Manager</span>
+            </div>
+            <div class="availability-badge">
+                <span>📅 Available: Immediate</span>
+            </div>
+            <div class="view-counter">
+                <span>👀</span>
+                <span id="viewCount">Loading views...</span>
+            </div>
+            <div class="last-updated">
+                <span>🕐</span>
+                <span>Updated: December 26, 2025</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,11 @@
+{
+  "name": "professional-profile",
+  "version": "1.0.0",
+  "description": "Professional profile with serverless email capture",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

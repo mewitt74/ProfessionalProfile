@@ -1,0 +1,8 @@
+# Netlify Configuration
+[build]
+  functions = "netlify/functions"
+
+# Environment variables (set these in Netlify dashboard)
+# EMAIL_USER = your-email@gmail.com
+# EMAIL_PASSWORD = your-app-password
+# Or use SENDGRID_API_KEY for SendGrid
