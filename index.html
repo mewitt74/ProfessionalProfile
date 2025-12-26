@@ -1022,7 +1022,35 @@
                 display: none !important;
             }
 
-            .section {
+            /* When printing testimonials only */
+            body.printing-testimonials .section:not(#references) {
+                display: none !important;
+            }
+
+            body.printing-testimonials #references {
+                display: block !important;
+            }
+
+            body.printing-testimonials .section-header {
+                margin-bottom: 20px;
+            }
+
+            body.printing-testimonials .formal-letter-card {
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+                padding: 15px;
+                border: 1px solid #ddd;
+            }
+
+            body.printing-testimonials .reference-card {
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+                padding: 12px;
+                border: 1px solid #ddd;
+            }
+
+            /* For full profile printing */
+            body:not(.printing-testimonials) .section {
                 page-break-inside: avoid;
                 box-shadow: none;
                 border: 1px solid #ddd;
@@ -1030,7 +1058,7 @@
                 padding: 20px;
             }
 
-            .section.hidden {
+            body:not(.printing-testimonials) .section.hidden {
                 display: block !important;
             }
 
@@ -2580,6 +2608,9 @@
         }
 
         function printTestimonials() {
+            // Add a print-only class to body
+            document.body.classList.add('printing-testimonials');
+            
             // Expand all formal letters
             document.querySelectorAll('.formal-letter-card').forEach(card => {
                 const preview = card.querySelector('.letter-preview');
@@ -2590,45 +2621,25 @@
                 }
             });
 
-            // Hide all sections except references
-            document.querySelectorAll('.section').forEach(section => {
-                if (section.id !== 'references') {
-                    section.style.display = 'none';
-                }
-            });
-            document.getElementById('references').classList.remove('hidden');
-            document.getElementById('references').style.display = 'block';
-
-            // Hide filter buttons and print button for printing
-            const filterContainer = document.querySelector('#references > div:nth-child(2)');
-            if (filterContainer) filterContainer.style.display = 'none';
-
             // Trigger print dialog
-            window.print();
-
-            // Restore original view after print
             setTimeout(() => {
-                // Collapse all letters back
-                document.querySelectorAll('.formal-letter-card').forEach(card => {
-                    const preview = card.querySelector('.letter-preview');
-                    const full = card.querySelector('.letter-full');
-                    if (preview && full) {
-                        preview.style.display = 'block';
-                        full.style.display = 'none';
-                    }
-                });
-
-                // Show filter buttons again
-                if (filterContainer) filterContainer.style.display = 'flex';
-
-                // Restore sections
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.display = '';
-                    if (section.id !== currentSection) {
-                        section.classList.add('hidden');
-                    }
-                });
-            }, 100);
+                window.print();
+                
+                // Restore after print
+                setTimeout(() => {
+                    document.body.classList.remove('printing-testimonials');
+                    
+                    // Collapse all letters back
+                    document.querySelectorAll('.formal-letter-card').forEach(card => {
+                        const preview = card.querySelector('.letter-preview');
+                        const full = card.querySelector('.letter-full');
+                        if (preview && full) {
+                            preview.style.display = 'block';
+                            full.style.display = 'none';
+                        }
+                    });
+                }, 100);
+            }, 50);
         }
 
         // Certifications Search and Filter
