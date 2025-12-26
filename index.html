@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa Witte-Spencer | Professional Profile & Work Product</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Senior Compliance Technical Program Manager with 18+ years at Microsoft. ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor. Expert in AI-driven automation, GRC modernization, and enterprise risk management.">
+    <meta name="keywords" content="Compliance Manager, Technical Program Manager, ISO 27001 Lead Auditor, ISO 42001 AI Auditor, GRC, Risk Management, Microsoft, AI Automation, Governance, Compliance">
+    <meta name="author" content="Melissa Witte-Spencer">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://mewitt74.github.io/ProfessionalProfile/">
+    <meta property="og:title" content="Melissa Witte-Spencer | Senior Compliance Technical Program Manager">
+    <meta property="og:description" content="18+ years of excellence at Microsoft. ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor. Specialized in AI-driven automation and GRC modernization.">
+    <meta property="og:image" content="https://mewitt74.github.io/ProfessionalProfile/certificates/iso-iec-42001-2023-lead-auditor.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mewitt74.github.io/ProfessionalProfile/">
+    <meta property="twitter:title" content="Melissa Witte-Spencer | Senior Compliance Technical Program Manager">
+    <meta property="twitter:description" content="18+ years at Microsoft. ISO Lead Auditor. Expert in AI automation, GRC, and enterprise compliance.">
+    <meta property="twitter:image" content="https://mewitt74.github.io/ProfessionalProfile/certificates/iso-iec-42001-2023-lead-auditor.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎓%3C/text%3E%3C/svg%3E">
+    
+    <!-- Google Analytics - Replace YOUR_GA_ID with actual ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -28,6 +61,27 @@
             --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary: #4da3ff;
+            --primary-dark: #66b3ff;
+            --accent: #5fd4e0;
+            --success: #4a9da3;
+            --warning: #ff9558;
+            --text: #e4e4e7;
+            --text-light: #a1a1aa;
+            --bg-light: #18181b;
+            --bg-white: #27272a;
+            --border: #52525b;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+        }
+
         /* Accessibility: Link styles */
         a {
             color: var(--primary);
@@ -47,12 +101,39 @@
             border-radius: 2px;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #fcfcf9 0%, #f5f5f5 100%);
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            animation: slideInUp 0.4s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Accessibility: Focus styles for keyboard navigation */
@@ -85,6 +166,37 @@
 
         .skip-link:focus {
             top: 0;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-icon {
+            font-size: 18px;
         }
 
         .container {
@@ -885,10 +997,259 @@
                 min-width: 200px;
             }
         }
+
+        /* Print Stylesheet */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 11pt;
+            }
+
+            .skip-link,
+            header,
+            .theme-toggle,
+            .floating-nav,
+            nav,
+            .cta-section,
+            .filter-btn,
+            .hero::before,
+            button {
+                display: none !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+                padding: 20px;
+            }
+
+            .section.hidden {
+                display: block !important;
+            }
+
+            .hero {
+                background: linear-gradient(135deg, #2180C3 0%, #32B8C6 100%);
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                color: white;
+                padding: 30px;
+                margin-bottom: 20px;
+            }
+
+            .timeline-item,
+            .reference-card,
+            .cert-card {
+                page-break-inside: avoid;
+            }
+
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+
+            .job-full,
+            .letter-full {
+                display: block !important;
+            }
+
+            .job-preview,
+            .letter-preview {
+                display: none !important;
+            }
+
+            h1 { font-size: 24pt; }
+            h2 { font-size: 18pt; }
+            h3 { font-size: 14pt; }
+        }
+
+        /* Skills Progress Bars */
+        .skills-section {
+            margin: 32px 0;
+        }
+
+        .skill-item {
+            margin-bottom: 24px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .skill-level {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 4px;
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Enhanced Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            color: var(--text);
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px auto;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-btn-icon {
+            font-size: 20px;
+        }
+
+        /* Certifications Search and Filter */
+        .cert-search-container {
+            margin: 24px 0;
+        }
+
+        .cert-search {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--bg-white);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .cert-search:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 195, 0.1);
+        }
+
+        .cert-filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .cert-tag {
+            padding: 6px 14px;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+        }
+
+        .cert-tag:hover,
+        .cert-tag.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cert-count {
+            font-size: 14px;
+            color: var(--text-light);
+            margin: 12px 0;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <a href="#overview" class="skip-link">Skip to main content</a>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark</span>
+    </button>
     
     <header role="banner">
         <div class="header-content">
@@ -921,22 +1282,22 @@
                     </button>
                     <button class="cta-btn" onclick="showSection('references')">
                         <span class="cta-btn-icon">⭐</span>
-                        <span class="cta-btn-label">References</span>
+                        <span class="cta-btn-label">Testimonials</span>
                         <span class="cta-btn-desc">Leadership testimonials</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('certifications')">
                         <span class="cta-btn-icon">🎓</span>
-                        <span class="cta-btn-label">Certifications</span>
+                        <span class="cta-btn-label">Credentials</span>
                         <span class="cta-btn-desc">ISO Lead Auditor credentials</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('expertise')">
                         <span class="cta-btn-icon">💡</span>
-                        <span class="cta-btn-label">Expertise & Achievements</span>
+                        <span class="cta-btn-label">Impact</span>
                         <span class="cta-btn-desc">Skills and impact</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('volunteer')">
                         <span class="cta-btn-icon">🤝</span>
-                        <span class="cta-btn-label">Volunteer Work</span>
+                        <span class="cta-btn-label">Leadership</span>
                         <span class="cta-btn-desc">Community leadership</span>
                     </button>
                     <button class="cta-btn" onclick="showSection('work-product')">
@@ -990,12 +1351,34 @@
             </div>
 
             <h3 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Contact Information</h3>
-            <p style="margin-top: 20px; text-align: center; font-size: 15px; line-height: 2;">
-                <strong>Location:</strong> Kirkland, Washington<br>
-                <strong>Phone:</strong> 425-894-3566<br>
-                <strong>Email:</strong> melissaspencer2@msn.com<br>
-                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mewitt" target="_blank" style="color: var(--primary); text-decoration: none;">linkedin.com/in/mewitt</a>
-            </p>
+            <div class="contact-grid">
+                <a href="tel:+14258943566" class="contact-card" style="text-decoration: none;">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-label">Phone</div>
+                    <div class="contact-value">425-894-3566</div>
+                </a>
+                <a href="mailto:melissaspencer2@msn.com" class="contact-card" style="text-decoration: none;">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">melissaspencer2@msn.com</div>
+                </a>
+                <a href="https://linkedin.com/in/mewitt" target="_blank" rel="noopener noreferrer" class="contact-card" style="text-decoration: none;">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">linkedin.com/in/mewitt</div>
+                </a>
+                <div class="contact-card" style="cursor: default;">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Kirkland, Washington</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 32px;">
+                <button class="download-btn" onclick="downloadAsPDF()">
+                    <span class="download-btn-icon">📄</span>
+                    <span>Download Profile as PDF</span>
+                </button>
+            </div>
         </section>
 
         <!-- Experience Section -->
@@ -1231,7 +1614,7 @@
         <section id="expertise" class="section hidden">
             <div class="section-header">
                 <div class="section-icon">💡</div>
-                <h2>Professional Expertise & Impact</h2>
+                <h2>Professional Impact</h2>
             </div>
 
             <!-- Executive Summary Metrics -->
@@ -1351,6 +1734,101 @@
                 </div>
             </div>
 
+            <!-- Skills Proficiency Levels -->
+            <h3 style="color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-size: 22px;">🎯 Technical Skills & Proficiency</h3>
+            <div class="skills-section">
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>GRC & Compliance Management</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>ISO Lead Auditing (27001, 42001, 37001)</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Power BI & Advanced Analytics (DAX, Co-Pilot)</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>AI Process Automation & Agent Design</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Risk Assessment & Enterprise Risk Management</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Microsoft Power Platform (Apps, Automate, SharePoint)</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>SQL & Database Management</span>
+                        <span class="skill-level">Proficient</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Program & Technical Project Management</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 93%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>AI Governance & Responsible AI (ISO 42001)</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 87%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>Stakeholder Management & Executive Communication</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 96%"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Certifications Highlight -->
             <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">🎓 Professional Credentials</h3>
             <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 24px; border-radius: 12px; border: 2px solid rgba(102, 126, 234, 0.2);">
@@ -1377,7 +1855,7 @@
         <section id="certifications" class="section hidden">
             <div class="section-header">
                 <div class="section-icon">📜</div>
-                <h2>Professional Certifications & Credentials</h2>
+                <h2>Professional Credentials</h2>
             </div>
 
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 24px; border-radius: 12px; margin-bottom: 32px; color: white;">
@@ -1385,9 +1863,30 @@
                 <p style="margin: 0; line-height: 1.8;">Proactively dedicated this period to advanced technical upskilling and certification in emerging compliance domains. Successfully attained ISO/IEC 42001 (AI Management System) and ISO/IEC 27001 (Information Security) Lead Auditor credentials to address the critical intersection of AI governance and cybersecurity. This focused initiative ensures immediate readiness to lead enterprise-scale compliance programs within rapidly changing regulatory landscapes.</p>
             </div>
 
+            <!-- Search and Filter -->
+            <div class="cert-search-container">
+                <input type="text" 
+                       id="certSearch" 
+                       class="cert-search" 
+                       placeholder="🔍 Search certifications by name, organization, or keyword..." 
+                       onkeyup="filterCertifications()"
+                       aria-label="Search certifications">
+                <div class="cert-filter-tags">
+                    <span class="cert-tag active" onclick="filterByCategory('all')">All (30+)</span>
+                    <span class="cert-tag" onclick="filterByCategory('lead-auditor')">Lead Auditor</span>
+                    <span class="cert-tag" onclick="filterByCategory('isaca')">ISACA</span>
+                    <span class="cert-tag" onclick="filterByCategory('ai-governance')">AI Governance</span>
+                    <span class="cert-tag" onclick="filterByCategory('security')">Security & GRC</span>
+                    <span class="cert-tag" onclick="filterByCategory('ai-automation')">AI Automation</span>
+                    <span class="cert-tag" onclick="filterByCategory('regulations')">Regulations</span>
+                    <span class="cert-tag" onclick="filterByCategory('leadership')">Leadership</span>
+                </div>
+                <div class="cert-count" id="certCount">Showing all certifications</div>
+            </div>
+
             <h3>Lead Auditor & Implementer Certifications</h3>
             <div class="cert-grid">
-                <a href="certificates/ISO27001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/ISO27001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor security" data-keywords="iso 27001 information security auditor mastermind 2025">
                     <div class="cert-card">
                         <img src="certificates/iso-iec-27001-2022-lead-auditor.png" alt="ISO/IEC 27001:2022 Lead Auditor" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 27001:2022 Lead Auditor</div>
@@ -1395,7 +1894,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Expert in InfoSec Management Systems auditing</div>
                     </div>
                 </a>
-                <a href="certificates/ISO42001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/ISO42001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor ai-governance" data-keywords="iso 42001 artificial intelligence ai management auditor mastermind 2025">
                     <div class="cert-card">
                         <img src="certificates/iso-iec-42001-2023-lead-auditor.png" alt="ISO/IEC 42001:2023 Lead Auditor" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 42001:2023 Lead Auditor</div>
@@ -1403,7 +1902,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Master of AI Management System auditing</div>
                     </div>
                 </a>
-                <a href="certificates/ISO37001-Lead-Implementer.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/ISO37001-Lead-Implementer.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor security" data-keywords="iso 37001 anti-bribery implementer pecb 2020">
                     <div class="cert-card">
                         <div class="cert-icon">🛡️</div>
                         <div class="cert-name">ISO 37001 Lead Implementer</div>
@@ -1415,7 +1914,7 @@
 
             <h3>ISACA Professional Certification Preparation</h3>
             <div class="cert-grid">
-                <a href="certificates/2025-12-21-CertificateOfCompletion_ISACA-Certified-in-Risk-and-Information-Systems-Control-CRISC-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-21-CertificateOfCompletion_ISACA-Certified-in-Risk-and-Information-Systems-Control-CRISC-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="isaca security" data-keywords="crisc risk information systems control isaca 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🎯</div>
                         <div class="cert-name">CRISC Certification Prep</div>
@@ -1423,7 +1922,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Risk and Information Systems Control expert</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-02-CertificateOfCompletion_ISACA-Certified-Information-System-Manager-CISM-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-02-CertificateOfCompletion_ISACA-Certified-Information-System-Manager-CISM-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="isaca security" data-keywords="cism information security manager isaca 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🔒</div>
                         <div class="cert-name">CISM Certification Prep</div>
@@ -1431,7 +1930,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Information Security Management specialist</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-01-CertificateOfCompletion_ISACA-Certified-Information-Systems-Auditor-CISA-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-01-CertificateOfCompletion_ISACA-Certified-Information-Systems-Auditor-CISA-Cert-Prep.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="isaca security" data-keywords="cisa information systems auditor isaca 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🔍</div>
                         <div class="cert-name">CISA Certification Prep</div>
@@ -1443,7 +1942,7 @@
 
             <h3>AI Governance & Management Systems</h3>
             <div class="cert-grid">
-                <a href="certificates/2025-12-14-CertificateOfCompletion_Understanding-Artificial-Intelligence-Concepts-and-Terminology-with-ISOIEC-229892022.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-14-CertificateOfCompletion_Understanding-Artificial-Intelligence-Concepts-and-Terminology-with-ISOIEC-229892022.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance" data-keywords="iso 22989 artificial intelligence ai governance terminology linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🧠</div>
                         <div class="cert-name">AI Governance (ISO/IEC 22989:2022)</div>
@@ -1451,7 +1950,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Expert in AI terminology and governance</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-22-CertificateOfCompletion_ISOIEC-420012023-Understanding-and-Implementing-the-Artificial-Intelligence-Management-System-AIMS-Standard.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-22-CertificateOfCompletion_ISOIEC-420012023-Understanding-and-Implementing-the-Artificial-Intelligence-Management-System-AIMS-Standard.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance" data-keywords="iso 42001 artificial intelligence ai management aims linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🤖</div>
                         <div class="cert-name">AI Management (ISO/IEC 42001:2023)</div>
@@ -1463,7 +1962,7 @@
 
             <h3>Security, Governance & Compliance</h3>
             <div class="cert-grid">
-                <a href="certificates/2025-12-02-CertificateOfCompletion_Security-Governance-and-Compliance-for-Cybersecurity-Managers-From-Structure-Design-to-Board-Reporting.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-02-CertificateOfCompletion_Security-Governance-and-Compliance-for-Cybersecurity-Managers-From-Structure-Design-to-Board-Reporting.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security leadership" data-keywords="security governance compliance cybersecurity board reporting linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🔐</div>
                         <div class="cert-name">Security Governance & Compliance</div>
@@ -1471,7 +1970,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Cybersecurity governance and board reporting</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-15-CertificateOfCompletion_Navigate-SOC-2-Compliance-in-the-Cloud.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-15-CertificateOfCompletion_Navigate-SOC-2-Compliance-in-the-Cloud.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security" data-keywords="soc 2 cloud compliance linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">☁️</div>
                         <div class="cert-name">Navigate SOC 2 (Cloud)</div>
@@ -1479,7 +1978,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Cloud-based SOC 2 compliance management</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-15-CertificateOfCompletion_SOC-2-Compliance-Essential-Training.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-15-CertificateOfCompletion_SOC-2-Compliance-Essential-Training.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security" data-keywords="soc 2 grc privacy compliance linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">📋</div>
                         <div class="cert-name">SOC 2 Essential Training</div>
@@ -1487,7 +1986,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Core principles of SOC 2 GRC and privacy</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-14-CertificateOfCompletion_DORA-Requirements-and-AI-Security-From-Compliance-to-Threat-Intelligence.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-14-CertificateOfCompletion_DORA-Requirements-and-AI-Security-From-Compliance-to-Threat-Intelligence.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="regulations security" data-keywords="dora eu ai security threat intelligence linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🇪🇺</div>
                         <div class="cert-name">DORA & AI Security</div>
@@ -1499,7 +1998,7 @@
 
             <h3>AI Automation & Productivity</h3>
             <div class="cert-grid">
-                <a href="certificates/2025-12-03-CertificateOfCompletion_AI-Agents-Made-Simple-Your-ZerotoHero-Guide-to-Prompting-for-Work-Automation.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-03-CertificateOfCompletion_AI-Agents-Made-Simple-Your-ZerotoHero-Guide-to-Prompting-for-Work-Automation.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation" data-keywords="ai agents automation prompting work linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🔄</div>
                         <div class="cert-name">AI Agents & Work Automation</div>
@@ -1507,7 +2006,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Zero-to-hero guide for AI work automation</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-21-CertificateOfCompletion_Microsoft-Copilot-The-Art-of-Prompt-Writing.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-21-CertificateOfCompletion_Microsoft-Copilot-The-Art-of-Prompt-Writing.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation" data-keywords="microsoft copilot prompt engineering linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">💬</div>
                         <div class="cert-name">Microsoft Copilot Prompting</div>
@@ -1515,7 +2014,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Advanced prompt engineering for Copilot</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-02-CertificateOfCompletion_Introduction-to-Generative-AI-with-GPT.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-02-CertificateOfCompletion_Introduction-to-Generative-AI-with-GPT.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation ai-governance" data-keywords="generative ai gpt chatgpt linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🧪</div>
                         <div class="cert-name">Intro to Generative AI with GPT</div>
@@ -1523,7 +2022,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Core concepts of GPT-4 and Generative AI</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-20-CertificateOfCompletion_Introduction-to-Large-Language-Models.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-20-CertificateOfCompletion_Introduction-to-Large-Language-Models.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation ai-governance" data-keywords="large language models llm ai linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🔤</div>
                         <div class="cert-name">Intro to Large Language Models</div>
@@ -1531,7 +2030,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Foundational knowledge of LLM technologies</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-20-CertificateOfCompletion_How-to-Research-and-Write-Using-Generative-AI-Tools-2023.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-20-CertificateOfCompletion_How-to-Research-and-Write-Using-Generative-AI-Tools-2023.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation" data-keywords="research writing generative ai tools linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">📚</div>
                         <div class="cert-name">Research & Write with GenAI</div>
@@ -1539,7 +2038,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">GenAI tools for research and documentation</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-15-CertificateOfCompletion_Top-Ten-AI-Prompts.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-15-CertificateOfCompletion_Top-Ten-AI-Prompts.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation" data-keywords="ai prompts prompt engineering linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">💡</div>
                         <div class="cert-name">Top Ten AI Prompts</div>
@@ -1547,7 +2046,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Practical application of elite AI prompting</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-20-CertificateOfCompletion_ChatGPT-Prompts-for-Jobseekers.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-20-CertificateOfCompletion_ChatGPT-Prompts-for-Jobseekers.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-automation" data-keywords="chatgpt jobseekers career linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">📝</div>
                         <div class="cert-name">ChatGPT for Jobseekers</div>
@@ -1559,7 +2058,7 @@
 
             <h3>Leadership & Technical Skills</h3>
             <div class="cert-grid">
-                <a href="certificates/2025-12-02-CertificateOfCompletion_Succeeding-as-a-FirstTime-Tech-Manager.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-12-02-CertificateOfCompletion_Succeeding-as-a-FirstTime-Tech-Manager.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="leadership" data-keywords="tech manager leadership management linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">👨‍💼</div>
                         <div class="cert-name">First-Time Tech Manager</div>
@@ -1567,7 +2066,7 @@
                         <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Leadership and technical management skills</div>
                     </div>
                 </a>
-                <a href="certificates/2025-11-22-CertificateOfCompletion_Database-Foundations-Administration.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <a href="certificates/2025-11-22-CertificateOfCompletion_Database-Foundations-Administration.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security" data-keywords="database administration sql linkedin 2025">
                     <div class="cert-card">
                         <div class="cert-icon">🗄️</div>
                         <div class="cert-name">Database Foundations</div>
@@ -1582,7 +2081,7 @@
         <section id="references" class="section hidden">
             <div class="section-header">
                 <div class="section-icon">⭐</div>
-                <h2>Professional References & Testimonials</h2>
+                <h2>Professional Testimonials</h2>
             </div>
 
             <div style="margin-bottom: 24px;">
@@ -1594,24 +2093,10 @@
             <h3>Formal Reference Letters - 8 Senior Leadership Endorsements</h3>
             <div class="reference-grid formal-refs">
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Roman Denenberg</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Team Manager, Compliance & Assurance Systems | Microsoft Cloud Operations + Innovation (Dec 9, 2025)</div>
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">R. Mark Plesnicher</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">GM, Critical Infrastructure & Risk | Microsoft Corporation (Nov 4, 2025)</div>
                     <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">It is an absolute privilege to recommend Melissa Witte-Spencer for any opportunity in compliance, governance, risk, audit, data center operations, or program and product management. As a senior program leader and team manager overseeing various Compliance & Assurance programs and systems within the Cloud Operations + Innovation organization at Microsoft, the backbone infrastructure to Azure Cloud, I had the pleasure of managing Melissa as a Senior Technical Compliance Manager on my team. Throughout her tenure, she always demonstrated a rare combination of strategic vision, technical expertise, and transformative leadership that elevated every program she led.<br><br>Melissa is an exceptional professional whose contributions have had a profound and lasting impact on both team performance and organizational outcomes. She excels in program management, product development, stakeholder engagement, data-driven reporting, and driving transformation through AI and advanced technologies. She does more than deliver results, she reimagines processes, designs scalable solutions, optimizes operational efficiency, and enables teams to exceed ambitious goals. She approaches every challenge with creativity and rigor, not only managing programs but maturing and scaling them. Her innovative mindset consistently brings measurable improvements and strategic value across business and technical initiatives.<br><br>What truly sets Melissa apart is her leadership and influence. Melissa is a natural leader who fosters a culture of collaboration, accountability, and excellence, building trust effortlessly across diverse stakeholders and organizational functions. She navigates complex challenges with clarity and decisiveness, translating intricate business needs into actionable solutions while inspiring her colleagues to perform and achieve their best. Her dedication, insight, and consistent excellence make her a leader at every level.<br><br>Melissa's combination of expertise, leadership, and drive for innovation makes her an extraordinary asset to any organization, team, or project. She is an outstanding individual and team performer whose impact resonates throughout an organization. I recommend her wholeheartedly and without reservation, any company would be extremely fortunate to have her.<br><br><strong>Contact:</strong> rodenenb@microsoft.com | 571-246-1622</div>
-                </div>
-
-                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Kanika Jain</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Compliance | Microsoft Cloud Operations + Innovation (Nov 12, 2025)</div>
-                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to provide a professional reference for Melissa Witte Spencer, with whom I have had the privilege of working closely for the past eight years. During this time, Melissa consistently demonstrated exceptional professionalism, integrity, and dedication to her work.<br><br>Melissa is not only highly skilled in program management, but she is also a true technology enthusiast. Her ability to define processes from a technical perspective, identify and resolve ambiguities, and establish clear, structured frameworks has been instrumental in driving efficiency and compliance within our organization. She has a unique talent for turning complex challenges into well-defined, actionable solutions.<br><br>Beyond her technical expertise, Melissa's work ethic and reliability set her apart. She consistently meets deadlines, communicates effectively, and adapts quickly to changing priorities. Her contributions have had a lasting impact on our projects and team culture.<br><br>I am confident that Melissa will be an asset to any organization fortunate enough to work with her.<br><br><strong>Contact:</strong> kanika.jain@microsoft.com</div>
-                </div>
-
-                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Ryan Huff</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Assurance | Microsoft (Nov 7, 2025)</div>
-                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to enthusiastically recommend Melissa Witte-Spencer for any project/program management or data analyst position. I had the privilege of working with Melissa for over 10 years at Microsoft, where she consistently demonstrated exceptional professionalism, expertise, and leadership.<br><br>Melissa's ability to lead complex projects and drive operational excellence set her apart. For example, she consistently took on new challenges, quickly learning the new requirements and pain points. She can be agile and execute her responsibilities consistently and effectively. She has demonstrated the ability to quickly learn and incorporate Artificial Intelligence (AI) driven solutions into her projects. Her strategic thinking and attention to detail ensured that deliverables were not only timely but exceeded expectations.<br><br>Beyond her technical and organizational skills, Melissa brings a collaborative and positive approach to every challenge. She is highly adaptable, communicates effectively across diverse teams, and consistently builds trust with stakeholders. These qualities make her an asset in any environment that values innovation and accountability.<br><br>I am confident Melissa will excel in any role she pursues.<br><br><strong>Contact:</strong> ryan.g.huff@outlook.com</div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to wholeheartedly recommend Melissa Witte-Spencer for any position or opportunity she chooses to pursue. During the time I have known Melissa, having worked as a Manager of several important Microsoft Risk and Governance programs, she has consistently demonstrated exceptional dedication, professionalism, and a remarkable ability to collaborate with others. Her strong work ethic and positive attitude make her a valuable asset to any team. Melissa is highly organized, detail-oriented, and always willing to go the extra mile to ensure that projects are completed to the highest standard.<br><br>Melissa has a strong background in database management, data analytics and reporting. She communicates clearly, takes initiative, and adapts quickly to new challenges. Her integrity and commitment to excellence are evident in all that she does. Her contributions were critical to the success of the Microsoft Cloud Business.<br><br>Without reservation, I recommend Melissa Witte-Spencer. I am confident that she will bring the same level of enthusiasm and skill to any endeavor.<br><br><strong>Contact:</strong> markple@microsoft.com | 425-941-8434</div>
                 </div>
 
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
@@ -1622,17 +2107,24 @@
                 </div>
 
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Tamara McBride</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Risk & Compliance | Microsoft Global Datacenter Operations (Nov 12, 2025)</div>
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Ryan Huff</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Assurance | Microsoft (Nov 7, 2025)</div>
                     <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I had the privilege of working with Melissa Witte-Spencer over a ten-year period from 2012 to 2022 in Microsoft's Global Datacenter Operations organization, first during my time as Director of the IT Inventory and Corporate Fixed Asset Management Global Standards team and later as the Senior Director leading the Risk and Compliance function.<br><br>During our time working together, Melissa developed and implemented data management standards for accurately tracking inventory and assets as part of an operational maturity initiative. Throughout the initiative, Melissa's data analytics skills were invaluable as she investigated the entire data set, grouped error types, and presented strategies to senior leadership to clean up existing data while defining rules for incoming data that were consumed by engineering teams and implemented in asset management technology systems ensuring a clean data flow into the data warehouse going forward.<br><br>Melissa's leadership on this data integrity maturity initiative had a wide-reaching, long-term positive impact on Microsoft's business as the standards and data rule stacks she developed consistently resulted in a 99%+ asset accuracy rate in both internal and external audits.<br><br>In addition, as Microsoft's business needs changed over time, Melissa demonstrated an ability to adapt, consistently leaning in to apply her passion for data analytics and accurate data management to any business challenge or opportunity ensuring high levels of compliance required by Microsoft customers.<br><br><strong>Contact:</strong> tamara.mcbride95@outlook.com | (425) 985-5211</div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to enthusiastically recommend Melissa Witte-Spencer for any project/program management or data analyst position. I had the privilege of working with Melissa for over 10 years at Microsoft, where she consistently demonstrated exceptional professionalism, expertise, and leadership.<br><br>Melissa's ability to lead complex projects and drive operational excellence set her apart. For example, she consistently took on new challenges, quickly learning the new requirements and pain points. She can be agile and execute her responsibilities consistently and effectively. She has demonstrated the ability to quickly learn and incorporate Artificial Intelligence (AI) driven solutions into her projects. Her strategic thinking and attention to detail ensured that deliverables were not only timely but exceeded expectations.<br><br>Beyond her technical and organizational skills, Melissa brings a collaborative and positive approach to every challenge. She is highly adaptable, communicates effectively across diverse teams, and consistently builds trust with stakeholders. These qualities make her an asset in any environment that values innovation and accountability.<br><br>I am confident Melissa will excel in any role she pursues.<br><br><strong>Contact:</strong> ryan.g.huff@outlook.com</div>
                 </div>
 
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">R. Mark Plesnicher</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">GM, Critical Infrastructure & Risk | Microsoft Corporation (Nov 4, 2025)</div>
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Roman Denenberg</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Team Manager, Compliance & Assurance Systems | Microsoft Cloud Operations + Innovation (Dec 9, 2025)</div>
                     <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to wholeheartedly recommend Melissa Witte-Spencer for any position or opportunity she chooses to pursue. During the time I have known Melissa, having worked as a Manager of several important Microsoft Risk and Governance programs, she has consistently demonstrated exceptional dedication, professionalism, and a remarkable ability to collaborate with others. Her strong work ethic and positive attitude make her a valuable asset to any team. Melissa is highly organized, detail-oriented, and always willing to go the extra mile to ensure that projects are completed to the highest standard.<br><br>Melissa has a strong background in database management, data analytics and reporting. She communicates clearly, takes initiative, and adapts quickly to new challenges. Her integrity and commitment to excellence are evident in all that she does. Her contributions were critical to the success of the Microsoft Cloud Business.<br><br>Without reservation, I recommend Melissa Witte-Spencer. I am confident that she will bring the same level of enthusiasm and skill to any endeavor.<br><br><strong>Contact:</strong> markple@microsoft.com | 425-941-8434</div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">It is an absolute privilege to recommend Melissa Witte-Spencer for any opportunity in compliance, governance, risk, audit, data center operations, or program and product management. As a senior program leader and team manager overseeing various Compliance & Assurance programs and systems within the Cloud Operations + Innovation organization at Microsoft, the backbone infrastructure to Azure Cloud, I had the pleasure of managing Melissa as a Senior Technical Compliance Manager on my team. Throughout her tenure, she always demonstrated a rare combination of strategic vision, technical expertise, and transformative leadership that elevated every program she led.<br><br>Melissa is an exceptional professional whose contributions have had a profound and lasting impact on both team performance and organizational outcomes. She excels in program management, product development, stakeholder engagement, data-driven reporting, and driving transformation through AI and advanced technologies. She does more than deliver results, she reimagines processes, designs scalable solutions, optimizes operational efficiency, and enables teams to exceed ambitious goals. She approaches every challenge with creativity and rigor, not only managing programs but maturing and scaling them. Her innovative mindset consistently brings measurable improvements and strategic value across business and technical initiatives.<br><br>What truly sets Melissa apart is her leadership and influence. Melissa is a natural leader who fosters a culture of collaboration, accountability, and excellence, building trust effortlessly across diverse stakeholders and organizational functions. She navigates complex challenges with clarity and decisiveness, translating intricate business needs into actionable solutions while inspiring her colleagues to perform and achieve their best. Her dedication, insight, and consistent excellence make her a leader at every level.<br><br>Melissa's combination of expertise, leadership, and drive for innovation makes her an extraordinary asset to any organization, team, or project. She is an outstanding individual and team performer whose impact resonates throughout an organization. I recommend her wholeheartedly and without reservation, any company would be extremely fortunate to have her.<br><br><strong>Contact:</strong> rodenenb@microsoft.com | 571-246-1622</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Marco Amaral</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Operations Assurance | Microsoft (Oct 29, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am delighted to highly recommend Melissa Witte-Spencer, with whom I have worked closely for several years in compliance, assurance, and strategic operations. Melissa stands out for her professionalism, deep expertise, and unwavering dedication to operational excellence.<br><br>She has played a critical role in major projects, expertly navigating complex compliance requirements and operational risks. Melissa ensures seamless alignment between technical teams and compliance stakeholders, consistently resolving challenges under tight deadlines and upholding rigorous standards while supporting business continuity.<br><br>Melissa's leadership and collaborative skills are exceptional. She actively promotes professional development and knowledge sharing, fostering strong team connections and driving engagement. Her forward-thinking contributions in risk management and compliance frameworks have shaped organizational best practices.<br><br>Melissa is known for her integrity, reliability, and proactive approach. She tackles challenges analytically and creatively, always ensuring solutions are practical and strategically aligned. Her blend of technical depth and strategic vision makes her an invaluable asset to any organization.<br><br>I fully endorse Melissa Witte-Spencer for any senior-level role. She brings expertise, leadership, and a collaborative spirit that elevates every team.<br><br><strong>Contact:</strong> marco.amaral@microsoft.com | (425) 421-4491</div>
                 </div>
 
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
@@ -1643,14 +2135,20 @@
                 </div>
 
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
-                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Marco Amaral</div>
-                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Operations Assurance | Microsoft (Oct 29, 2025)</div>
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Tamara McBride</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Sr. Director, Risk & Compliance | Microsoft Global Datacenter Operations (Nov 12, 2025)</div>
                     <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
-                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am delighted to highly recommend Melissa Witte-Spencer, with whom I have worked closely for several years in compliance, assurance, and strategic operations. Melissa stands out for her professionalism, deep expertise, and unwavering dedication to operational excellence.<br><br>She has played a critical role in major projects, expertly navigating complex compliance requirements and operational risks. Melissa ensures seamless alignment between technical teams and compliance stakeholders, consistently resolving challenges under tight deadlines and upholding rigorous standards while supporting business continuity.<br><br>Melissa's leadership and collaborative skills are exceptional. She actively promotes professional development and knowledge sharing, fostering strong team connections and driving engagement. Her forward-thinking contributions in risk management and compliance frameworks have shaped organizational best practices.<br><br>Melissa is known for her integrity, reliability, and proactive approach. She tackles challenges analytically and creatively, always ensuring solutions are practical and strategically aligned. Her blend of technical depth and strategic vision makes her an invaluable asset to any organization.<br><br>I fully endorse Melissa Witte-Spencer for any senior-level role. She brings expertise, leadership, and a collaborative spirit that elevates every team.<br><br><strong>Contact:</strong> marco.amaral@microsoft.com | (425) 421-4491</div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I had the privilege of working with Melissa Witte-Spencer over a ten-year period from 2012 to 2022 in Microsoft's Global Datacenter Operations organization, first during my time as Director of the IT Inventory and Corporate Fixed Asset Management Global Standards team and later as the Senior Director leading the Risk and Compliance function.<br><br>During our time working together, Melissa developed and implemented data management standards for accurately tracking inventory and assets as part of an operational maturity initiative. Throughout the initiative, Melissa's data analytics skills were invaluable as she investigated the entire data set, grouped error types, and presented strategies to senior leadership to clean up existing data while defining rules for incoming data that were consumed by engineering teams and implemented in asset management technology systems ensuring a clean data flow into the data warehouse going forward.<br><br>Melissa's leadership on this data integrity maturity initiative had a wide-reaching, long-term positive impact on Microsoft's business as the standards and data rule stacks she developed consistently resulted in a 99%+ asset accuracy rate in both internal and external audits.<br><br>In addition, as Microsoft's business needs changed over time, Melissa demonstrated an ability to adapt, consistently leaning in to apply her passion for data analytics and accurate data management to any business challenge or opportunity ensuring high levels of compliance required by Microsoft customers.<br><br><strong>Contact:</strong> tamara.mcbride95@outlook.com | (425) 985-5211</div>
+                </div>
+
+                <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
+                    <div style="font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 4px;">Kanika Jain</div>
+                    <div style="color: var(--text-light); font-size: 12px; margin-bottom: 12px;">Director, Compliance | Microsoft Cloud Operations + Innovation (Nov 12, 2025)</div>
+                    <div class="letter-preview"><p style="font-size: 12px; color: var(--text-light); margin: 0;"><strong>Click to expand full letter...</strong></p></div>
+                    <div class="letter-full" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); line-height: 1.8;">I am writing to provide a professional reference for Melissa Witte Spencer, with whom I have had the privilege of working closely for the past eight years. During this time, Melissa consistently demonstrated exceptional professionalism, integrity, and dedication to her work.<br><br>Melissa is not only highly skilled in program management, but she is also a true technology enthusiast. Her ability to define processes from a technical perspective, identify and resolve ambiguities, and establish clear, structured frameworks has been instrumental in driving efficiency and compliance within our organization. She has a unique talent for turning complex challenges into well-defined, actionable solutions.<br><br>Beyond her technical expertise, Melissa's work ethic and reliability set her apart. She consistently meets deadlines, communicates effectively, and adapts quickly to changing priorities. Her contributions have had a lasting impact on our projects and team culture.<br><br>I am confident that Melissa will be an asset to any organization fortunate enough to work with her.<br><br><strong>Contact:</strong> kanika.jain@microsoft.com</div>
                 </div>
             </div>
 
-            <h3 style="margin-top: 32px;">Leadership Testimonials</h3>
             <h3>Professional Testimonials & Verbatim Feedback</h3>
             <div class="reference-grid testimonials-refs">
                 <!-- RECENT LEADERSHIP (2025) -->
@@ -1832,21 +2330,21 @@
                 <span class="nav-menu-icon" aria-hidden="true">💼</span>
                 <span>Experience</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('certifications')" role="menuitem" aria-label="Navigate to Certifications">
+            <button class="nav-menu-item" onclick="navigateToSection('certifications')" role="menuitem" aria-label="Navigate to Credentials">
                 <span class="nav-menu-icon" aria-hidden="true">🎓</span>
-                <span>Certifications</span>
+                <span>Credentials</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('expertise')" role="menuitem" aria-label="Navigate to Expertise & Achievements">
+            <button class="nav-menu-item" onclick="navigateToSection('expertise')" role="menuitem" aria-label="Navigate to Impact">
                 <span class="nav-menu-icon" aria-hidden="true">💡</span>
-                <span>Expertise & Achievements</span>
+                <span>Impact</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('references')" role="menuitem" aria-label="Navigate to References">
+            <button class="nav-menu-item" onclick="navigateToSection('references')" role="menuitem" aria-label="Navigate to Testimonials">
                 <span class="nav-menu-icon" aria-hidden="true">⭐</span>
-                <span>References</span>
+                <span>Testimonials</span>
             </button>
-            <button class="nav-menu-item" onclick="navigateToSection('volunteer')" role="menuitem" aria-label="Navigate to Volunteer Work">
+            <button class="nav-menu-item" onclick="navigateToSection('volunteer')" role="menuitem" aria-label="Navigate to Leadership">
                 <span class="nav-menu-icon" aria-hidden="true">🤝</span>
-                <span>Volunteer</span>
+                <span>Leadership</span>
             </button>
             <button class="nav-menu-item" onclick="navigateToSection('work-product')" role="menuitem" aria-label="Navigate to Work Product">
                 <span class="nav-menu-icon" aria-hidden="true">📁</span>
@@ -1991,6 +2489,142 @@
                 preview.style.opacity = '1';
             }
         }
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeLabel.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+            }
+        });
+
+        // Download as PDF
+        function downloadAsPDF() {
+            // Show all sections for printing
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('hidden');
+            });
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore original view after print
+            setTimeout(() => {
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                document.getElementById(currentSection).classList.remove('hidden');
+            }, 1000);
+        }
+
+        // Certifications Search and Filter
+        function filterCertifications() {
+            const searchInput = document.getElementById('certSearch').value.toLowerCase();
+            const certLinks = document.querySelectorAll('.cert-link');
+            let visibleCount = 0;
+            
+            certLinks.forEach(link => {
+                const keywords = link.getAttribute('data-keywords');
+                const certName = link.querySelector('.cert-name').textContent.toLowerCase();
+                const certIssuer = link.querySelector('.cert-issuer').textContent.toLowerCase();
+                
+                if (keywords.includes(searchInput) || certName.includes(searchInput) || certIssuer.includes(searchInput)) {
+                    link.style.display = '';
+                    visibleCount++;
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+            
+            updateCertCount(visibleCount);
+        }
+
+        function filterByCategory(category) {
+            // Update active tag
+            document.querySelectorAll('.cert-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Clear search
+            document.getElementById('certSearch').value = '';
+            
+            const certLinks = document.querySelectorAll('.cert-link');
+            let visibleCount = 0;
+            
+            if (category === 'all') {
+                certLinks.forEach(link => {
+                    link.style.display = '';
+                    visibleCount++;
+                });
+            } else {
+                certLinks.forEach(link => {
+                    const categories = link.getAttribute('data-category');
+                    if (categories && categories.includes(category)) {
+                        link.style.display = '';
+                        visibleCount++;
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            }
+            
+            updateCertCount(visibleCount);
+        }
+
+        function updateCertCount(count) {
+            const countElement = document.getElementById('certCount');
+            if (count === 0) {
+                countElement.textContent = 'No certifications found';
+            } else if (count === 1) {
+                countElement.textContent = 'Showing 1 certification';
+            } else {
+                countElement.textContent = `Showing ${count} certifications`;
+            }
+        }
+
+        // Track page views (Google Analytics)
+        function trackPageView(section) {
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_title: section,
+                    page_location: window.location.href + '#' + section
+                });
+            }
+        }
+
+        // Enhance navigation to include analytics
+        const originalNavigateToSection = navigateToSection;
+        navigateToSection = function(sectionId) {
+            originalNavigateToSection(sectionId);
+            trackPageView(sectionId);
+        };
     </script>
 </body>
 </html>
