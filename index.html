@@ -740,6 +740,7 @@
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
+            z-index: 1;
         }
 
         .cta-btn::after {
@@ -752,6 +753,8 @@
             height: 3px;
             background: var(--primary);
             transition: var(--transition);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .cta-btn:hover {
