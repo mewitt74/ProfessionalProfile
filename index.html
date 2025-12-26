@@ -2408,7 +2408,9 @@
             if (selectedSection) selectedSection.classList.remove('hidden');
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (typeof event !== 'undefined' && event.target) {
+                event.target.classList.add('active');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             updateFloatingNav();
         }
