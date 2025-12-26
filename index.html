@@ -1040,14 +1040,19 @@
             body {
                 background: white;
                 color: black;
-                font-size: 10pt;
-                margin: 0.5cm;
+                font-size: 9pt;
+                margin: 0.3cm;
+                line-height: 1.3;
             }
 
             .container {
                 max-width: 100%;
                 margin: 0;
                 padding: 0;
+            }
+
+            * {
+                margin-top: 0;
             }
 
             .skip-link,
@@ -1154,8 +1159,8 @@
                 page-break-inside: avoid;
                 box-shadow: none;
                 border: 1px solid #ddd;
-                margin-bottom: 12px;
-                padding: 12px;
+                margin-bottom: 6px;
+                padding: 8px;
             }
 
             body:not(.printing-testimonials):not(.printing-certifications) .section.hidden {
@@ -1163,7 +1168,18 @@
             }
 
             body:not(.printing-testimonials):not(.printing-certifications) .section-header {
-                margin-bottom: 15px;
+                margin-bottom: 6px;
+                padding: 0;
+            }
+
+            body:not(.printing-testimonials):not(.printing-certifications) .section-header h2 {
+                font-size: 14pt;
+                margin: 0 0 4px 0;
+            }
+
+            body:not(.printing-testimonials):not(.printing-certifications) .section-icon {
+                font-size: 16pt;
+                margin-right: 6px;
             }
 
             .hero {
@@ -1171,63 +1187,124 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 color: white;
-                padding: 20px;
-                margin-bottom: 15px;
+                padding: 12px;
+                margin-bottom: 8px;
             }
 
             .hero h1 {
-                font-size: 20pt;
-                margin-bottom: 10px;
+                font-size: 16pt;
+                margin: 0 0 5px 0;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
-                font-size: 14pt;
-                margin-bottom: 10px;
+                font-size: 11pt;
+                margin: 0 0 5px 0;
+                line-height: 1.2;
             }
 
             .hero p {
-                font-size: 10pt;
-                margin-bottom: 10px;
+                font-size: 9pt;
+                margin: 0 0 5px 0;
+                line-height: 1.3;
             }
 
             .hero-stats {
-                margin-top: 15px;
-                gap: 10px;
+                margin-top: 8px;
+                gap: 6px;
             }
 
             .stat {
-                padding: 10px;
+                padding: 6px;
+                font-size: 8pt;
+            }
+
+            .stat-value {
+                font-size: 14pt;
+            }
+
+            .stat-label {
+                font-size: 8pt;
             }
 
             .timeline-item,
             .reference-card,
             .cert-card {
                 page-break-inside: avoid;
-                margin-bottom: 8px;
+                margin-bottom: 5px;
             }
 
             .timeline-item {
-                padding-left: 15px;
+                padding-left: 10px;
+                margin-bottom: 4px;
+            }
+
+            .timeline-date {
+                font-size: 8pt;
+                margin-bottom: 2px;
+            }
+
+            .timeline-title {
+                font-size: 10pt;
+                margin-bottom: 2px;
+            }
+
+            .timeline-description {
+                font-size: 8pt;
+                line-height: 1.3;
+            }
+
+            .job-preview {
+                font-size: 8pt;
             }
 
             .section h2 {
-                font-size: 16pt;
-                margin-bottom: 10px;
+                font-size: 14pt;
+                margin: 0 0 5px 0;
             }
 
             .section h3 {
-                font-size: 13pt;
-                margin-bottom: 8px;
-                margin-top: 15px;
+                font-size: 11pt;
+                margin: 8px 0 4px 0;
             }
 
             ul {
-                margin-top: 5px;
-                margin-bottom: 10px;
+                margin: 3px 0 5px 0;
+                padding-left: 15px;
             }
 
             li {
-                margin-bottom: 3px;
+                margin-bottom: 2px;
+                line-height: 1.3;
+            }
+
+            .contact-grid,
+            .expertise-grid {
+                gap: 4px;
+                margin: 5px 0;
+            }
+
+            .contact-card,
+            .expertise-card {
+                padding: 6px;
+                margin: 0;
+            }
+
+            .contact-icon,
+            .expertise-card > div[style*="font-size: 32px"] {
+                font-size: 14pt;
+                margin-bottom: 2px;
+            }
+
+            .contact-label,
+            .expertise-label {
+                font-size: 8pt;
+                margin-bottom: 2px;
+            }
+
+            .contact-value,
+            .expertise-value {
+                font-size: 9pt;
             }
 
             a {
