@@ -2639,18 +2639,6 @@
                 <h2>Professional Testimonials</h2>
             </div>
 
-            <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-                <div>
-                    <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
-                    <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (8)</button>
-                    <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
-                </div>
-                <button class="download-btn" onclick="printTestimonials()" style="padding: 8px 16px;">
-                    <span class="download-btn-icon">📝</span>
-                    <span>Print Testimonials</span>
-                </button>
-            </div>
-
             <h3>Formal Reference Letters - 8 Senior Leadership Endorsements</h3>
             <div class="reference-grid formal-refs">
                 <div class="formal-letter-card" onclick="toggleLetter(this)" style="cursor: pointer;">
@@ -2871,6 +2859,18 @@
                     <div class="reference-author">Peer Feedback</div>
                     <div class="reference-title">Microsoft (FY09)</div>
                 </div>
+            </div>
+
+            <div style="margin-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
+                    <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (8)</button>
+                    <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
+                </div>
+                <button class="download-btn" onclick="printTestimonials()" style="padding: 8px 16px;">
+                    <span class="download-btn-icon">📝</span>
+                    <span>Print Testimonials</span>
+                </button>
             </div>
         </section>
 
