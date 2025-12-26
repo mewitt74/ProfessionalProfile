@@ -426,6 +426,7 @@
             transform: translateY(-4px);
             border-color: var(--primary);
             box-shadow: var(--shadow-md);
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
         }
 
         .expertise-label {
@@ -1332,19 +1333,19 @@
             </div>
 
             <div class="expertise-grid" style="margin-top: 16px;">
-                <div class="expertise-card">
+                <div class="expertise-card" onclick="showSection('expertise')" style="cursor: pointer; transition: transform 0.2s ease;">
                     <div class="expertise-label">Program Management</div>
                     <div class="expertise-value">Dual Global Programs</div>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" onclick="showSection('expertise')" style="cursor: pointer; transition: transform 0.2s ease;">
                     <div class="expertise-label">AI & Automation</div>
                     <div class="expertise-value">40% Workload Reduction</div>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" onclick="showSection('expertise')" style="cursor: pointer; transition: transform 0.2s ease;">
                     <div class="expertise-label">Analytics & BI</div>
                     <div class="expertise-value">Advanced Power BI</div>
                 </div>
-                <div class="expertise-card">
+                <div class="expertise-card" onclick="showSection('expertise')" style="cursor: pointer; transition: transform 0.2s ease;">
                     <div class="expertise-label">Risk Management</div>
                     <div class="expertise-value">GRC Leadership</div>
                 </div>
