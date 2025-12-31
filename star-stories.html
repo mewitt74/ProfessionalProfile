@@ -14,6 +14,33 @@
             padding: 10px 10px;
         }
         .container { max-width: 1400px; margin: 0 auto; }
+        header {
+            background: #fff;
+            padding: 18px 0 12px 0;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(31,33,33,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.7em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .logo-subtitle {
+            font-size: 13px;
+            color: #626c71;
+            font-weight: 500;
+        }
         /* STORIES GRID */
         .stories-section { margin-bottom: 25px; }
         .section-title { font-size: 24px; color: white; margin-bottom: 18px; text-align: center; font-weight: 700; }
@@ -37,6 +64,103 @@
         .story-card:hover .story-description { color: #0f172a; }
         .read-more { display: inline-block; margin-top: 10px; color: #0284c7; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; }
         .story-card:hover .read-more { color: #0ea5e9; transform: translateX(4px); }
+        /* FLOATING NAV */
+        .floating-nav {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 1000;
+        }
+        .floating-nav.visible {
+            /* no additional styles */
+        }
+        .nav-menu {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 32px rgba(31, 33, 33, 0.15);
+            min-width: 220px;
+            display: none;
+            overflow: hidden;
+        }
+        .nav-menu.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .nav-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: white;
+            border: none;
+            border-left: 4px solid transparent;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 14px;
+            color: #1f2121;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .nav-menu-item:last-child {
+            border-bottom: none;
+        }
+        .nav-menu-item:hover {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
+            color: #2180C3;
+            border-left-color: #2180C3;
+            padding-left: 22px;
+        }
+        .nav-menu-item:focus {
+            outline: 3px solid #2180C3;
+            outline-offset: 2px;
+        }
+        .nav-menu-item.active {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+            color: #2180C3;
+            border-left-color: #2180C3;
+            font-weight: 700;
+        }
+        .nav-toggle {
+            background: linear-gradient(135deg, #1a65a3 0%, #2180C3 100%);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 4px 16px rgba(33, 128, 195, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+        .nav-toggle:hover {
+            background: linear-gradient(135deg, #2180C3 0%, #1a65a3 100%);
+            box-shadow: 0 6px 20px rgba(33, 128, 195, 0.4);
+            transform: scale(1.05);
+        }
+        .nav-toggle:focus {
+            outline: 3px solid #2180C3;
+            outline-offset: 2px;
+        }
+        .nav-toggle[aria-expanded="true"] {
+            background: linear-gradient(135deg, #1a65a3 0%, #2180C3 100%);
+        }
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -374,6 +498,14 @@
             </style>
         </head>
         <body>
+            <header role="banner">
+                <div class="header-content">
+                    <div>
+                        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Melissa Witte-Spencer</a></div>
+                        <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
+                    </div>
+                </div>
+            </header>
             <div class="container">
                 <!-- STORIES SECTION -->
                 <div class="stories-section">
@@ -770,6 +902,21 @@
             </div>
     
             <script>
+                function toggleNavMenu() {
+                    const nav = document.getElementById('floatingNav');
+                    const menu = document.getElementById('navMenu');
+                    const toggle = document.getElementById('navToggle');
+                    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                    if (isExpanded) {
+                        menu.classList.remove('show');
+                        nav.classList.remove('visible');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    } else {
+                        menu.classList.add('show');
+                        nav.classList.add('visible');
+                        toggle.setAttribute('aria-expanded', 'true');
+                    }
+                }
                 function openModal(modalId) {
                     document.getElementById(modalId).style.display = "block";
                 }
@@ -784,5 +931,49 @@
                     }
                 }
             </script>
+            <!-- Floating Navigation -->
+            <nav class="floating-nav" id="floatingNav" aria-label="Quick navigation menu">
+                <div class="nav-menu" id="navMenu" role="menu">
+                    <button class="nav-menu-item" onclick="window.location.href='index.html'" role="menuitem" aria-label="Navigate to Home">
+                        <span class="nav-menu-icon" aria-hidden="true">🏠</span>
+                        <span>Home</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#experience'" role="menuitem" aria-label="Navigate to Experience">
+                        <span class="nav-menu-icon" aria-hidden="true">💼</span>
+                        <span>Experience</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#certifications'" role="menuitem" aria-label="Navigate to Credentials">
+                        <span class="nav-menu-icon" aria-hidden="true">🎓</span>
+                        <span>Credentials</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#expertise'" role="menuitem" aria-label="Navigate to Impact">
+                        <span class="nav-menu-icon" aria-hidden="true">💡</span>
+                        <span>Impact</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#references'" role="menuitem" aria-label="Navigate to Testimonials">
+                        <span class="nav-menu-icon" aria-hidden="true">⭐</span>
+                        <span>Testimonials</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#volunteer'" role="menuitem" aria-label="Navigate to Volunteer">
+                        <span class="nav-menu-icon" aria-hidden="true">🤝</span>
+                        <span>Volunteer</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='star-stories.html'" role="menuitem" aria-label="Navigate to STAR Stories">
+                        <span class="nav-menu-icon" aria-hidden="true">🌟</span>
+                        <span>STAR Stories</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.location.href='index.html#work-product'" role="menuitem" aria-label="Navigate to Work Product">
+                        <span class="nav-menu-icon" aria-hidden="true">📁</span>
+                        <span>Work Product</span>
+                    </button>
+                    <button class="nav-menu-item" onclick="window.open('iso-matrix.html','_blank')" role="menuitem" aria-label="Open ISO Matrix">
+                        <span class="nav-menu-icon" aria-hidden="true">📊</span>
+                        <span>ISO Matrix</span>
+                    </button>
+                </div>
+                <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                    <span aria-hidden="true">☰</span>
+                </button>
+            </nav>
         </body>
         </html>
