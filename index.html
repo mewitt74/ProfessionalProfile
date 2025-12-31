@@ -1722,11 +1722,6 @@
                         <span class="cta-btn-label">Volunteer</span>
                         <span class="cta-btn-desc">Community Leadership</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('work-product')" style="padding: 12px 10px; font-size: 13px;">
-                        <span class="cta-btn-icon">📁</span>
-                        <span class="cta-btn-label">Work Product</span>
-                        <span class="cta-btn-desc">Real-World Deliverables</span>
-                    </button>
                     <button class="cta-btn" onclick="window.open('star-stories.html','_blank')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">🌟</span>
                         <span class="cta-btn-label">STAR Stories</span>
@@ -2917,36 +2912,8 @@
         </section>
 
         <!-- Work Product Section -->
-        <section id="work-product" class="section">
-            <div class="section-header">
-                <div class="section-icon">🧩</div>
-                <h2>Work Product</h2>
-            </div>
-            <p style="color: var(--text-light); margin-bottom: 24px;">Live ISO analysis tools and STAR stories showcasing management system integration, control-set mapping, and compliance impact.</p>
-            <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-                <button class="filter-btn" onclick="showWorkApp('matrix')" style="padding: 10px 18px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Clause & Control Mapping Matrix</button>
-                <button class="filter-btn" onclick="showWorkApp('star')" style="padding: 10px 18px; background: #0284c7; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">STAR Stories</button>
-            </div>
-
-            <div id="work-matrix" style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 30px; color: white; min-height: 400px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);">
-                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">ISO Clause & Control Mapping Matrix</h3>
-                <p style="margin-bottom: 16px; font-size: 1.05em; line-height: 1.6;">Visualizes overlaps and unique requirements across ISO management system standards using Annex SL framework.</p>
-                <p style="margin-bottom: 24px; opacity: 0.95;"><strong>Integration Best Practices:</strong> Unified policy framework, consolidated risk register, clause-tagged evidence library, integrated audit program, unified training, integrated CAPA process.</p>
-                <button onclick="window.open('iso-matrix.html','_blank')" style="padding: 12px 24px; background: white; color: #667eea; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open Full Mapping Matrix →</button>
-            </div>
-            <div id="work-star-page" style="display: block; background: linear-gradient(135deg, #0284c7 0%, #1a3a52 100%); border-radius: 12px; padding: 30px; color: white; min-height: 200px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); margin-top: 24px;">
-                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">STAR Stories: Situation, Task, Action, Result</h3>
-                <p style="margin-bottom: 18px; font-size: 1.05em; line-height: 1.6;">Explore real-world compliance impact stories using the STAR method—demonstrating leadership, transformation, and measurable results.</p>
-                <button onclick="window.open('star-stories.html','_blank')" style="padding: 12px 24px; background: white; color: #0284c7; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open STAR Stories →</button>
-            </div>
-            <div id="work-star" style="display: none; background: linear-gradient(135deg, #0284c7 0%, #1a3a52 100%); border-radius: 12px; padding: 30px; color: white; min-height: 200px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); margin-top: 24px;">
-                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">STAR Stories: Situation, Task, Action, Result</h3>
-                <p style="margin-bottom: 18px; font-size: 1.05em; line-height: 1.6;">Explore real-world compliance impact stories using the STAR method—demonstrating leadership, transformation, and measurable results.</p>
-                <button onclick="window.open('star-stories.html','_blank')" style="padding: 12px 24px; background: white; color: #0284c7; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open STAR Stories →</button>
-            </div>
-        </section>
-
         <div class="footer">
+            <p>&copy; 2025 Melissa Witte-Spencer. All rights reserved.</p>
             <p>&copy; 2025 Melissa Witte-Spencer. All rights reserved.</p>
             <p style="margin-top: 12px; font-size: 12px;">Last Updated: December 25, 2025</p>
             <p style="margin-top: 16px;">
@@ -2985,10 +2952,6 @@
             <button class="nav-menu-item" onclick="window.open('star-stories.html','_blank')" role="menuitem" aria-label="Open STAR Stories">
                 <span class="nav-menu-icon" aria-hidden="true">🌟</span>
                 <span>STAR Stories</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateToSection('work-product')" role="menuitem" aria-label="Navigate to Work Product">
-                <span class="nav-menu-icon" aria-hidden="true">📁</span>
-                <span>Work Product</span>
             </button>
         </div>
         <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
@@ -3080,13 +3043,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateFloatingNav();
         });
-
-        function showWorkApp(which) {
-            document.getElementById('work-matrix').style.display = which === 'matrix' ? 'block' : 'none';
-            document.getElementById('work-star').style.display = which === 'star' ? 'block' : 'none';
-            document.querySelectorAll('#work-product .filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
 
         function filterReferences(type) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
