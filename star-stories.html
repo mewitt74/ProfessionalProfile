@@ -6,6 +6,22 @@
     <title>Compliance Leadership Portfolio | Melissa Witte-Spencer</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #2180C3;
+            --primary-dark: #1a65a3;
+            --accent: #32B8C6;
+            --success: #2D6A6F;
+            --warning: #E67E23;
+            --text: #1f2121;
+            --text-light: #626c71;
+            --bg-light: #fcfcf9;
+            --bg-white: #ffffff;
+            --border: #a7a9a9;
+            --shadow-sm: 0 2px 8px rgba(31, 33, 33, 0.08);
+            --shadow-md: 0 4px 16px rgba(31, 33, 33, 0.12);
+            --shadow-lg: 0 12px 32px rgba(31, 33, 33, 0.15);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a3a52 0%, #0f1e2e 100%);
@@ -151,31 +167,31 @@
             font-weight: 700;
         }
         .nav-toggle {
-            background: linear-gradient(135deg, #1a65a3 0%, #2180C3 100%);
-            border: none;
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: 3px solid var(--primary);
             width: 60px;
             height: 60px;
-            box-shadow: 0 4px 16px rgba(33, 128, 195, 0.3);
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(33, 128, 195, 0.4);
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1001;
         }
         .nav-toggle:hover {
-            background: linear-gradient(135deg, #2180C3 0%, #1a65a3 100%);
-            box-shadow: 0 6px 20px rgba(33, 128, 195, 0.4);
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(33, 128, 195, 0.6);
+            border-color: rgba(255, 255, 255, 0.9);
         }
         .nav-toggle:focus {
-            outline: 3px solid #2180C3;
-            outline-offset: 2px;
+            border-color: white;
+            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.5), 0 6px 30px rgba(33, 128, 195, 0.6);
         }
         .nav-toggle[aria-expanded="true"] {
-            background: linear-gradient(135deg, #1a65a3 0%, #2180C3 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
         }
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); animation: fadeIn 0.3s ease; }
