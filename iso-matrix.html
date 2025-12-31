@@ -11,11 +11,44 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #2180C3;
+            --primary-dark: #1a65a3;
+            --accent: #32B8C6;
+            --success: #2D6A6F;
+            --warning: #E67E23;
+            --text: #1f2121;
+            --text-light: #626c71;
+            --bg-light: #fcfcf9;
+            --bg-white: #ffffff;
+            --border: #a7a9a9;
+            --shadow-sm: 0 2px 8px rgba(31, 33, 33, 0.08);
+            --shadow-md: 0 4px 16px rgba(31, 33, 33, 0.12);
+            --shadow-lg: 0 12px 32px rgba(31, 33, 33, 0.15);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 10px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            top: 6px;
         }
 
         .container {
@@ -299,9 +332,130 @@
             font-size: 0.9em;
             border-top: 1px solid #ddd;
         }
+
+        /* Floating Navigation */
+        .floating-nav {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 200;
+            display: none;
+        }
+
+        .floating-nav.visible {
+            display: block;
+        }
+
+        .nav-toggle {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: 3px solid white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(33, 128, 195, 0.4);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(33, 128, 195, 0.6);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .nav-toggle:focus {
+            border-color: white;
+            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.5), 0 6px 30px rgba(33, 128, 195, 0.6);
+        }
+
+        .nav-toggle[aria-expanded="true"] {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
+
+        .nav-menu {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            min-width: 220px;
+            display: none;
+            overflow: hidden;
+        }
+
+        .nav-menu.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: white;
+            border: none;
+            border-left: 4px solid transparent;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .nav-menu-item:hover {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
+            color: var(--primary);
+            border-left-color: var(--primary);
+            padding-left: 22px;
+        }
+
+        .nav-menu-item:focus {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
+            border-left-color: var(--primary);
+            outline-offset: -3px;
+        }
+
+        .nav-menu-item.active {
+            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
+            color: var(--primary);
+            font-weight: 600;
+            border-left-color: var(--primary);
+            border-left-width: 4px;
+        }
+
+        .nav-menu-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- HEADER NAVIGATION -->
     <header style="width:100%; background:rgba(26,58,82,0.95); padding:18px 0 12px 0; position:sticky; top:0; z-index:1001; box-shadow:0 2px 12px rgba(2,132,199,0.08);">
         <div style="max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;">
@@ -310,7 +464,7 @@
             </a>
         </div>
     </header>
-    <div class="container">
+    <div class="container" id="main-content">
         <div class="header">
             <h1>ISO Clause & Control Mapping Matrix</h1>
             <p>Visualize overlaps and unique requirements across ISO management system standards</p>
@@ -815,6 +969,83 @@
                 }
             });
         }
+    </script>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav visible" id="floatingNav" aria-label="Quick navigation menu">
+        <div class="nav-menu" id="navMenu" role="menu">
+            <button class="nav-menu-item" onclick="window.location.href='index.html'" role="menuitem" aria-label="Navigate to Home">
+                <span class="nav-menu-icon" aria-hidden="true">🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#experience'" role="menuitem" aria-label="Navigate to Experience">
+                <span class="nav-menu-icon" aria-hidden="true">💼</span>
+                <span>Experience</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#certifications'" role="menuitem" aria-label="Navigate to Credentials">
+                <span class="nav-menu-icon" aria-hidden="true">🎓</span>
+                <span>Credentials</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#expertise'" role="menuitem" aria-label="Navigate to Impact">
+                <span class="nav-menu-icon" aria-hidden="true">💡</span>
+                <span>Impact</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#references'" role="menuitem" aria-label="Navigate to Testimonials">
+                <span class="nav-menu-icon" aria-hidden="true">⭐</span>
+                <span>Testimonials</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#volunteer'" role="menuitem" aria-label="Navigate to Volunteer">
+                <span class="nav-menu-icon" aria-hidden="true">🤝</span>
+                <span>Volunteer</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.open('star-stories.html','_blank')" role="menuitem" aria-label="Open STAR Stories">
+                <span class="nav-menu-icon" aria-hidden="true">🌟</span>
+                <span>STAR Stories</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='iso-matrix.html'" role="menuitem" aria-label="Navigate to ISO Matrix">
+                <span class="nav-menu-icon" aria-hidden="true">📊</span>
+                <span>ISO Matrix</span>
+            </button>
+        </div>
+        <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+            <span aria-hidden="true">☰</span>
+        </button>
+    </nav>
+
+    <script>
+        function toggleNavMenu() {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('navToggle');
+            const isExpanded = menu.classList.contains('show');
+            
+            menu.classList.toggle('show');
+            toggle.setAttribute('aria-expanded', !isExpanded);
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const floatingNav = document.getElementById('floatingNav');
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.getElementById('navToggle');
+            
+            if (floatingNav && !floatingNav.contains(event.target)) {
+                navMenu.classList.remove('show');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const navMenu = document.getElementById('navMenu');
+                const navToggle = document.getElementById('navToggle');
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.focus();
+                }
+            }
+        });
     </script>
 </body>
 </html>
