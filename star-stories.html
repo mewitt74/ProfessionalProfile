@@ -1043,6 +1043,14 @@
             <span aria-hidden="true">☰</span>
         </button>
     </nav>
+    <!-- HEADER NAVIGATION -->
+    <header style="width:100%; background:rgba(26,58,82,0.95); padding:18px 0 12px 0; position:sticky; top:0; z-index:1001; box-shadow:0 2px 12px rgba(2,132,199,0.08);">
+        <div style="max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;">
+            <a href="index.html" style="font-size:2rem; font-weight:700; color:#fff; text-decoration:none; letter-spacing:1px; transition:color 0.2s;">
+                Melissa Witte-Spencer
+            </a>
+        </div>
+    </header>
     <div class="container">
         <!-- STORIES SECTION -->
         <div class="stories-section">
@@ -1141,6 +1149,23 @@
             </div>
         </div>
         <!-- FOOTER -->
+        <!-- FLOATING HAMBURGER MENU -->
+        <div id="floating-menu" style="position:fixed; bottom:32px; right:32px; z-index:2000;">
+            <button id="menu-btn" style="background:#0284c7; border:none; border-radius:50%; width:60px; height:60px; box-shadow:0 4px 16px rgba(2,132,199,0.18); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s;">
+                <span style="display:block; width:32px; height:32px;">
+                    <svg viewBox="0 0 100 100" width="32" height="32">
+                        <rect y="20" width="100" height="12" rx="6" fill="#fff"/>
+                        <rect y="44" width="100" height="12" rx="6" fill="#fff"/>
+                        <rect y="68" width="100" height="12" rx="6" fill="#fff"/>
+                    </svg>
+                </span>
+            </button>
+            <div id="menu-dropdown" style="display:none; position:absolute; bottom:70px; right:0; background:#fff; border-radius:12px; box-shadow:0 8px 32px rgba(2,132,199,0.18); min-width:180px; padding:18px 0;">
+                <a href="index.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem; border-bottom:1px solid #e2e8f0;">Home</a>
+                <a href="star-stories.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem;">Star Stories</a>
+                <a href="iso-matrix.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem;">ISO Matrix</a>
+            </div>
+        </div>
         <div class="footer">
             <p class="footer-text"><strong>Principal Compliance Architect</strong> | Compliance-by-Design Leadership | Enterprise-Scale SOX, ISO, NIST, and AI Governance</p>
             <div class="footer-badges">
@@ -1382,7 +1407,21 @@
         </div>
     </div>
 </body>
-<script>
+    <script>
+        // Hamburger menu toggle
+        document.getElementById('menu-btn').onclick = function() {
+            var dropdown = document.getElementById('menu-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        };
+        // Hide menu when clicking outside
+        document.addEventListener('click', function(e) {
+            var menu = document.getElementById('floating-menu');
+            var dropdown = document.getElementById('menu-dropdown');
+            if (!menu.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+        // ...existing code...
     function openModal(modalId) {
         document.getElementById(modalId).style.display = "block";
     }
