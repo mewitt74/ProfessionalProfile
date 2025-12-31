@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR Stories | Melissa Witte-Spencer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a3a52 0%, #0f1e2e 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px 15px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-bottom: 4px solid #0284c7;
+        }
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .header .subtitle {
+            font-size: 18px;
+            color: #0284c7;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .header .tagline {
+            font-size: 14px;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 12px;
+            line-height: 1.5;
+        }
+        .experience-badge {
+            display: inline-block;
+            background: #0284c7;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .star-section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .star-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+        .star-card {
+            background: white;
+            border-radius: 8px;
+            padding: 22px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border-left: 6px solid #0284c7;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .star-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+        .star-number {
+            display: inline-block;
+            background: #0284c7;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .star-title {
+            font-size: 16px;
+            color: #1a3a52;
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .star-label {
+            font-size: 12px;
+            color: #0284c7;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .star-description {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.5;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 12px;
+        }
+        .star-details {
+            margin-bottom: 10px;
+        }
+        .star-detail-label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .star-detail-value {
+            font-size: 13px;
+            color: #1a3a52;
+            font-weight: 700;
+        }
+        @media (max-width: 1024px) {
+            .star-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 15px;
+            }
+            .star-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#overview" class="skip-link">Skip to main content</a>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark</span>
+    </button>
+    <header role="banner">
+        <div class="header-content">
+            <div>
+                <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none; cursor: pointer;">Melissa Witte-Spencer</a></div>
+                <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
+            </div>
+        </div>
+    </header>
+    <!-- Floating Navigation -->
+    <nav class="floating-nav visible" id="floatingNav" aria-label="Quick navigation menu">
+        <div class="nav-menu show" id="navMenu" role="menu">
+            <button class="nav-menu-item" onclick="window.location.href='index.html'" role="menuitem" aria-label="Navigate to Home">
+                <span class="nav-menu-icon" aria-hidden="true">🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#experience'" role="menuitem" aria-label="Navigate to Experience">
+                <span class="nav-menu-icon" aria-hidden="true">💼</span>
+                <span>Experience</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#certifications'" role="menuitem" aria-label="Navigate to Credentials">
+                <span class="nav-menu-icon" aria-hidden="true">🎓</span>
+                <span>Credentials</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#expertise'" role="menuitem" aria-label="Navigate to Impact">
+                <span class="nav-menu-icon" aria-hidden="true">💡</span>
+                <span>Impact</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#references'" role="menuitem" aria-label="Navigate to Testimonials">
+                <span class="nav-menu-icon" aria-hidden="true">📖</span>
+                <span>Testimonials</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#volunteer'" role="menuitem" aria-label="Navigate to Volunteer">
+                <span class="nav-menu-icon" aria-hidden="true">🤝</span>
+                <span>Volunteer</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.location.href='index.html#work-product'" role="menuitem" aria-label="Navigate to Work Product">
+                <span class="nav-menu-icon" aria-hidden="true">📁</span>
+                <span>Work Product</span>
+            </button>
+            <button class="nav-menu-item active" role="menuitem" aria-label="Navigate to STAR Stories">
+                <span class="nav-menu-icon" aria-hidden="true">🌟</span>
+                <span>STAR Stories</span>
+            </button>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- STAR STORIES SECTION -->
+        <div class="star-section">
+            <h2 class="section-title">STAR Stories: Compliance Impact in Action</h2>
+            <div class="star-grid">
+                <!-- STAR STORY 1 -->
+                <div class="star-card">
+                    <div class="star-number">1</div>
+                    <div class="star-title">Automating SOX Evidence Collection</div>
+                    <div class="star-label">Situation</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Challenge:</span>
+                        <span class="star-detail-value">Manual evidence gathering for SOX controls was time-consuming and error-prone.</span>
+                    </div>
+                    <div class="star-label">Task</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Goal:</span>
+                        <span class="star-detail-value">Design a scalable, automated solution to collect and store audit evidence.</span>
+                    </div>
+                    <div class="star-label">Action</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Solution:</span>
+                        <span class="star-detail-value">Developed automated workflows integrated with engineering pipelines, ensuring evidence was captured at the source and stored securely.</span>
+                    </div>
+                    <div class="star-label">Result</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Impact:</span>
+                        <span class="star-detail-value">Reduced audit prep time by 40%, improved accuracy, and enabled real-time compliance monitoring.</span>
+                    </div>
+                    <div class="star-description">
+                        This transformation enabled teams to focus on value-added analysis rather than manual documentation, while auditors gained confidence in the integrity and completeness of evidence.
+                    </div>
+                </div>
+                <!-- STAR STORY 2 -->
+                <div class="star-card">
+                    <div class="star-number">2</div>
+                    <div class="star-title">Scaling ISO 27001 Controls</div>
+                    <div class="star-label">Situation</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Challenge:</span>
+                        <span class="star-detail-value">Rapid company growth outpaced manual control processes, risking ISO 27001 certification.</span>
+                    </div>
+                    <div class="star-label">Task</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Goal:</span>
+                        <span class="star-detail-value">Embed controls into engineering workflows to ensure continuous compliance at scale.</span>
+                    </div>
+                    <div class="star-label">Action</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Solution:</span>
+                        <span class="star-detail-value">Partnered with engineering to automate control checks in CI/CD pipelines and implemented real-time dashboards for control health.</span>
+                    </div>
+                    <div class="star-label">Result</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Impact:</span>
+                        <span class="star-detail-value">Maintained ISO 27001 certification through two audits, with zero major findings and 30% less manual effort.</span>
+                    </div>
+                    <div class="star-description">
+                        The approach ensured compliance was "silent" and embedded, supporting rapid scaling without sacrificing control rigor or audit readiness.
+                    </div>
+                </div>
+                <!-- STAR STORY 3 -->
+                <div class="star-card">
+                    <div class="star-number">3</div>
+                    <div class="star-title">NIST Framework Modernization</div>
+                    <div class="star-label">Situation</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Challenge:</span>
+                        <span class="star-detail-value">Legacy NIST controls were fragmented and difficult to test, leading to audit delays.</span>
+                    </div>
+                    <div class="star-label">Task</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Goal:</span>
+                        <span class="star-detail-value">Unify and modernize NIST controls for automation and continuous monitoring.</span>
+                    </div>
+                    <div class="star-label">Action</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Solution:</span>
+                        <span class="star-detail-value">Mapped regulatory requirements to technical signals, automated evidence collection, and created a shared control catalog.</span>
+                    </div>
+                    <div class="star-label">Result</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Impact:</span>
+                        <span class="star-detail-value">Reduced audit cycle time by 25% and improved control pass rate to 97%.</span>
+                    </div>
+                    <div class="star-description">
+                        The unified framework enabled real-time visibility for stakeholders and streamlined audit processes, supporting ongoing compliance.
+                    </div>
+                </div>
+                <!-- STAR STORY 4 -->
+                <div class="star-card">
+                    <div class="star-number">4</div>
+                    <div class="star-title">AI Governance for Emerging Risks</div>
+                    <div class="star-label">Situation</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Challenge:</span>
+                        <span class="star-detail-value">Emerging AI use cases introduced new compliance and ethical risks.</span>
+                    </div>
+                    <div class="star-label">Task</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Goal:</span>
+                        <span class="star-detail-value">Establish a governance framework for responsible AI development and deployment.</span>
+                    </div>
+                    <div class="star-label">Action</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Solution:</span>
+                        <span class="star-detail-value">Developed policies, risk assessments, and technical controls for AI systems, ensuring transparency and accountability.</span>
+                    </div>
+                    <div class="star-label">Result</div>
+                    <div class="star-details">
+                        <span class="star-detail-label">Impact:</span>
+                        <span class="star-detail-value">Enabled safe AI adoption, passed external audits, and built stakeholder trust in AI initiatives.</span>
+                    </div>
+                    <div class="star-description">
+                        The governance model positioned the company as a leader in responsible AI, supporting innovation while managing risk.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+            <p class="footer-text">
+                <strong>Principal Compliance Architect</strong> | STAR Stories: Situation, Task, Action, Result | SOX, ISO, NIST, AI Governance
+            </p>
+            <div class="footer-badges">
+                <div class="badge">ISO 27001 Lead Auditor</div>
+                <div class="badge">ISO 42001 Lead Auditor</div>
+                <div class="badge">ISO 37001 Lead Implementer</div>
+                <div class="badge">SOX | NIST | GDPR</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

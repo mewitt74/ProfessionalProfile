@@ -1648,15 +1648,12 @@
     </style>
 </head>
 <body>
-
     <a href="#overview" class="skip-link">Skip to main content</a>
-    
     <!-- Dark Mode Toggle -->
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
         <span class="theme-toggle-icon" id="themeIcon">🌙</span>
         <span id="themeLabel">Dark</span>
     </button>
-    
     <header role="banner">
         <div class="header-content">
             <div>
@@ -1666,34 +1663,28 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" style="max-width: 1200px; padding: 10px 8px;">
         <!-- Overview Section -->
         <section id="overview" class="section" role="main" aria-label="Professional Overview">
 
-            <div class="hero">
-                <div class="hero-content" style="display: flex; align-items: flex-start; gap: 36px; flex-wrap: wrap; justify-content: flex-start; text-align: left;">
-                    <div style="min-width: 100px; max-width: 170px; display: flex; align-items: flex-start; justify-content: center;">
-                        <img src="certificates/Resumephoto.jpg" alt="Professional Photo" style="width: 100px; height: 100px; object-fit: cover; object-position: center 25%; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 12px rgba(33,128,195,0.18);" />
+            <div class="hero" style="padding: 32px 16px 24px 16px; margin-bottom: 24px;">
+                <div class="hero-content" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; justify-content: flex-start; text-align: left;">
+                    <div style="min-width: 90px; max-width: 120px; display: flex; align-items: flex-start; justify-content: center;">
+                        <img src="certificates/Resumephoto.jpg" alt="Professional Photo" style="width: 80px; height: 80px; object-fit: cover; object-position: center 25%; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(33,128,195,0.12);" />
                     </div>
-                    <div style="flex: 1 1 320px; min-width: 220px; max-width: 900px;">
-                        <h1 style="margin-top: 0;">Transformational Compliance & Automation Leader</h1>
-                        <p class="hero-subtitle" style="margin-bottom: 18px;">18+ Years of Excellence at Microsoft</p>
-                        <p style="margin-top: 0; font-size: 16px; line-height: 1.8;">ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
+                    <div style="flex: 1 1 320px; min-width: 180px; max-width: 700px;">
+                        <h1 style="margin-top: 0; margin-bottom: 8px; font-size: 2em;">Transformational Compliance & Automation Leader</h1>
+                        <p class="hero-subtitle" style="margin-bottom: 8px; font-size: 1.1em;">18+ Years of Excellence at Microsoft</p>
+                        <p style="margin-top: 0; font-size: 14px; line-height: 1.6;">ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Testimonial Carousel -->
-            <div class="testimonial-carousel" id="testimonialCarousel">
-                <div class="carousel-quote" id="carouselQuote">
-                    "Her contributions were critical to the success of the Microsoft Cloud Business."
-                </div>
-                <div class="carousel-author" id="carouselAuthor">
-                    R. Mark Plesnicher
-                </div>
-                <div class="carousel-title" id="carouselTitle">
-                    GM, Critical Infrastructure & Risk | Microsoft Corporation
-                </div>
+            <div class="testimonial-carousel" id="testimonialCarousel" style="padding: 18px 10px; margin: 0 0 18px 0;">
+                <div class="carousel-quote" id="carouselQuote" style="font-size: 1.1em;">"Her contributions were critical to the success of the Microsoft Cloud Business."</div>
+                <div class="carousel-author" id="carouselAuthor">R. Mark Plesnicher</div>
+                <div class="carousel-title" id="carouselTitle">GM, Critical Infrastructure & Risk | Microsoft Corporation</div>
                 <div class="carousel-dots" id="carouselDots">
                     <span class="carousel-dot active" onclick="showTestimonial(0)"></span>
                     <span class="carousel-dot" onclick="showTestimonial(1)"></span>
@@ -1702,49 +1693,53 @@
                 </div>
             </div>
 
-            <div class="cta-section">
-                <h2 class="cta-title" style="color: white;">Explore Profile</h2>
-                <p class="cta-subtitle">Discover proven strategies, certifications, and leadership testimonials</p>
-                <div class="cta-buttons">
-                    <button class="cta-btn" onclick="showSection('experience')">
+            <div class="cta-section" style="padding: 28px 12px; margin: 24px 0;">
+                <h2 class="cta-title" style="color: white; font-size: 1.5em; margin-bottom: 8px;">Explore Profile</h2>
+                <p class="cta-subtitle" style="font-size: 1em; margin-bottom: 18px;">Discover proven strategies, certifications, and leadership testimonials</p>
+                <div class="cta-buttons" style="gap: 10px;">
+                    <button class="cta-btn" onclick="showSection('experience')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">💼</span>
                         <span class="cta-btn-label">Experience</span>
                         <span class="cta-btn-desc">18+ years at Microsoft</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('references')">
-                        <span class="cta-btn-icon">⭐</span>
+                    <button class="cta-btn" onclick="showSection('references')" style="padding: 12px 10px; font-size: 13px;">
+                        <span class="cta-btn-icon">📖</span>
                         <span class="cta-btn-label">Testimonials</span>
                         <span class="cta-btn-desc">See Why Leaders Recommend Me</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('certifications')">
+                    <button class="cta-btn" onclick="showSection('certifications')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">🎓</span>
                         <span class="cta-btn-label">Credentials</span>
                         <span class="cta-btn-desc">ISO Lead Auditor Credentials</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('expertise')">
+                    <button class="cta-btn" onclick="showSection('expertise')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">💡</span>
                         <span class="cta-btn-label">Impact</span>
                         <span class="cta-btn-desc">Measurable Business Results</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('volunteer')">
+                    <button class="cta-btn" onclick="showSection('volunteer')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">🤝</span>
                         <span class="cta-btn-label">Volunteer</span>
                         <span class="cta-btn-desc">Community Leadership</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('work-product')">
+                    <button class="cta-btn" onclick="showSection('work-product')" style="padding: 12px 10px; font-size: 13px;">
                         <span class="cta-btn-icon">📁</span>
                         <span class="cta-btn-label">Work Product</span>
                         <span class="cta-btn-desc">Real-World Deliverables</span>
                     </button>
+                    <button class="cta-btn" onclick="window.open('star-stories.html','_blank')" style="padding: 12px 10px; font-size: 13px;">
+                        <span class="cta-btn-icon">🌟</span>
+                        <span class="cta-btn-label">STAR Stories</span>
+                        <span class="cta-btn-desc">Compliance Impact Stories</span>
+                    </button>
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider" style="margin: 18px 0;"></div>
 
-            <h3 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 8px;">Key Achievements</h3>
-            <p style="text-align: center; color: var(--text-light); font-size: 14px; margin-bottom: 40px;">Proven track record of delivering measurable business impact</p>
-            
-            <div class="hero-stats" style="margin-top: 32px; margin-bottom: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h3 style="margin-top: 24px; color: var(--primary); text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 6px;">Key Achievements</h3>
+            <p style="text-align: center; color: var(--text-light); font-size: 13px; margin-bottom: 18px;">Proven track record of delivering measurable business impact</p>
+            <div class="hero-stats" style="margin-top: 12px; margin-bottom: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 500px; margin-left: auto; margin-right: auto;">
                 <div class="stat" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3); border-radius: 16px;">
                     <span class="stat-value">96.5%</span>
                     <span class="stat-label">Compliance Accuracy</span>
@@ -2485,60 +2480,12 @@
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">EU AI Act and global regulations</div>
                     </div>
                 </a>
-                <a href="certificates/2025-12-29 CertificateOfCompletion_AI Prompts for Deep Research RealWorld Use Cases.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance ai-automation" data-keywords="ai prompts deep research real world use cases linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">🔎</div>
-                        <div class="cert-name">AI Prompts for Deep Research</div>
-                        <div class="cert-issuer">LinkedIn Learning | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Advanced AI prompt engineering for research</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-30 CertificateOfCompletion_Navigating the EU Cyber Resilience Act.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance regulations" data-keywords="eu cyber resilience act linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">🇪🇺</div>
-                        <div class="cert-name">Navigating the EU Cyber Resilience Act</div>
-                        <div class="cert-issuer">LinkedIn Learning | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">EU Cyber Resilience Act essentials</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-30 CertificateOfCompletion_Microsoft Azure AI Fundamentals AI900 Cert Prep by Microsoft Press.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance ai-automation" data-keywords="microsoft azure ai fundamentals ai900 cert prep linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">☁️</div>
-                        <div class="cert-name">Microsoft Azure AI Fundamentals (AI-900)</div>
-                        <div class="cert-issuer">Microsoft Press | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">AI-900 certification prep for Azure AI</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-27 GRC Fundamentals.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security grc" data-keywords="grc fundamentals linkedin 2025">
+                <a href="certificates/2025-12-27 GRC Fundamentals.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="security grc" data-keywords="grc fundamentals alison 2025">
                     <div class="cert-card">
                         <div class="cert-icon">📚</div>
                         <div class="cert-name">GRC Fundamentals</div>
-                        <div class="cert-issuer">LinkedIn Learning | Dec 2025</div>
+                        <div class="cert-issuer">Alison | Dec 2025</div>
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Foundations of Governance, Risk, and Compliance</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-29 CertificateOfCompletion_AI Prompts for Deep Research RealWorld Use Cases.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance ai-automation" data-keywords="ai prompts deep research real world use cases linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">🔎</div>
-                        <div class="cert-name">AI Prompts for Deep Research</div>
-                        <div class="cert-issuer">LinkedIn Learning | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Advanced AI prompt engineering for research</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-30 CertificateOfCompletion_Navigating the EU Cyber Resilience Act.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance regulations" data-keywords="eu cyber resilience act linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">🇪🇺</div>
-                        <div class="cert-name">Navigating the EU Cyber Resilience Act</div>
-                        <div class="cert-issuer">LinkedIn Learning | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">EU Cyber Resilience Act essentials</div>
-                    </div>
-                </a>
-                <a href="certificates/2025-12-30 CertificateOfCompletion_Microsoft Azure AI Fundamentals AI900 Cert Prep by Microsoft Press.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance ai-automation" data-keywords="microsoft azure ai fundamentals ai900 cert prep linkedin 2025">
-                    <div class="cert-card">
-                        <div class="cert-icon">☁️</div>
-                        <div class="cert-name">Microsoft Azure AI Fundamentals (AI-900)</div>
-                        <div class="cert-issuer">Microsoft Press | Dec 2025</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">AI-900 certification prep for Azure AI</div>
                     </div>
                 </a>
                 <a href="certificates/2025-12-14-CertificateOfCompletion_Understanding-Artificial-Intelligence-Concepts-and-Terminology-with-ISOIEC-229892022.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="ai-governance" data-keywords="iso 22989 artificial intelligence ai governance terminology linkedin 2025">
@@ -2946,23 +2893,32 @@
         </section>
 
         <!-- Work Product Section -->
-        <section id="work-product" class="section hidden">
+        <section id="work-product" class="section">
             <div class="section-header">
                 <div class="section-icon">🧩</div>
                 <h2>Work Product</h2>
             </div>
-            <p style="color: var(--text-light); margin-bottom: 24px;">Live ISO analysis tools showcasing management system integration, control-set mapping, and overlap visualization.</p>
+            <p style="color: var(--text-light); margin-bottom: 24px;">Live ISO analysis tools and STAR stories showcasing management system integration, control-set mapping, and compliance impact.</p>
             <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
                 <button class="filter-btn" onclick="showWorkApp('matrix')" style="padding: 10px 18px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Clause & Control Mapping Matrix</button>
+                <button class="filter-btn" onclick="showWorkApp('star')" style="padding: 10px 18px; background: #0284c7; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">STAR Stories</button>
             </div>
-
-
 
             <div id="work-matrix" style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 30px; color: white; min-height: 400px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);">
                 <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">ISO Clause & Control Mapping Matrix</h3>
                 <p style="margin-bottom: 16px; font-size: 1.05em; line-height: 1.6;">Visualizes overlaps and unique requirements across ISO management system standards using Annex SL framework.</p>
                 <p style="margin-bottom: 24px; opacity: 0.95;"><strong>Integration Best Practices:</strong> Unified policy framework, consolidated risk register, clause-tagged evidence library, integrated audit program, unified training, integrated CAPA process.</p>
                 <button onclick="window.open('iso-matrix.html','_blank')" style="padding: 12px 24px; background: white; color: #667eea; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open Full Mapping Matrix →</button>
+            </div>
+            <div id="work-star-page" style="display: block; background: linear-gradient(135deg, #0284c7 0%, #1a3a52 100%); border-radius: 12px; padding: 30px; color: white; min-height: 200px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); margin-top: 24px;">
+                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">STAR Stories: Situation, Task, Action, Result</h3>
+                <p style="margin-bottom: 18px; font-size: 1.05em; line-height: 1.6;">Explore real-world compliance impact stories using the STAR method—demonstrating leadership, transformation, and measurable results.</p>
+                <button onclick="window.open('star-stories.html','_blank')" style="padding: 12px 24px; background: white; color: #0284c7; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open STAR Stories →</button>
+            </div>
+            <div id="work-star" style="display: none; background: linear-gradient(135deg, #0284c7 0%, #1a3a52 100%); border-radius: 12px; padding: 30px; color: white; min-height: 200px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); margin-top: 24px;">
+                <h3 style="margin-top: 0; margin-bottom: 24px; font-size: 2em;">STAR Stories: Situation, Task, Action, Result</h3>
+                <p style="margin-bottom: 18px; font-size: 1.05em; line-height: 1.6;">Explore real-world compliance impact stories using the STAR method—demonstrating leadership, transformation, and measurable results.</p>
+                <button onclick="window.open('star-stories.html','_blank')" style="padding: 12px 24px; background: white; color: #0284c7; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Open STAR Stories →</button>
             </div>
         </section>
 
@@ -3001,6 +2957,10 @@
             <button class="nav-menu-item" onclick="navigateToSection('volunteer')" role="menuitem" aria-label="Navigate to Volunteer">
                 <span class="nav-menu-icon" aria-hidden="true">🤝</span>
                 <span>Volunteer</span>
+            </button>
+            <button class="nav-menu-item" onclick="window.open('star-stories.html','_blank')" role="menuitem" aria-label="Open STAR Stories">
+                <span class="nav-menu-icon" aria-hidden="true">🌟</span>
+                <span>STAR Stories</span>
             </button>
             <button class="nav-menu-item" onclick="navigateToSection('work-product')" role="menuitem" aria-label="Navigate to Work Product">
                 <span class="nav-menu-icon" aria-hidden="true">📁</span>
@@ -3099,6 +3059,7 @@
 
         function showWorkApp(which) {
             document.getElementById('work-matrix').style.display = which === 'matrix' ? 'block' : 'none';
+            document.getElementById('work-star').style.display = which === 'star' ? 'block' : 'none';
             document.querySelectorAll('#work-product .filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
         }

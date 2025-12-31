@@ -12,8 +12,8 @@
 
 2. **Set Environment Variables** in Netlify Dashboard:
    - Go to Site Settings → Environment Variables
-   - Add: `EMAIL_USER` = `your-email@gmail.com`
-   - Add: `EMAIL_PASSWORD` = `your-gmail-app-password`
+   - Add: `EMAIL_USER` = `mwittespencer@gmail.com`
+   - Add: `EMAIL_PASSWORD` = `20IndianHackers!`
 
 3. **Generate Gmail App Password:**
    - Go to Google Account → Security → 2-Step Verification

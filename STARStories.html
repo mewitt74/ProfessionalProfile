@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR Stories | Melissa Witte-Spencer</title>
+    <style>
+        /* ... Copy all styles from Compliance_Leadership_Portfolio.html ... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Melissa Witte-Spencer</h1>
+            <div class="subtitle">Principal Compliance Architect</div>
+            <p class="tagline">
+                STAR Stories: Situation, Task, Action, Result — Real-world compliance leadership, transformation, and impact.
+            </p>
+            <div class="experience-badge">18 Years | Enterprise Leadership</div>
+        </div>
+        <!-- STORIES SECTION -->
+        <div class="stories-section">
+            <h2 class="section-title">STAR Stories: Compliance Impact in Action</h2>
+            <div class="stories-grid">
+                <!-- STAR STORY 1 -->
+                <div class="story-card" onclick="openModal('modal1')">
+                    <div class="story-number">1</div>
+                    <h3 class="story-title">Automating SOX Evidence Collection</h3>
+                    <div class="headline-metric">40% Audit Prep Time Saved</div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Accuracy</div>
+                            <div class="metric-value">Improved</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Compliance</div>
+                            <div class="metric-value">Real-Time</div>
+                        </div>
+                    </div>
+                    <p class="story-description">
+                        Automated workflows integrated with engineering pipelines, ensuring evidence was captured at the source and stored securely.
+                    </p>
+                    <div class="read-more">→ Read Full Story</div>
+                </div>
+                <!-- STAR STORY 2 -->
+                <div class="story-card" onclick="openModal('modal2')">
+                    <div class="story-number">2</div>
+                    <h3 class="story-title">Scaling ISO 27001 Controls</h3>
+                    <div class="headline-metric">30% Less Manual Effort</div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Certification</div>
+                            <div class="metric-value">Maintained</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Findings</div>
+                            <div class="metric-value">Zero Major</div>
+                        </div>
+                    </div>
+                    <p class="story-description">
+                        Automated control checks in CI/CD pipelines and implemented real-time dashboards for control health.
+                    </p>
+                    <div class="read-more">→ Read Full Story</div>
+                </div>
+                <!-- STAR STORY 3 -->
+                <div class="story-card" onclick="openModal('modal3')">
+                    <div class="story-number">3</div>
+                    <h3 class="story-title">NIST Framework Modernization</h3>
+                    <div class="headline-metric">25% Audit Cycle Time Saved</div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Pass Rate</div>
+                            <div class="metric-value">97%</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Visibility</div>
+                            <div class="metric-value">Real-Time</div>
+                        </div>
+                    </div>
+                    <p class="story-description">
+                        Unified and modernized NIST controls for automation and continuous monitoring.
+                    </p>
+                    <div class="read-more">→ Read Full Story</div>
+                </div>
+                <!-- STAR STORY 4 -->
+                <div class="story-card" onclick="openModal('modal4')">
+                    <div class="story-number">4</div>
+                    <h3 class="story-title">AI Governance for Emerging Risks</h3>
+                    <div class="headline-metric">Stakeholder Trust Built</div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <div class="metric-label">Audit</div>
+                            <div class="metric-value">Passed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-label">Adoption</div>
+                            <div class="metric-value">Safe AI</div>
+                        </div>
+                    </div>
+                    <p class="story-description">
+                        Developed policies, risk assessments, and technical controls for AI systems, ensuring transparency and accountability.
+                    </p>
+                    <div class="read-more">→ Read Full Story</div>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="footer">
+            <p class="footer-text">
+                <strong>Principal Compliance Architect</strong> | STAR Stories: Situation, Task, Action, Result | SOX, ISO, NIST, AI Governance
+            </p>
+            <div class="footer-badges">
+                <div class="badge">ISO 27001 Lead Auditor</div>
+                <div class="badge">ISO 42001 Lead Auditor</div>
+                <div class="badge">ISO 37001 Lead Implementer</div>
+                <div class="badge">SOX | NIST | GDPR</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
