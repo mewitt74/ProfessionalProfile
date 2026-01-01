@@ -1524,6 +1524,10 @@ tr:hover {
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .legend h3 {
@@ -1534,7 +1538,7 @@ tr:hover {
 .legend-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .legend-box {
