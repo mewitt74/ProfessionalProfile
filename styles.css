@@ -412,6 +412,141 @@ header {
     font-size: 20px;
 }
 
+/* Achievement Badges */
+.achievement-badges {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.achievement-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.badge-icon {
+    font-size: 24px;
+}
+
+.badge-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-item {
+    background: var(--bg-white);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.timeline-item:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.timeline-date {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.timeline-description {
+    color: var(--text);
+    line-height: 1.7;
+    margin-top: 16px;
+}
+
+.timeline-description strong {
+    color: var(--primary);
+    font-size: 16px;
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.timeline-description ul {
+    margin-top: 8px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.timeline-description li {
+    margin-bottom: 12px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.job-preview {
+    margin-top: 12px;
+}
+
+.job-full {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 5000px;
+    }
+}
+
+/* Expertise Labels and Values */
+.expertise-label {
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.expertise-value {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
 /* Button Styles */
 .cta-buttons {
     display: grid;
