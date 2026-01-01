@@ -227,6 +227,9 @@ header {
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -284,6 +287,8 @@ header {
     line-height: 1.7;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 /* Testimonial Carousel Styles */
@@ -1187,6 +1192,12 @@ header {
         padding: 16px 12px;
         margin-bottom: 16px;
         border-radius: 8px;
+        width: calc(100% - 24px);
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .hero-content {
@@ -1194,6 +1205,8 @@ header {
         align-items: center;
         text-align: center;
         gap: 16px;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .hero-content > div:first-child,
@@ -1201,6 +1214,7 @@ header {
         min-width: auto;
         max-width: 100%;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-content img {
@@ -1215,13 +1229,17 @@ header {
         margin-bottom: 8px;
         word-wrap: break-word;
         word-break: break-word;
+        overflow-wrap: break-word;
         hyphens: auto;
+        max-width: 100%;
     }
 
     .hero-subtitle {
         font-size: 0.95em;
         margin-bottom: 10px;
         font-weight: 600;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .hero-content p {
@@ -1230,7 +1248,10 @@ header {
         text-align: left;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        word-break: break-word;
         hyphens: auto;
+        max-width: 100%;
+        padding: 0 4px;
     }
 
     /* Hero Stats Mobile */
@@ -1472,6 +1493,7 @@ header {
     /* Hero Extra Small Mobile */
     .hero {
         padding: 14px 10px;
+        width: calc(100% - 20px);
     }
 
     .hero-content {
@@ -1497,6 +1519,7 @@ header {
     .hero-content p {
         font-size: 12px;
         line-height: 1.6;
+        padding: 0 2px;
     }
 
     .stat-value {
