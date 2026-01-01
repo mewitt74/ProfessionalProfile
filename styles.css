@@ -53,7 +53,7 @@
 [data-theme="dark"] .contact-card,
 [data-theme="dark"] .matrix-cell,
 [data-theme="dark"] .clause-card,
-[data-theme="dark"] .gantt-container,
+[data-theme="dark"] .roadmap-card,
 [data-theme="dark"] .volunteer-card {
     background: var(--bg-white);
     border-color: var(--border);
@@ -1835,120 +1835,114 @@ tr:hover {
     margin: 0;
 }
 
-/* Gantt Chart Layout */
-.gantt-container {
+/* Roadmap Timeline Layout */
+.roadmap-timeline {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 30px 0;
+    overflow-x: auto;
+    padding: 20px 10px;
+}
+
+.roadmap-card {
+    flex: 1;
+    min-width: 220px;
     background: var(--bg-white);
     border: 2px solid var(--border);
     border-radius: 12px;
-    padding: 20px;
-    margin: 30px 0;
-    overflow-x: auto;
-}
-
-.gantt-header {
-    margin-bottom: 15px;
-    padding: 10px 0;
-    border-bottom: 2px solid var(--primary);
-}
-
-.gantt-months {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2px;
-    padding-left: 180px;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: var(--primary);
-    text-align: center;
-}
-
-.gantt-row {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 10px;
-    margin-bottom: 8px;
-    align-items: center;
-}
-
-.gantt-label {
-    padding: 8px;
-}
-
-.gantt-label h4 {
-    margin: 0;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: var(--text);
-}
-
-.gantt-bars {
+    padding: 20px 18px;
     position: relative;
-    height: 40px;
-    background: var(--bg-light);
-    border-radius: 6px;
-    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.gantt-bar {
-    position: absolute;
-    height: 100%;
-    border-radius: 6px;
+.roadmap-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.phase-time {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(33, 128, 195, 0.3);
+}
+
+.phase-number {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: 600;
-    font-size: 0.85em;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0 auto 16px;
+    box-shadow: 0 3px 10px rgba(33, 128, 195, 0.4);
 }
 
-.gantt-bar:hover {
-    transform: scaleY(1.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-}
-
-.gantt-bar.assessment {
-    background: linear-gradient(135deg, #1565c0, #1976d2);
-}
-
-.gantt-bar.design {
-    background: linear-gradient(135deg, #2e7d32, #43a047);
-}
-
-.gantt-bar.build {
-    background: linear-gradient(135deg, #e65100, #f57c00);
-}
-
-.gantt-bar.launch {
-    background: linear-gradient(135deg, #c2185b, #d81b60);
-}
-
-.gantt-bar.optimize {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-}
-
-.bar-label {
-    white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.gantt-details {
-    grid-column: 1 / -1;
-    padding: 12px 15px;
-    background: var(--bg-light);
-    border-left: 4px solid var(--accent);
-    border-radius: 6px;
-    margin: 5px 0 15px 0;
-    font-size: 0.9em;
-    line-height: 1.6;
-    color: var(--text-light);
-}
-
-.gantt-details strong {
+.phase-name {
+    font-size: 1.4em;
+    font-weight: 700;
     color: var(--primary);
-    font-weight: 600;
+    margin: 0 0 12px 0;
+    text-align: center;
+}
+
+.phase-summary {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+}
+
+.phase-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.phase-steps li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.phase-steps li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.roadmap-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    padding: 0 8px;
 }
 
 /* Table Badges/Tags */
@@ -2041,38 +2035,26 @@ tr:hover {
         font-size: 1.3em;
     }
 
-    .gantt-container {
-        padding: 15px;
+    .roadmap-timeline {
+        flex-direction: column;
+        padding: 15px 0;
     }
 
-    .gantt-months {
-        padding-left: 0;
-        font-size: 0.7em;
-        display: none;
+    .roadmap-card {
+        min-width: auto;
     }
 
-    .gantt-row {
-        grid-template-columns: 1fr;
-        gap: 5px;
+    .roadmap-arrow {
+        transform: rotate(90deg);
+        padding: 10px 0;
     }
 
-    .gantt-label h4 {
-        font-size: 1em;
-        margin-bottom: 5px;
+    .phase-name {
+        font-size: 1.2em;
     }
 
-    .gantt-bars {
-        height: 35px;
-    }
-
-    .gantt-bar {
-        font-size: 0.75em;
-    }
-
-    .gantt-details {
-        font-size: 0.85em;
+    .detail-section {
         padding: 10px;
-        margin: 5px 0 10px 0;
     }
 }
     }
