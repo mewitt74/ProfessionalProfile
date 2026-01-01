@@ -1021,20 +1021,20 @@ header {
 .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     margin-top: 16px;
 }
 
 .carousel-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: none;
     background: var(--border);
     cursor: pointer;
     transition: var(--transition);
-    min-height: 44px; /* Touch target */
-    min-width: 44px; /* Touch target */
+    padding: 16px;
+    position: relative;
 }
 
 .carousel-dot:hover {
