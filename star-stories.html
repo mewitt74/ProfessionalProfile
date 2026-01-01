@@ -745,7 +745,7 @@
             const grid = document.getElementById('storiesGrid');
             grid.innerHTML = stories.map((story, index) => `
                 <div class="story-card" data-story="${index}">
-                    <div onclick="openModal(${index})">
+                    <div class="card-content" onclick="openModal(${index})">
                         <div class="story-number">${story.number}</div>
                         <h3 class="story-title">${story.title}</h3>
                         <div class="headline-metric">${story.metric}</div>
@@ -763,14 +763,7 @@
                     </div>
                     ${story.fullScript ? `
                         <div class="audio-controls">
-                            <button class="play-button" 
-                                    data-story="${index}"
-                                    onclick="toggleSpeech(${index}, event)" 
-                                    aria-label="Play story narration"
-                                    title="Listen to full STAR story">
-                                ▶
-                            </button>
-                            <span class="audio-label">🎙️ Listen to Full Story</span>
+                            <span class="audio-label">🎙️ Click Card to Hear Full STAR Story</span>
                         </div>
                     ` : ''}
                 </div>
