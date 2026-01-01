@@ -1160,6 +1160,7 @@ header {
         width: 100%;
         max-width: 100vw;
         box-sizing: border-box;
+        margin: 0 auto;
     }
 
     .cta-buttons {
@@ -1196,13 +1197,16 @@ header {
 
     /* Hero Section Mobile */
     .hero {
-        padding: 16px 10px;
-        margin: 0 0 16px 0;
+        padding: 16px 8px;
+        margin: 0 auto 16px auto;
         border-radius: 8px;
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% - 4px);
+        max-width: calc(100vw - 28px);
         box-sizing: border-box;
         overflow-x: hidden;
+        overflow-y: visible;
+        -webkit-box-sizing: border-box;
+        position: relative;
     }
 
     .hero-content {
@@ -1264,12 +1268,17 @@ header {
         word-wrap: break-word;
         overflow-wrap: break-word;
         word-break: break-word;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
         hyphens: auto;
         white-space: normal;
         width: 100%;
         max-width: 100%;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: clip;
+        display: block;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     /* Hero Stats Mobile */
