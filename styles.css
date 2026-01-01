@@ -281,7 +281,9 @@ header {
 .hero-content p {
     margin-top: 0;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Testimonial Carousel Styles */
@@ -1182,8 +1184,8 @@ header {
 
     /* Hero Section Mobile */
     .hero {
-        padding: 20px 12px;
-        margin-bottom: 20px;
+        padding: 16px 12px;
+        margin-bottom: 16px;
         border-radius: 8px;
     }
 
@@ -1191,7 +1193,7 @@ header {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 20px;
+        gap: 16px;
     }
 
     .hero-content > div:first-child,
@@ -1202,27 +1204,33 @@ header {
     }
 
     .hero-content img {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
         margin: 0 auto;
     }
 
     .hero-content h1 {
-        font-size: 1.6em;
-        line-height: 1.3;
-        margin-bottom: 10px;
+        font-size: 1.5em;
+        line-height: 1.25;
+        margin-bottom: 8px;
         word-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
     }
 
     .hero-subtitle {
-        font-size: 1em;
-        margin-bottom: 12px;
+        font-size: 0.95em;
+        margin-bottom: 10px;
+        font-weight: 600;
     }
 
     .hero-content p {
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 13px;
+        line-height: 1.65;
         text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     /* Hero Stats Mobile */
@@ -1463,25 +1471,32 @@ header {
 
     /* Hero Extra Small Mobile */
     .hero {
-        padding: 16px 10px;
+        padding: 14px 10px;
+    }
+
+    .hero-content {
+        gap: 12px;
     }
 
     .hero-content img {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
     }
 
     .hero-content h1 {
-        font-size: 1.4em;
-        line-height: 1.2;
+        font-size: 1.35em;
+        line-height: 1.25;
+        margin-bottom: 6px;
     }
 
     .hero-subtitle {
-        font-size: 0.95em;
+        font-size: 0.9em;
+        margin-bottom: 8px;
     }
 
     .hero-content p {
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.6;
     }
 
     .stat-value {
