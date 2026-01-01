@@ -4,497 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISO Clause and Control Mapping Matrix</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2180C3;
-            --primary-dark: #1a65a3;
-            --accent: #32B8C6;
-            --success: #2D6A6F;
-            --warning: #E67E23;
-            --text: #1f2121;
-            --text-light: #626c71;
-            --bg-light: #fcfcf9;
-            --bg-white: #ffffff;
-            --border: #a7a9a9;
-            --shadow-sm: 0 2px 8px rgba(31, 33, 33, 0.08);
-            --shadow-md: 0 4px 16px rgba(31, 33, 33, 0.12);
-            --shadow-lg: 0 12px 32px rgba(31, 33, 33, 0.15);
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 10px;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #000;
-            color: #fff;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 1000;
-            border-radius: 4px;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-            margin-bottom: 20px;
-        }
-
-        .controls {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .control-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover, .control-btn.active {
-            background: white;
-            color: #667eea;
-            font-weight: 600;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #e0e0e0;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 12px 20px;
-            background: none;
-            border: none;
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            color: #666;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn:hover {
-            color: #667eea;
-        }
-
-        .tab-btn.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        th {
-            background: #f5f5f5;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #333;
-            border-bottom: 2px solid #ddd;
-        }
-
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
-            color: #555;
-        }
-
-        tr:hover {
-            background: #f9f9f9;
-        }
-
-        .standard-name {
-            font-weight: 600;
-            color: #667eea;
-            min-width: 120px;
-        }
-
-        .overlap {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            display: inline-block;
-            margin: 2px;
-        }
-
-        .unique {
-            background: #fff3e0;
-            color: #e65100;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            display: inline-block;
-            margin: 2px;
-        }
-
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .matrix-cell {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .matrix-cell:hover {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: #667eea;
-        }
-
-        .cell-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.05em;
-        }
-
-        .cell-content {
-            font-size: 0.9em;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .legend {
-            display: flex;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .legend-box {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-        }
-
-        .legend-box.overlap {
-            background: #e8f5e9;
-            border: 2px solid #2e7d32;
-        }
-
-        .legend-box.unique {
-            background: #fff3e0;
-            border: 2px solid #e65100;
-        }
-
-        .legend-box.shared {
-            background: #e3f2fd;
-            border: 2px solid #1976d2;
-        }
-
-        .section-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #333;
-            margin: 30px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .standards-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .standard-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .standard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .standard-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-
-        .standard-card p {
-            font-size: 0.9em;
-            opacity: 0.95;
-            line-height: 1.5;
-        }
-
-        .footer {
-            background: #f5f5f5;
-            padding: 20px 30px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9em;
-            border-top: 1px solid #ddd;
-        }
-
-        /* Floating Navigation */
-        .floating-nav {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 200;
-            display: none;
-        }
-
-        .floating-nav.visible {
-            display: block;
-        }
-
-        .nav-toggle {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            border: 3px solid var(--primary);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(33, 128, 195, 0.4);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(33, 128, 195, 0.6);
-            border-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .nav-toggle:focus {
-            border-color: white;
-            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.5), 0 6px 30px rgba(33, 128, 195, 0.6);
-        }
-
-        .nav-toggle[aria-expanded="true"] {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-        }
-
-        .nav-menu {
-            position: absolute;
-            bottom: 75px;
-            right: 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            min-width: 220px;
-            display: none;
-            overflow: hidden;
-        }
-
-        .nav-menu.show {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: white;
-            border: none;
-            border-left: 4px solid transparent;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 14px;
-            color: var(--text);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-menu-item:last-child {
-            border-bottom: none;
-        }
-
-        .nav-menu-item:hover {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
-            color: var(--primary);
-            border-left-color: var(--primary);
-            padding-left: 22px;
-        }
-
-        .nav-menu-item:focus {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
-            border-left-color: var(--primary);
-            outline-offset: -3px;
-        }
-
-        .nav-menu-item.active {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
-            color: var(--primary);
-            font-weight: 600;
-            border-left-color: var(--primary);
-            border-left-width: 4px;
-        }
-
-        .nav-menu-icon {
-            font-size: 18px;
-            width: 24px;
-            text-align: center;
-        }
-
-        header {
-            padding: 18px 0 12px 0;
-            margin-bottom: 8px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .logo-subtitle {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <!-- HEADER NAVIGATION -->
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark</span>
+    </button>
     <header role="banner">
         <div class="header-content">
             <div>
-                <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">Melissa Witte-Spencer</a></div>
+                <div class="logo"><a href="index.html">Melissa Witte-Spencer</a></div>
                 <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
             </div>
         </div>
     </header>
     <div class="container" id="main-content">
-        <div class="header">
+        <div class="iso-matrix-header">
             <h1>ISO Clause & Control Mapping Matrix</h1>
             <p>Visualize overlaps and unique requirements across ISO management system standards</p>
             <div class="controls">
@@ -504,7 +32,7 @@
             </div>
         </div>
 
-        <div class="content">
+        <div class="iso-content">
             <div class="legend">
                 <div class="legend-item">
                     <div class="legend-box overlap"></div>
@@ -586,16 +114,16 @@
             <!-- Annex SL Mapping Tab -->
             <div id="annex-sl" class="tab-content">
                 <h2 class="section-title">Annex SL Shared Structure (10 Clauses)</h2>
-                <p style="margin-bottom: 20px; color: #666;">
+                <p>
                     Most modern ISO management system standards follow the Annex SL framework, enabling efficient integration through shared structural elements.
                 </p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 15%;">Clause</th>
-                                <th style="width: 30%;">Title</th>
-                                <th style="width: 55%;">Description & Overlap Potential</th>
+                                <th>Clause</th>
+                                <th>Title</th>
+                                <th>Description & Overlap Potential</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -677,17 +205,17 @@
             <!-- Overlap Matrix Tab -->
             <div id="overlap-matrix" class="tab-content">
                 <h2 class="section-title">Clause-by-Clause Overlap Analysis</h2>
-                <p style="margin-bottom: 20px; color: #666;">
+                <p>
                     Detailed breakdown showing where standards overlap and where unique requirements emerge. This guides integration strategy.
                 </p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 20%;">Standards Pair</th>
-                                <th style="width: 25%;">Overlapping Areas</th>
-                                <th style="width: 25%;">Where They Diverge</th>
-                                <th style="width: 30%;">Integration Opportunity</th>
+                                <th>Standards Pair</th>
+                                <th>Overlapping Areas</th>
+                                <th>Where They Diverge</th>
+                                <th>Integration Opportunity</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -801,9 +329,9 @@
             <!-- Implementation Guide Tab -->
             <div id="implementation" class="tab-content">
                 <h2 class="section-title">Integration Implementation Strategy</h2>
-                <div style="margin: 20px 0; padding: 20px; background: #e3f2fd; border-left: 4px solid #1976d2; border-radius: 4px;">
-                    <h3 style="color: #1565c0; margin-bottom: 10px;">Best Practices for Multi-Standard Integration</h3>
-                    <p style="color: #555; line-height: 1.7;">
+                <div class="integration-card">
+                    <h3>Best Practices for Multi-Standard Integration</h3>
+                    <p>
                         Organizations implementing multiple ISO standards benefit from treating shared elements as a unified framework while maintaining domain-specific rigor. The key is identifying where standards converge (Annex SL clauses 4-7, 10) and where they require distinct evidence and controls (Clause 8).
                     </p>
                 </div>
@@ -875,15 +403,15 @@
                     </div>
                 </div>
 
-                <h2 class="section-title" style="margin-top: 40px;">Integration Maturity Roadmap</h2>
+                <h2 class="section-title">Integration Maturity Roadmap</h2>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
-                                <th style="width: 15%;">Phase</th>
-                                <th style="width: 25%;">Timeline</th>
-                                <th style="width: 30%;">Focus Areas</th>
-                                <th style="width: 30%;">Key Deliverables</th>
+                                <th>Phase</th>
+                                <th>Timeline</th>
+                                <th>Focus Areas</th>
+                                <th>Key Deliverables</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -926,82 +454,10 @@
         <div class="footer">
             <p>ISO Clause & Control Mapping Matrix | Built to help organizations efficiently manage multiple ISO standards | Last Updated: December 2025</p>
         </div>
-        <!-- FLOATING HAMBURGER MENU -->
-        <div id="floating-menu" style="position:fixed; bottom:32px; right:32px; z-index:2000;">
-            <button id="menu-btn" style="background:#0284c7; border:none; border-radius:50%; width:60px; height:60px; box-shadow:0 4px 16px rgba(2,132,199,0.18); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s;">
-                <span style="display:block; width:32px; height:32px;">
-                    <svg viewBox="0 0 100 100" width="32" height="32">
-                        <rect y="20" width="100" height="12" rx="6" fill="#fff"/>
-                        <rect y="44" width="100" height="12" rx="6" fill="#fff"/>
-                        <rect y="68" width="100" height="12" rx="6" fill="#fff"/>
-                    </svg>
-                </span>
-            </button>
-            <div id="menu-dropdown" style="display:none; position:absolute; bottom:70px; right:0; background:#fff; border-radius:12px; box-shadow:0 8px 32px rgba(2,132,199,0.18); min-width:180px; padding:18px 0;">
-                <a href="index.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem; border-bottom:1px solid #e2e8f0;">Home</a>
-                <a href="star-stories.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem;">Star Stories</a>
-                <a href="iso-matrix.html" style="display:block; padding:12px 24px; color:#0284c7; text-decoration:none; font-weight:600; font-size:1.1rem;">ISO Matrix</a>
-            </div>
-        </div>
     </div>
 
-    <script>
-        // Hamburger menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('menu-btn').onclick = function() {
-                var dropdown = document.getElementById('menu-dropdown');
-                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-            };
-            // Hide menu when clicking outside
-            document.addEventListener('click', function(e) {
-                var menu = document.getElementById('floating-menu');
-                var dropdown = document.getElementById('menu-dropdown');
-                if (!menu.contains(e.target)) {
-                    dropdown.style.display = 'none';
-                }
-            });
-        });
-        function switchTab(tabName) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Remove active class from all buttons
-            const btns = document.querySelectorAll('.tab-btn');
-            btns.forEach(btn => btn.classList.remove('active'));
-
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-
-        function filterView(filter) {
-            const cards = document.querySelectorAll('.standard-card');
-            const btns = document.querySelectorAll('.control-btn');
-
-            // Update button active states
-            btns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Filter cards
-            cards.forEach(card => {
-                if (filter === 'all') {
-                    card.style.display = 'block';
-                } else if (filter === 'core' && card.classList.contains('core')) {
-                    card.style.display = 'block';
-                } else if (filter === 'specialized' && card.classList.contains('specialized')) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
-
     <!-- Floating Navigation -->
-    <nav class="floating-nav visible" id="floatingNav" aria-label="Quick navigation menu">
+    <nav class="floating-nav" id="floatingNav" aria-label="Quick navigation menu">
         <div class="nav-menu" id="navMenu" role="menu">
             <button class="nav-menu-item" onclick="window.location.href='index.html'" role="menuitem" aria-label="Navigate to Home">
                 <span class="nav-menu-icon" aria-hidden="true">🏠</span>
@@ -1042,6 +498,47 @@
     </nav>
 
     <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeLabel.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+            }
+
+            // Show floating nav
+            const floatingNav = document.getElementById('floatingNav');
+            if (floatingNav) {
+                floatingNav.classList.add('visible');
+            }
+        });
+
+        // Navigation menu toggle
         function toggleNavMenu() {
             const menu = document.getElementById('navMenu');
             const toggle = document.getElementById('navToggle');
@@ -1075,6 +572,39 @@
                 }
             }
         });
+
+        // Tab switching
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Filter view
+        function filterView(filter) {
+            const cards = document.querySelectorAll('.standard-card');
+            const btns = document.querySelectorAll('.control-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                } else if (filter === 'core' && card.classList.contains('core')) {
+                    card.style.display = 'block';
+                } else if (filter === 'specialized' && card.classList.contains('specialized')) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>

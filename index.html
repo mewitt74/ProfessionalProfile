@@ -37,1623 +37,8 @@
         gtag('config', 'GA_MEASUREMENT_ID');
     </script>
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2180C3;
-            --primary-dark: #1a65a3;
-            --accent: #32B8C6;
-            --success: #2D6A6F;
-            --warning: #E67E23;
-            --text: #1f2121;
-            --text-light: #626c71;
-            --bg-light: #fcfcf9;
-            --bg-white: #ffffff;
-            --border: #a7a9a9;
-            --shadow-sm: 0 2px 8px rgba(31, 33, 33, 0.08);
-            --shadow-md: 0 4px 16px rgba(31, 33, 33, 0.12);
-            --shadow-lg: 0 12px 32px rgba(31, 33, 33, 0.15);
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Dark Mode Variables */
-        [data-theme="dark"] {
-            --primary: #4da3ff;
-            --primary-dark: #66b3ff;
-            --accent: #5fd4e0;
-            --success: #4a9da3;
-            --warning: #ff9558;
-            --text: #e4e4e7;
-            --text-light: #a1a1aa;
-            --bg-light: #18181b;
-            --bg-white: #27272a;
-            --border: #52525b;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        [data-theme="dark"] body {
-            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
-        }
-
-        /* Accessibility: Link styles */
-        a {
-            color: var(--primary);
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 2px;
-            transition: var(--transition);
-        }
-
-        a:hover {
-            text-decoration-thickness: 2px;
-            color: var(--primary-dark);
-        }
-
-        a:focus {
-            background: rgba(33, 128, 195, 0.1);
-            border-radius: 2px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #fcfcf9 0%, #f5f5f5 100%);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .section {
-            animation: slideInUp 0.4s ease;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Accessibility: Focus styles for keyboard navigation */
-        *:focus {
-            outline: 3px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        *:focus:not(:focus-visible) {
-            outline: none;
-        }
-
-        *:focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 2px;
-        }
-
-        /* Accessibility: Skip to main content link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            z-index: 1000;
-            font-weight: 600;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* Dark Mode Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--bg-white);
-            border: 2px solid var(--border);
-            border-radius: 50px;
-            padding: 8px 16px;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .theme-toggle-icon {
-            font-size: 18px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-        header {
-            background: var(--bg-white);
-            padding: 0 0;
-            margin-bottom: 8px;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .logo-subtitle {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        header {
-            padding: 18px 0 12px 0;
-            margin-bottom: 8px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            flex-wrap: wrap;
-            max-width: 900px;
-        }
-
-        nav button {
-            background: none;
-            border: 2px solid transparent;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: var(--transition);
-            padding: 8px 12px;
-            border-radius: 6px;
-            white-space: nowrap;
-        }
-
-        nav button:hover {
-            color: var(--primary);
-            background: rgba(33, 128, 195, 0.08);
-            border-color: rgba(33, 128, 195, 0.2);
-        }
-
-        nav button:focus {
-            border-color: var(--primary);
-            background: rgba(33, 128, 195, 0.1);
-        }
-
-        nav button.active {
-            color: var(--primary);
-            background: rgba(33, 128, 195, 0.12);
-        }
-
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 40px 30px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: translate(100px, -100px);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 24px;
-            opacity: 0.95;
-        }
-
-        .hero p {
-            font-size: 16px;
-            line-height: 1.7;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .stat {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section {
-            background: var(--bg-white);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            margin-bottom: 20px;
-        }
-
-        .section:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .section.hidden {
-            display: none;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 32px;
-            gap: 16px;
-        }
-
-        .section-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .section h2 {
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 32px;
-        }
-
-        .section h3 {
-            font-size: 18px;
-            color: var(--text);
-            margin-bottom: 8px;
-            margin-top: 24px;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
-        }
-
-        .expertise-card {
-            background: var(--bg);
-            border: 2px solid #e3f2fd;
-            border-radius: 16px;
-            padding: 12px 12px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(33, 128, 195, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .expertise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 12px 24px rgba(33, 128, 195, 0.2);
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.03) 0%, rgba(50, 184, 198, 0.03) 100%);
-        }
-
-        .expertise-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .expertise-label {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-
-        .expertise-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            margin-top: 8px;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 32px 0;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -48px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            border: 3px solid var(--bg-white);
-            border-radius: 50%;
-            box-shadow: 0 0 0 3px var(--primary);
-        }
-
-        .timeline-date {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .timeline-title {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .timeline-description {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .achievement-item {
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            padding-top: 4px;
-        }
-
-        .achievement-title {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .achievement-description {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
-        }
-
-        .cert-card {
-            background: var(--bg-light);
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 16px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cert-card::before {
-            content: '🔗';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            opacity: 0.6;
-            transition: all 0.3s ease;
-        }
-
-        .cert-card:hover::before {
-            opacity: 1;
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .cert-card::after {
-            content: '📄 View Certificate';
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 13px;
-            color: white;
-            background: var(--primary);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            opacity: 0;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(33, 128, 195, 0.3);
-        }
-
-        .cert-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 20px rgba(33, 128, 195, 0.2);
-            border-color: var(--primary);
-            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
-        }
-
-        .cert-card:hover::after {
-            opacity: 1;
-            transform: translateX(-50%) translateY(-2px);
-        }
-
-        .cert-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .cert-name {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .cert-issuer {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-top: 8px;
-        }
-
-        .reference-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin: 16px 0;
-        }
-
-        .reference-card {
-            background: linear-gradient(135deg, rgba(50, 184, 198, 0.08) 0%, rgba(33, 128, 195, 0.08) 100%);
-            border: 1px solid #d0e8ef;
-            border-radius: 10px;
-            padding: 16px;
-            transition: var(--transition);
-        }
-
-        .reference-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
-        }
-
-        .reference-quote {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            font-style: italic;
-            border-left: 3px solid var(--accent);
-            padding-left: 12px;
-        }
-
-        .reference-author {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 14px;
-        }
-
-        .reference-title {
-            color: var(--text-light);
-            font-size: 12px;
-        }
-
-        .filter-btn {
-            transition: var(--transition);
-        }
-
-        .filter-btn.active {
-            background: var(--primary) !important;
-            color: white !important;
-            border-color: var(--primary) !important;
-        }
-
-        .formal-letter-card {
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.06) 0%, rgba(50, 184, 198, 0.06) 100%);
-            border: 2px solid rgba(50, 184, 198, 0.15);
-            border-radius: 10px;
-            padding: 16px;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .formal-letter-card:hover {
-            border-color: var(--accent);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .letter-preview {
-            color: var(--text-light);
-            font-size: 13px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 20px;
-            padding: 56px 48px;
-            margin: 40px 0;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .cta-title {
-            color: #ffffff;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .cta-subtitle {
-            color: #ffffff;
-            font-size: 19px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-btn {
-            background: white;
-            color: var(--primary);
-            border: 3px solid white;
-            padding: 20px 24px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: var(--primary);
-            transition: var(--transition);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .cta-btn:hover {
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--primary);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-            border-color: var(--primary-dark);
-        }
-
-        .cta-btn:hover::after {
-            width: 80%;
-        }
-
-        .cta-btn:focus {
-            border-color: var(--primary-dark);
-            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.3), 0 12px 28px rgba(0, 0, 0, 0.25);
-        }
-
-        .cta-btn-icon {
-            font-size: 32px;
-        }
-
-        .cta-btn-label {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .cta-btn-desc {
-            font-size: 12px;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero-subtitle {
-                font-size: 18px;
-            }
-
-            .section {
-                padding: 24px;
-            }
-
-            .section h2 {
-                font-size: 22px;
-            }
-
-            nav {
-                gap: 8px;
-            }
-
-            nav button {
-                font-size: 13px;
-                padding: 6px 10px;
-            }
-
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .filter-btn {
-                font-size: 13px;
-                padding: 6px 12px;
-            }
-
-            .cta-section {
-                padding: 32px 24px;
-            }
-
-            .cta-title {
-                font-size: 24px;
-            }
-
-            .cta-subtitle {
-                font-size: 16px;
-            }
-
-            .cta-buttons {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Mobile - Very Small Screens */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 24px;
-            }
-
-            .hero-subtitle {
-                font-size: 16px;
-            }
-
-            .hero {
-                padding: 40px 20px;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Floating Navigation */
-        .floating-nav {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 200;
-            display: none;
-        }
-
-        .floating-nav.visible {
-            display: block;
-        }
-
-        .nav-toggle {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            border: 3px solid var(--primary);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(33, 128, 195, 0.4);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(33, 128, 195, 0.6);
-            border-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .nav-toggle:focus {
-            border-color: white;
-            box-shadow: 0 0 0 4px rgba(33, 128, 195, 0.5), 0 6px 30px rgba(33, 128, 195, 0.6);
-        }
-
-        .nav-toggle[aria-expanded="true"] {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-        }
-
-        .nav-menu {
-            position: absolute;
-            bottom: 75px;
-            right: 0;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            min-width: 220px;
-            display: none;
-            overflow: hidden;
-        }
-
-        .nav-menu.show {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 18px;
-            background: white;
-            border: none;
-            border-left: 4px solid transparent;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 14px;
-            color: var(--text);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-menu-item:last-child {
-            border-bottom: none;
-        }
-
-        .nav-menu-item:hover {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
-            color: var(--primary);
-            border-left-color: var(--primary);
-            padding-left: 22px;
-        }
-
-        .nav-menu-item:focus {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
-            border-left-color: var(--primary);
-            outline-offset: -3px;
-        }
-
-        .nav-menu-item.active {
-            background: linear-gradient(90deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
-            color: var(--primary);
-            font-weight: 600;
-            border-left-color: var(--primary);
-            border-left-width: 4px;
-        }
-
-        .nav-menu-icon {
-            font-size: 18px;
-            width: 24px;
-            text-align: center;
-        }
-
-        .testimonial-carousel {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-            padding: 32px;
-            border-radius: 16px;
-            margin: 40px 0;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel-quote {
-            font-size: 20px;
-            line-height: 1.6;
-            color: var(--text);
-            font-style: italic;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .carousel-author {
-            text-align: center;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 16px;
-        }
-
-        .carousel-title {
-            text-align: center;
-            color: var(--text-light);
-            font-size: 14px;
-        }
-
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .carousel-dot.active {
-            background: var(--primary);
-            transform: scale(1.3);
-        }
-
-        .achievement-badges {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin: 32px 0;
-        }
-
-        .achievement-badge {
-            background: var(--bg-light);
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 10px 18px;
-            text-align: center;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .achievement-badge:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent);
-        }
-
-        .badge-icon {
-            font-size: 26px;
-            margin-bottom: 4px;
-        }
-
-        .badge-label {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .skills-radar {
-            max-width: 600px;
-            margin: 32px auto;
-            padding: 24px;
-            background: var(--bg-light);
-            border-radius: 16px;
-            border: 2px solid var(--border);
-        }
-
-        .skill-bar-item {
-            margin-bottom: 16px;
-        }
-
-        .skill-bar-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        .skill-bar-label {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .skill-bar-value {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .skill-bar-track {
-            height: 10px;
-            background: var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-
-        @media (max-width: 768px) {
-            .floating-nav {
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .nav-toggle {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-            }
-
-            .nav-menu {
-                bottom: 65px;
-                min-width: 200px;
-            }
-        }
-
-        /* Print Stylesheet */
-        @media print {
-            body {
-                background: white;
-                color: black;
-                font-size: 9pt;
-                margin: 0.3cm;
-                line-height: 1.3;
-            }
-
-            .container {
-                max-width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-
-            * {
-                margin-top: 0;
-            }
-
-            .skip-link,
-            header,
-            .theme-toggle,
-            .floating-nav,
-            nav,
-            .cta-section,
-            .filter-btn,
-            .hero::before,
-            button,
-            .divider {
-                display: none !important;
-            }
-
-            /* When printing testimonials only */
-            body.printing-testimonials .section:not(#references) {
-                display: none !important;
-            }
-
-            body.printing-testimonials #references {
-                display: block !important;
-                padding: 4px !important;
-                margin: 0 !important;
-            }
-
-            body.printing-testimonials .section-header {
-                margin-bottom: 4px;
-                padding: 0;
-            }
-
-            body.printing-testimonials .section-header .section-icon {
-                font-size: 14pt;
-            }
-
-            body.printing-testimonials .section-header h2 {
-                font-size: 14pt;
-                margin: 0 0 3px 0;
-            }
-
-            body.printing-testimonials h3 {
-                font-size: 11pt;
-                margin: 4px 0 3px 0;
-            }
-
-            body.printing-testimonials > div[style*="margin-bottom: 24px"] {
-                display: none !important;
-            }
-
-            body.printing-testimonials .formal-letter-card {
-                page-break-inside: avoid;
-                margin-bottom: 6px;
-                padding: 6px;
-                border: 1px solid #ddd;
-                background: white !important;
-            }
-
-            body.printing-testimonials .formal-letter-card > div[style*="font-weight: 700"] {
-                font-size: 10pt !important;
-                margin-bottom: 1px !important;
-            }
-
-            body.printing-testimonials .formal-letter-card > div[style*="color: var(--text-light)"] {
-                font-size: 8pt !important;
-                margin-bottom: 4px !important;
-            }
-
-            body.printing-testimonials .letter-preview {
-                display: none !important;
-            }
-
-            body.printing-testimonials .letter-full {
-                display: block !important;
-                margin-top: 4px !important;
-                padding-top: 4px !important;
-                font-size: 8pt !important;
-                line-height: 1.3 !important;
-            }
-
-            body.printing-testimonials .reference-card {
-                page-break-inside: avoid;
-                margin-bottom: 6px;
-                padding: 4px;
-                border: 1px solid #ddd;
-            }
-
-            /* When printing certifications only */
-            body.printing-certifications .section:not(#certifications) {
-                display: none !important;
-            }
-
-            body.printing-certifications #certifications {
-                display: block !important;
-            }
-
-            body.printing-certifications .section-header {
-                margin-bottom: 15px;
-            }
-
-            body.printing-certifications .cert-card {
-                page-break-inside: avoid;
-                margin-bottom: 10px;
-                padding: 8px;
-                border: 1px solid #ddd;
-            }
-
-            body.printing-certifications .cert-search-container {
-                display: none !important;
-            }
-
-            /* For full profile printing */
-            body:not(.printing-testimonials):not(.printing-certifications) .section {
-                page-break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ddd;
-                margin-bottom: 6px;
-                padding: 8px;
-            }
-
-            body:not(.printing-testimonials):not(.printing-certifications) .section.hidden {
-                display: block !important;
-            }
-
-            body:not(.printing-testimonials):not(.printing-certifications) .section-header {
-                margin-bottom: 6px;
-                padding: 0;
-            }
-
-            body:not(.printing-testimonials):not(.printing-certifications) .section-header h2 {
-                font-size: 14pt;
-                margin: 0 0 4px 0;
-            }
-
-            body:not(.printing-testimonials):not(.printing-certifications) .section-icon {
-                font-size: 16pt;
-                margin-right: 6px;
-            }
-
-            .hero {
-                background: linear-gradient(135deg, #2180C3 0%, #32B8C6 100%);
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                color: white;
-                padding: 12px;
-                margin-bottom: 8px;
-            }
-
-            .hero h1 {
-                font-size: 16pt;
-                margin: 0 0 5px 0;
-                line-height: 1.2;
-            }
-
-            .hero-subtitle {
-                font-size: 11pt;
-                margin: 0 0 5px 0;
-                line-height: 1.2;
-            }
-
-            .hero p {
-                font-size: 9pt;
-                margin: 0 0 5px 0;
-                line-height: 1.3;
-            }
-
-            .hero-stats {
-                margin-top: 8px;
-                gap: 6px;
-            }
-
-            .stat {
-                padding: 6px;
-                font-size: 8pt;
-            }
-
-            .stat-value {
-                font-size: 14pt;
-            }
-
-            .stat-label {
-                font-size: 8pt;
-            }
-
-            .timeline-item,
-            .reference-card,
-            .cert-card {
-                page-break-inside: avoid;
-                margin-bottom: 5px;
-            }
-
-            .timeline-item {
-                padding-left: 10px;
-                margin-bottom: 4px;
-            }
-
-            .timeline-date {
-                font-size: 8pt;
-                margin-bottom: 2px;
-            }
-
-            .timeline-title {
-                font-size: 10pt;
-                margin-bottom: 2px;
-            }
-
-            .timeline-description {
-                font-size: 8pt;
-                line-height: 1.3;
-            }
-
-            .job-preview {
-                font-size: 8pt;
-            }
-
-            .section h2 {
-                font-size: 14pt;
-                margin: 0 0 5px 0;
-            }
-
-            .section h3 {
-                font-size: 11pt;
-                margin: 8px 0 4px 0;
-            }
-
-            ul {
-                margin: 3px 0 5px 0;
-                padding-left: 15px;
-            }
-
-            li {
-                margin-bottom: 2px;
-                line-height: 1.3;
-            }
-
-            .contact-grid,
-            .expertise-grid {
-                gap: 4px;
-                margin: 5px 0;
-            }
-
-            .contact-card,
-            .expertise-card {
-                padding: 6px;
-                margin: 0;
-            }
-
-            .contact-icon,
-            .expertise-card > div[style*="font-size: 32px"] {
-                font-size: 14pt;
-                margin-bottom: 2px;
-            }
-
-            .contact-label,
-            .expertise-label {
-                font-size: 8pt;
-                margin-bottom: 2px;
-            }
-
-            .contact-value,
-            .expertise-value {
-                font-size: 9pt;
-            }
-
-            a {
-                color: black;
-                text-decoration: underline;
-            }
-
-            .job-full,
-            .letter-full {
-                display: block !important;
-            }
-
-            .job-preview,
-            .letter-preview {
-                display: none !important;
-            }
-
-            h1 { font-size: 24pt; }
-            h2 { font-size: 18pt; }
-            h3 { font-size: 14pt; }
-        }
-
-        /* Skills Progress Bars */
-        .skills-section {
-            margin: 32px 0;
-        }
-
-        .skill-item {
-            margin-bottom: 24px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .skill-level {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--bg-light);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 4px;
-            transition: width 1s ease;
-            position: relative;
-        }
-
-        .skill-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Enhanced Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .contact-icon {
-            font-size: 36px;
-            margin-bottom: 12px;
-        }
-
-        .contact-label {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .contact-value {
-            color: var(--text);
-            font-size: 14px;
-            word-break: break-word;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin: 20px auto;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .download-btn-icon {
-            font-size: 20px;
-        }
-
-        /* Certifications Search and Filter */
-        .cert-search-container {
-            margin: 24px 0;
-        }
-
-        .cert-search {
-            width: 100%;
-            padding: 12px 20px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 14px;
-            background: var(--bg-white);
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        .cert-search:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(33, 128, 195, 0.1);
-        }
-
-        .cert-filter-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 16px 0;
-        }
-
-        .cert-tag {
-            padding: 6px 14px;
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text);
-        }
-
-        .cert-tag:hover,
-        .cert-tag.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .cert-count {
-            font-size: 14px;
-            color: var(--text-light);
-            margin: 12px 0;
-            font-weight: 600;
-        }
-    </style>
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <a href="#overview" class="skip-link">Skip to main content</a>
@@ -1665,77 +50,77 @@
     <header role="banner">
         <div class="header-content">
             <div>
-                <div class="logo"><a href="#" onclick="navigateToSection('overview'); return false;" style="color: inherit; text-decoration: none; cursor: pointer;">Melissa Witte-Spencer</a></div>
+                <div class="logo"><a href="#" onclick="navigateToSection('overview'); return false;">Melissa Witte-Spencer</a></div>
                 <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
             </div>
         </div>
     </header>
 
-    <div class="container" style="max-width: 1200px; padding: 10px 8px;">
+    <div class="container">
         <!-- Overview Section -->
         <section id="overview" class="section" role="main" aria-label="Professional Overview">
 
-            <div class="hero" style="padding: 32px 16px 24px 16px; margin-bottom: 24px;">
-                <div class="hero-content" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; justify-content: flex-start; text-align: left;">
-                    <div style="min-width: 90px; max-width: 120px; display: flex; align-items: flex-start; justify-content: center;">
-                        <img src="certificates/Resumephoto.jpg" alt="Professional Photo" style="width: 80px; height: 80px; object-fit: cover; object-position: center 25%; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(33,128,195,0.12);" />
+            <div class="hero">
+                <div class="hero-content">
+                    <div>
+                        <img src="certificates/Resumephoto.jpg" alt="Professional Photo" loading="lazy" />
                     </div>
-                    <div style="flex: 1 1 320px; min-width: 180px; max-width: 700px;">
-                        <h1 style="margin-top: 0; margin-bottom: 8px; font-size: 2em;">Transformational Compliance & Automation Leader</h1>
-                        <p class="hero-subtitle" style="margin-bottom: 8px; font-size: 1.1em;">18+ Years of Excellence at Microsoft</p>
-                        <p style="margin-top: 0; font-size: 14px; line-height: 1.6;">ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
+                    <div>
+                        <h1>Transformational Compliance & Automation Leader</h1>
+                        <p class="hero-subtitle">18+ Years of Excellence at Microsoft</p>
+                        <p>ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Testimonial Carousel -->
-            <div class="testimonial-carousel" id="testimonialCarousel" style="padding: 18px 10px; margin: 0 0 18px 0;">
-                <div class="carousel-quote" id="carouselQuote" style="font-size: 1.1em;">"Her contributions were critical to the success of the Microsoft Cloud Business."</div>
+            <div class="testimonial-carousel" id="testimonialCarousel">
+                <div class="carousel-quote" id="carouselQuote">"Her contributions were critical to the success of the Microsoft Cloud Business."</div>
                 <div class="carousel-author" id="carouselAuthor">R. Mark Plesnicher</div>
                 <div class="carousel-title" id="carouselTitle">GM, Critical Infrastructure & Risk | Microsoft Corporation</div>
                 <div class="carousel-dots" id="carouselDots">
-                    <span class="carousel-dot active" onclick="showTestimonial(0)"></span>
-                    <span class="carousel-dot" onclick="showTestimonial(1)"></span>
-                    <span class="carousel-dot" onclick="showTestimonial(2)"></span>
-                    <span class="carousel-dot" onclick="showTestimonial(3)"></span>
+                    <button class="carousel-dot active" onclick="showTestimonial(0)" aria-label="Show testimonial 1" aria-pressed="true"></button>
+                    <button class="carousel-dot" onclick="showTestimonial(1)" aria-label="Show testimonial 2" aria-pressed="false"></button>
+                    <button class="carousel-dot" onclick="showTestimonial(2)" aria-label="Show testimonial 3" aria-pressed="false"></button>
+                    <button class="carousel-dot" onclick="showTestimonial(3)" aria-label="Show testimonial 4" aria-pressed="false"></button>
                 </div>
             </div>
 
-            <div class="cta-section" style="padding: 28px 12px; margin: 24px 0;">
-                <h2 class="cta-title" style="color: white; font-size: 1.5em; margin-bottom: 8px;">Explore Profile</h2>
-                <p class="cta-subtitle" style="font-size: 1em; margin-bottom: 18px;">Discover proven strategies, certifications, and leadership testimonials</p>
-                <div class="cta-buttons" style="gap: 10px;">
-                    <button class="cta-btn" onclick="showSection('experience')" style="padding: 12px 10px; font-size: 13px;">
+            <div class="cta-section">
+                <h2 class="cta-title">Explore Profile</h2>
+                <p class="cta-subtitle">Discover proven strategies, certifications, and leadership testimonials</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn" onclick="showSection('experience')">
                         <span class="cta-btn-icon">💼</span>
                         <span class="cta-btn-label">Experience</span>
                         <span class="cta-btn-desc">18+ years at Microsoft</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('references')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="showSection('references')">
                         <span class="cta-btn-icon">📖</span>
                         <span class="cta-btn-label">Testimonials</span>
                         <span class="cta-btn-desc">See Why Leaders Recommend Me</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('certifications')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="showSection('certifications')">
                         <span class="cta-btn-icon">🎓</span>
                         <span class="cta-btn-label">Credentials</span>
                         <span class="cta-btn-desc">ISO Lead Auditor Credentials</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('expertise')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="showSection('expertise')">
                         <span class="cta-btn-icon">💡</span>
                         <span class="cta-btn-label">Impact</span>
                         <span class="cta-btn-desc">Measurable Business Results</span>
                     </button>
-                    <button class="cta-btn" onclick="showSection('volunteer')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="showSection('volunteer')">
                         <span class="cta-btn-icon">🤝</span>
                         <span class="cta-btn-label">Volunteer</span>
                         <span class="cta-btn-desc">Community Leadership</span>
                     </button>
-                    <button class="cta-btn" onclick="window.open('star-stories.html','_blank')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="window.open('star-stories.html','_blank')">
                         <span class="cta-btn-icon">🌟</span>
                         <span class="cta-btn-label">STAR Stories</span>
                         <span class="cta-btn-desc">Compliance Impact Stories</span>
                     </button>
-                    <button class="cta-btn" onclick="window.open('iso-matrix.html','_blank')" style="padding: 12px 10px; font-size: 13px;">
+                    <button class="cta-btn" onclick="window.open('iso-matrix.html','_blank')">
                         <span class="cta-btn-icon">📊</span>
                         <span class="cta-btn-label">ISO Matrix</span>
                         <span class="cta-btn-desc">Standards Mapping Tool</span>
@@ -1743,16 +128,16 @@
                 </div>
             </div>
 
-            <div class="divider" style="margin: 18px 0;"></div>
+            <div class="divider"></div>
 
-            <h3 style="margin-top: 24px; color: var(--primary); text-align: center; font-size: 22px; font-weight: 700; margin-bottom: 6px;">Key Achievements</h3>
-            <p style="text-align: center; color: var(--text-light); font-size: 13px; margin-bottom: 18px;">Proven track record of delivering measurable business impact</p>
-            <div class="hero-stats" style="margin-top: 12px; margin-bottom: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                <div class="stat" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3); border-radius: 16px;">
+            <h2>Key Achievements</h2>
+            <p>Proven track record of delivering measurable business impact</p>
+            <div class="hero-stats">
+                <div class="stat">
                     <span class="stat-value">96.5%</span>
                     <span class="stat-label">Compliance Accuracy</span>
                 </div>
-                <div class="stat" style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); color: white; box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3); border-radius: 16px;">
+                <div class="stat">
                     <span class="stat-value">Triple</span>
                     <span class="stat-label">ISO Certified</span>
                 </div>
@@ -1761,15 +146,15 @@
             <!-- Preferred Work Environment -->
             <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border: 2px solid rgba(33, 128, 195, 0.2);">
                 <h3 style="color: var(--primary); text-align: center; font-size: 20px; margin-bottom: 16px;">💼 Work Preferences</h3>
-                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
-                    <span style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Remote</span>
-                    <span style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Hybrid</span>
-                    <span style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ On-site (Flexible)</span>
-                    <span style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Full-time</span>
-                </div>
+                <ul style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0;">
+                    <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Remote</li>
+                    <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Hybrid</li>
+                    <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ On-site (Flexible)</li>
+                    <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Full-time</li>
+                </ul>
             </div>
 
-            <h3 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Contact Information</h3>
+            <h2 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Contact Information</h2>
             <div class="contact-grid">
                 <a href="tel:+14258943566" class="contact-card" style="text-decoration: none;">
                     <div class="contact-icon">📱</div>
@@ -1793,11 +178,11 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <button class="download-btn" onclick="downloadAsPDF()">
+                <button class="download-btn" onclick="downloadAsPDF()" aria-label="Download full profile as PDF">
                     <span class="download-btn-icon">📄</span>
                     <span>Print Full Profile</span>
                 </button>
-                <button class="download-btn" onclick="window.open('certificates/Optimized Compliance Resume 2025-12-23.pdf', '_blank')">
+                <button class="download-btn" onclick="window.open('certificates/Optimized Compliance Resume 2025-12-23.pdf', '_blank')" aria-label="Download resume PDF">
                     <span class="download-btn-icon">📋</span>
                     <span>Download Resume</span>
                 </button>
@@ -1805,7 +190,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="section hidden">
+        <section id="experience" class="section hidden" aria-label="Professional Experience">
             <div class="section-header">
                 <div class="section-icon">💼</div>
                 <h2>Professional Experience</h2>
@@ -2113,7 +498,7 @@
         </section>
 
         <!-- Volunteer Experience Section -->
-        <section id="volunteer" class="section hidden">
+        <section id="volunteer" class="section hidden" aria-label="Volunteer Experience">
             <div class="section-header">
                 <div class="section-icon">🤝</div>
                 <h2>Volunteer Experience</h2>
@@ -2140,7 +525,7 @@
         </section>
 
         <!-- Expertise Section -->
-        <section id="expertise" class="section hidden">
+        <section id="expertise" class="section hidden" aria-label="Professional Impact and Expertise">
             <div class="section-header">
                 <div class="section-icon">💡</div>
                 <h2>Professional Impact</h2>
@@ -2407,7 +792,7 @@
         <!-- Achievements Section - Removed, merged with Expertise -->
 
         <!-- Certifications Section -->
-        <section id="certifications" class="section hidden">
+        <section id="certifications" class="section hidden" aria-label="Professional Credentials and Certifications">
             <div class="section-header">
                 <div class="section-icon">📜</div>
                 <h2>Professional Credentials</h2>
@@ -2426,7 +811,7 @@
             <div class="cert-grid">
                 <a href="certificates/ISO27001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor security" data-keywords="iso 27001 information security auditor mastermind 2025">
                     <div class="cert-card">
-                        <img src="certificates/iso-iec-27001-2022-lead-auditor.png" alt="ISO/IEC 27001:2022 Lead Auditor" style="width: 80px; height: 80px; margin-bottom: 12px;">
+                        <img src="certificates/iso-iec-27001-2022-lead-auditor.png" alt="ISO/IEC 27001:2022 Lead Auditor" loading="lazy" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 27001:2022 Lead Auditor</div>
                         <div class="cert-issuer">Mastermind Assurance | Dec 2025 | Valid thru Dec 2028</div>
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Expert in InfoSec Management Systems auditing</div>
@@ -2434,7 +819,7 @@
                 </a>
                 <a href="certificates/ISO42001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor ai-governance" data-keywords="iso 42001 artificial intelligence ai management auditor mastermind 2025">
                     <div class="cert-card">
-                        <img src="certificates/iso-iec-42001-2023-lead-auditor.png" alt="ISO/IEC 42001:2023 Lead Auditor" style="width: 80px; height: 80px; margin-bottom: 12px;">
+                        <img src="certificates/iso-iec-42001-2023-lead-auditor.png" alt="ISO/IEC 42001:2023 Lead Auditor" loading="lazy" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 42001:2023 Lead Auditor</div>
                         <div class="cert-issuer">Mastermind Assurance | Dec 2025 | Valid thru Dec 2028</div>
                         <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Master of AI Management System auditing</div>
@@ -2683,7 +1068,7 @@
         </section>
 
         <!-- References Section -->
-        <section id="references" class="section hidden">
+        <section id="references" class="section hidden" aria-label="Professional Testimonials and References">
             <div class="section-header">
                 <div class="section-icon">⭐</div>
                 <h2>Professional Testimonials</h2>
@@ -2913,9 +1298,9 @@
 
             <div style="margin-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                 <div>
-                    <button class="filter-btn active" onclick="filterReferences('all')" style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">All References</button>
-                    <button class="filter-btn" onclick="filterReferences('formal')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; margin-right: 8px;">Formal Letters (8)</button>
-                    <button class="filter-btn" onclick="filterReferences('testimonials')" style="padding: 8px 16px; background: transparent; color: var(--primary); border: 2px solid var(--primary); border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600;">Testimonials</button>
+                    <button class="filter-btn active" onclick="filterReferences('all')" aria-pressed="true">All References</button>
+                    <button class="filter-btn" onclick="filterReferences('formal')" aria-pressed="false">Formal Letters (8)</button>
+                    <button class="filter-btn" onclick="filterReferences('testimonials')" aria-pressed="false">Testimonials</button>
                 </div>
                 <button class="download-btn" onclick="printTestimonials()" style="padding: 8px 16px;">
                     <span class="download-btn-icon">📝</span>
@@ -2929,7 +1314,7 @@
             <p>&copy; 2025 Melissa Witte-Spencer. All rights reserved.</p>
             <p style="margin-top: 12px; font-size: 12px;">Last Updated: December 31, 2025</p>
             <p style="margin-top: 16px;">
-                <img src="https://visitor-badge.laobi.icu/badge?page_id=mewitt74.ProfessionalProfile" alt="Profile Views" style="opacity: 0.8;">
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=mewitt74.ProfessionalProfile" alt="Profile Views" loading="lazy" style="opacity: 0.8;">
             </p>
         </div>
     </div>
@@ -2979,6 +1364,18 @@
         let currentSection = 'overview';
 
         function showSection(sectionId) {
+            switchToSection(sectionId);
+            if (typeof event !== 'undefined' && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+
+        function navigateToSection(sectionId) {
+            switchToSection(sectionId);
+            toggleNavMenu(); // Close menu after navigation
+        }
+
+        function switchToSection(sectionId) {
             currentSection = sectionId;
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.add('hidden'));
@@ -2986,22 +1383,8 @@
             if (selectedSection) selectedSection.classList.remove('hidden');
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => btn.classList.remove('active'));
-            if (typeof event !== 'undefined' && event.target) {
-                event.target.classList.add('active');
-            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             updateFloatingNav();
-        }
-
-        function navigateToSection(sectionId) {
-            currentSection = sectionId;
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.add('hidden'));
-            const selectedSection = document.getElementById(sectionId);
-            if (selectedSection) selectedSection.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            updateFloatingNav();
-            toggleNavMenu(); // Close menu after navigation
         }
 
         function toggleNavMenu() {
@@ -3061,8 +1444,12 @@
         });
 
         function filterReferences(type) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
             event.target.classList.add('active');
+            event.target.setAttribute('aria-pressed', 'true');
             const formalRefs = document.querySelector('.formal-refs');
             const testimonialRefs = document.querySelectorAll('.testimonials-refs');
             if (type === 'all') {
@@ -3408,8 +1795,10 @@
             document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.add('active');
+                    dot.setAttribute('aria-pressed', 'true');
                 } else {
                     dot.classList.remove('active');
+                    dot.setAttribute('aria-pressed', 'false');
                 }
             });
         }
@@ -3483,12 +1872,6 @@
         }
 
         // Download Executive Summary
-        function downloadExecutiveSummary() {
-            // In production, this would generate a PDF
-            // For now, open the resume which is the closest thing
-            window.open('certificates/Optimized Compliance Resume 2025-12-23.pdf', '_blank');
-        }
-
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initViewCounter();
