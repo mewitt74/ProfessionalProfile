@@ -253,6 +253,7 @@ header {
 .hero-content > div:last-child {
     flex: 1 1 400px;
     min-width: 300px;
+    max-width: 100%;
 }
 
 .hero-content img {
@@ -1197,15 +1198,13 @@ header {
 
     /* Hero Section Mobile */
     .hero {
-        padding: 12px 6px;
-        margin: 0 auto 16px auto;
+        padding: 12px;
+        margin: 0 0 16px 0;
         border-radius: 8px;
-        width: calc(100% - 8px);
-        max-width: calc(100vw - 32px);
+        width: auto;
+        max-width: none;
         box-sizing: border-box;
         overflow: hidden;
-        -webkit-box-sizing: border-box;
-        position: relative;
     }
 
     .hero-content {
@@ -1213,26 +1212,22 @@ header {
         align-items: center;
         text-align: center;
         gap: 16px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        overflow-x: hidden;
+        width: auto;
+        max-width: none;
     }
 
     .hero-content > div:first-child,
     .hero-content > div:last-child {
-        min-width: 0 !important;
-        max-width: 100%;
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
+        min-width: 0;
+        max-width: none;
+        width: auto;
+        flex: none;
     }
 
     .hero-content img {
         width: 100px;
         height: 100px;
         margin: 0 auto;
-        flex-shrink: 0;
     }
 
     .hero-content h1 {
@@ -1240,14 +1235,6 @@ header {
         line-height: 1.3;
         margin: 0 0 8px 0;
         padding: 0;
-        word-wrap: break-word !important;
-        word-break: break-word !important;
-        overflow-wrap: break-word !important;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden;
     }
 
     .hero-subtitle {
@@ -1255,10 +1242,6 @@ header {
         margin: 0 0 10px 0;
         padding: 0;
         font-weight: 600;
-        word-wrap: break-word !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden;
     }
 
     .hero-content p {
@@ -1267,19 +1250,6 @@ header {
         text-align: left;
         margin: 0;
         padding: 0;
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-        -webkit-hyphens: auto;
-        -moz-hyphens: auto;
-        hyphens: auto;
-        white-space: normal;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden !important;
-        display: block;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
     }
 
     /* Hero Stats Mobile */
