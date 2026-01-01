@@ -13,9 +13,15 @@
 
         .stories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
             margin-bottom: 20px;
+        }
+
+        @media (max-width: 968px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .story-card {
@@ -683,7 +689,7 @@
 
         function updatePlayButton(storyIndex, isPlaying) {
             // Update all buttons for this story (both card and modal)
-            const buttons = document.querySelectorAll(`[data-story="${storyIndex}"] .play-button, [data-modal-story="${storyIndex}"]`);
+            const buttons = document.querySelectorAll(`.play-button[data-story="${storyIndex}"], [data-modal-story="${storyIndex}"]`);
             buttons.forEach(button => {
                 button.textContent = isPlaying ? '⏸' : '▶';
                 button.classList.toggle('playing', isPlaying);
