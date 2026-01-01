@@ -1197,14 +1197,13 @@ header {
 
     /* Hero Section Mobile */
     .hero {
-        padding: 16px 8px;
+        padding: 12px 6px;
         margin: 0 auto 16px auto;
         border-radius: 8px;
-        width: calc(100% - 4px);
-        max-width: calc(100vw - 28px);
+        width: calc(100% - 8px);
+        max-width: calc(100vw - 32px);
         box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: visible;
+        overflow: hidden;
         -webkit-box-sizing: border-box;
         position: relative;
     }
@@ -1222,11 +1221,11 @@ header {
 
     .hero-content > div:first-child,
     .hero-content > div:last-child {
-        min-width: 0;
+        min-width: 0 !important;
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
-        overflow-x: hidden;
+        overflow: hidden;
     }
 
     .hero-content img {
@@ -1237,45 +1236,47 @@ header {
     }
 
     .hero-content h1 {
-        font-size: 1.4em;
+        font-size: 1.35em;
         line-height: 1.3;
         margin: 0 0 8px 0;
         padding: 0;
-        word-wrap: break-word;
-        word-break: break-word;
-        overflow-wrap: break-word;
+        word-wrap: break-word !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
+        -webkit-hyphens: auto;
         hyphens: auto;
-        width: 100%;
-        max-width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden;
     }
 
     .hero-subtitle {
-        font-size: 0.9em;
+        font-size: 0.85em;
         margin: 0 0 10px 0;
         padding: 0;
         font-weight: 600;
-        word-wrap: break-word;
-        width: 100%;
-        max-width: 100%;
+        word-wrap: break-word !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden;
     }
 
     .hero-content p {
-        font-size: 12.5px;
-        line-height: 1.65;
+        font-size: 12px;
+        line-height: 1.6;
         text-align: left;
         margin: 0;
         padding: 0;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        word-break: break-word;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         hyphens: auto;
         white-space: normal;
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: clip;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
         display: block;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
