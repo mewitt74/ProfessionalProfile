@@ -39,6 +39,44 @@
     background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
 }
 
+[data-theme="dark"] header {
+    background: linear-gradient(135deg, #1a365d 0%, #1e4d7b 100%);
+}
+
+[data-theme="dark"] .cta-section {
+    background: linear-gradient(135deg, #1a365d 0%, #1e4d7b 100%);
+}
+
+[data-theme="dark"] .cert-card,
+[data-theme="dark"] .expertise-card,
+[data-theme="dark"] .reference-card,
+[data-theme="dark"] .contact-card {
+    background: var(--bg-white);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .cert-card:hover,
+[data-theme="dark"] .expertise-card:hover,
+[data-theme="dark"] .reference-card:hover,
+[data-theme="dark"] .contact-card:hover {
+    border-color: var(--primary);
+}
+
+[data-theme="dark"] .nav-menu {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .nav-menu-item {
+    background: var(--bg-white);
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-theme="dark"] .nav-menu-item:hover {
+    background: linear-gradient(90deg, rgba(77, 163, 255, 0.1) 0%, rgba(95, 212, 224, 0.1) 100%);
+}
+
 /* Base Styles */
 * {
     margin: 0;
