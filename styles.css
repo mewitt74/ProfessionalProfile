@@ -53,7 +53,8 @@
 [data-theme="dark"] .contact-card,
 [data-theme="dark"] .matrix-cell,
 [data-theme="dark"] .clause-card,
-[data-theme="dark"] .gantt-container {
+[data-theme="dark"] .gantt-container,
+[data-theme="dark"] .volunteer-card {
     background: var(--bg-white);
     border-color: var(--border);
 }
@@ -528,6 +529,77 @@ header {
     color: var(--text);
     font-size: 14px;
     line-height: 1.6;
+}
+
+/* Volunteer Section */
+.volunteer-content {
+    margin-top: 20px;
+}
+
+.volunteer-card {
+    background: var(--bg-white);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.volunteer-date {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.volunteer-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 12px 0;
+}
+
+.volunteer-location {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.volunteer-ward {
+    color: var(--text-light);
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: var(--bg-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+}
+
+.volunteer-description {
+    margin-top: 20px;
+}
+
+.volunteer-description strong {
+    display: block;
+    color: var(--primary);
+    font-size: 17px;
+    margin-bottom: 16px;
+}
+
+.volunteer-description ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.volunteer-description li {
+    margin-bottom: 12px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
 }
 
 .job-preview {
