@@ -1835,32 +1835,83 @@ tr:hover {
     margin: 0;
 }
 
-/* Roadmap Timeline Layout */
-.roadmap-timeline {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 30px 0;
-    overflow-x: auto;
-    padding: 20px 10px;
+/* Roadmap Timeline with Time Tube Layout */
+.timeline-container {
+    margin: 40px 0;
+    padding: 20px 0;
+}
+
+.time-tube {
+    position: relative;
+    margin: 0 auto 80px;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.tube-bar {
+    height: 20px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3);
+    position: relative;
+}
+
+.time-marker {
+    position: absolute;
+    top: 28px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.time-marker::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 12px;
+    background: var(--primary);
+}
+
+.time-label {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.roadmap-phases {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 400px;
 }
 
 .roadmap-card {
-    flex: 1;
-    min-width: 220px;
+    position: absolute;
+    width: 18%;
+    min-width: 200px;
     background: var(--bg-white);
     border: 2px solid var(--border);
     border-radius: 12px;
     padding: 20px 18px;
-    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .roadmap-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 24px rgba(33, 128, 195, 0.2);
+    border-color: var(--primary);
 }
 
 .phase-time {
@@ -1868,7 +1919,7 @@ tr:hover {
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     text-align: center;
     margin-bottom: 16px;
@@ -1894,7 +1945,7 @@ tr:hover {
 }
 
 .phase-name {
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: 700;
     color: var(--primary);
     margin: 0 0 12px 0;
@@ -1903,7 +1954,7 @@ tr:hover {
 
 .phase-summary {
     color: #666;
-    font-size: 14px;
+    font-size: 13px;
     font-style: italic;
     text-align: center;
     margin-bottom: 16px;
@@ -1918,11 +1969,11 @@ tr:hover {
 }
 
 .phase-steps li {
-    padding: 8px 0;
-    padding-left: 24px;
+    padding: 7px 0;
+    padding-left: 22px;
     position: relative;
     color: var(--text);
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.5;
 }
 
@@ -1932,17 +1983,7 @@ tr:hover {
     left: 0;
     color: var(--accent);
     font-weight: 700;
-    font-size: 16px;
-}
-
-.roadmap-arrow {
-    display: flex;
-    align-items: center;
-    font-size: 2em;
-    color: var(--accent);
-    font-weight: 700;
-    flex-shrink: 0;
-    padding: 0 8px;
+    font-size: 15px;
 }
 
 /* Table Badges/Tags */
@@ -2035,26 +2076,32 @@ tr:hover {
         font-size: 1.3em;
     }
 
-    .roadmap-timeline {
-        flex-direction: column;
-        padding: 15px 0;
+    .roadmap-phases {
+        position: static;
+        width: 100%;
     }
 
     .roadmap-card {
+        position: static !important;
+        width: 100% !important;
         min-width: auto;
+        margin-bottom: 20px;
     }
 
-    .roadmap-arrow {
-        transform: rotate(90deg);
-        padding: 10px 0;
+    .time-tube {
+        width: 95%;
+    }
+
+    .time-marker {
+        font-size: 11px;
+    }
+
+    .time-label {
+        font-size: 13px;
     }
 
     .phase-name {
         font-size: 1.2em;
-    }
-
-    .detail-section {
-        padding: 10px;
     }
 }
     }
