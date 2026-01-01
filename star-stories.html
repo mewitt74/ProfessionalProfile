@@ -682,12 +682,13 @@
         }
 
         function updatePlayButton(storyIndex, isPlaying) {
-            const button = document.querySelector(`[data-story="${storyIndex}"] .play-button`);
-            if (button) {
+            // Update all buttons for this story (both card and modal)
+            const buttons = document.querySelectorAll(`[data-story="${storyIndex}"] .play-button, [data-modal-story="${storyIndex}"]`);
+            buttons.forEach(button => {
                 button.textContent = isPlaying ? '⏸' : '▶';
                 button.classList.toggle('playing', isPlaying);
                 button.setAttribute('aria-label', isPlaying ? 'Pause story narration' : 'Play story narration');
-            }
+            });
         }
 
         // Theme toggle functionality
@@ -757,6 +758,7 @@
                     ${story.fullScript ? `
                         <div class="audio-controls">
                             <button class="play-button" 
+                                    data-story="${index}"
                                     onclick="toggleSpeech(${index}, event)" 
                                     aria-label="Play story narration"
                                     title="Listen to full STAR story">
