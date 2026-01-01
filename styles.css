@@ -470,6 +470,7 @@ header {
 .timeline {
     position: relative;
     padding: 20px 0;
+    display: block;
 }
 
 .timeline-item {
@@ -480,6 +481,8 @@ header {
     margin-bottom: 24px;
     transition: var(--transition);
     position: relative;
+    display: block;
+    width: 100%;
 }
 
 .timeline-item:hover {
