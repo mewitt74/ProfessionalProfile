@@ -4,35 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISO Control Set Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; padding: 20px; color: #1f2121; }
 .container { max-width: 1600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); overflow: hidden; }
-.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; text-align: center; }
+.header { background: linear-gradient(135deg, #2180C3 0%, #32B8C6 100%); color: white; padding: 40px 30px; text-align: center; }
 .header h1 { font-size: 2.5em; margin-bottom: 10px; font-weight: 700; }
 .header p { font-size: 1.1em; opacity: 0.95; margin-bottom: 20px; }
 .content { padding: 30px; }
 .standard-selector { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; align-items: center; }
 .standard-btn { padding: 10px 18px; background: #f0f0f0; border: 2px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; color: #333; }
-.standard-btn:hover { background: #667eea; color: white; border-color: #667eea; }
-.standard-btn.active { background: #667eea; color: white; border-color: #667eea; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+.standard-btn:hover { background: #2180C3; color: white; border-color: #2180C3; }
+.standard-btn.active { background: #2180C3; color: white; border-color: #2180C3; box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3); }
 .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #e0e0e0; flex-wrap: wrap; }
 .tab-btn { padding: 12px 20px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 1em; font-weight: 500; color: #666; transition: all 0.3s ease; }
-.tab-btn:hover { color: #667eea; }
-.tab-btn.active { color: #667eea; border-bottom-color: #667eea; }
+.tab-btn:hover { color: #2180C3; }
+.tab-btn.active { color: #2180C3; border-bottom-color: #2180C3; }
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .search-filter { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
 .search-box { flex: 1; min-width: 250px; padding: 10px 15px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em; }
-.search-box:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+.search-box:focus { outline: none; border-color: #2180C3; box-shadow: 0 0 0 3px rgba(33, 128, 195, 0.1); }
 .filter-select { padding: 10px 15px; border: 2px solid #ddd; border-radius: 6px; font-size: 1em; cursor: pointer; background: white; color: #333; }
-.filter-select:focus { outline: none; border-color: #667eea; }
+.filter-select:focus { outline: none; border-color: #2180C3; }
 .control-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; margin-bottom: 30px; }
 .control-card { background: white; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; transition: all 0.3s ease; cursor: pointer; }
-.control-card:hover { border-color: #667eea; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15); transform: translateY(-4px); }
+.control-card:hover { border-color: #2180C3; box-shadow: 0 8px 20px rgba(33, 128, 195, 0.15); transform: translateY(-4px); }
 .control-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px; }
-.control-id { background: #667eea; color: white; padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85em; }
+.control-id { background: #2180C3; color: white; padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 0.85em; }
 .control-category { background: #f0f0f0; color: #333; padding: 4px 10px; border-radius: 4px; font-size: 0.8em; font-weight: 500; }
 .control-category.organizational { background: #e8f4f8; color: #0277bd; }
 .control-category.people { background: #f3e5f5; color: #7b1fa2; }
@@ -47,12 +48,12 @@ table { width: 100%; border-collapse: collapse; min-width: 1000px; }
 th { background: #f5f5f5; padding: 15px; text-align: left; font-weight: 600; color: #333; border-bottom: 2px solid #ddd; }
 td { padding: 12px 15px; border-bottom: 1px solid #e0e0e0; color: #555; }
 tr:hover { background: #fafafa; }
-.requirement-box { background: #f9f9f9; border-left: 4px solid #667eea; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
-.requirement-clause { font-weight: 600; color: #667eea; margin-bottom: 8px; font-size: 0.95em; }
+.requirement-box { background: #f9f9f9; border-left: 4px solid #2180C3; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
+.requirement-clause { font-weight: 600; color: #2180C3; margin-bottom: 8px; font-size: 0.95em; }
 .requirement-title { font-weight: 600; color: #333; margin-bottom: 6px; font-size: 1em; }
 .requirement-text { color: #666; font-size: 0.95em; line-height: 1.6; }
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
-.stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 8px; text-align: center; }
+.stat-card { background: linear-gradient(135deg, #2180C3 0%, #32B8C6 100%); color: white; padding: 25px; border-radius: 8px; text-align: center; }
 .stat-number { font-size: 2.5em; font-weight: 700; margin-bottom: 8px; }
 .stat-label { font-size: 0.95em; opacity: 0.95; }
 .legend { display: flex; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; padding: 20px; background: #f5f5f5; border-radius: 8px; }
@@ -60,7 +61,7 @@ tr:hover { background: #fafafa; }
 .legend-box { width: 20px; height: 20px; border-radius: 4px; }
 .footer { background: #f5f5f5; padding: 20px 30px; text-align: center; color: #666; font-size: 0.9em; border-top: 1px solid #ddd; }
 .no-results { text-align: center; padding: 40px 20px; color: #999; }
-.section-title { font-size: 1.4em; font-weight: 700; color: #333; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #667eea; }
+.section-title { font-size: 1.4em; font-weight: 700; color: #333; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #2180C3; }
 .overlap-section { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 8px; padding: 20px; margin: 25px 0; }
 .overlap-section h3 { color: #1565c0; margin-bottom: 15px; font-size: 1.1em; }
 .overlap-item { background: white; border-left: 4px solid #42a5f5; padding: 12px 15px; margin-bottom: 12px; border-radius: 4px; }
@@ -70,7 +71,21 @@ tr:hover { background: #fafafa; }
 </style>
 </head>
 <body>
-<div class="container">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark</span>
+    </button>
+    <header role="banner">
+        <div class="header-content">
+            <div>
+                <div class="logo"><a href="index.html">Melissa Witte-Spencer</a></div>
+                <div class="logo-subtitle">Senior Compliance Technical Program Manager | ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer</div>
+            </div>
+        </div>
+    </header>
+<div class="container" id="main-content">
     <div class="header">
         <h1>ISO Control Set Analyzer</h1>
         <p>Comprehensive analysis of normative requirements and controls across ISO standards</p>
@@ -1799,6 +1814,40 @@ renderOverview();
         // Initialize page on load
         window.addEventListener('DOMContentLoaded', function() {
             loadStandardsData();
+        });
+
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeLabel.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Light';
+            }
         });
     </script>
 </body>
