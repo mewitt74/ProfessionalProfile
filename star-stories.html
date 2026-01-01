@@ -744,22 +744,20 @@
         function populateStories() {
             const grid = document.getElementById('storiesGrid');
             grid.innerHTML = stories.map((story, index) => `
-                <div class="story-card" data-story="${index}">
-                    <div class="card-content" onclick="openModal(${index})">
-                        <div class="story-number">${story.number}</div>
-                        <h3 class="story-title">${story.title}</h3>
-                        <div class="headline-metric">${story.metric}</div>
-                        <div style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">${story.metricLabel}</div>
-                        <div class="secondary-metrics">
-                            ${story.metrics.map(m => `
-                                <div class="metric">
-                                    <div class="metric-label">${m.label}</div>
-                                    <div class="metric-value">${m.value}</div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <p class="story-description">${story.description}</p>
+                <div class="story-card" data-story="${index}" onclick="openModal(${index})" style="cursor: pointer;">
+                    <div class="story-number">${story.number}</div>
+                    <h3 class="story-title">${story.title}</h3>
+                    <div class="headline-metric">${story.metric}</div>
+                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 12px;">${story.metricLabel}</div>
+                    <div class="secondary-metrics">
+                        ${story.metrics.map(m => `
+                            <div class="metric">
+                                <div class="metric-label">${m.label}</div>
+                                <div class="metric-value">${m.value}</div>
+                            </div>
+                        `).join('')}
                     </div>
+                    <p class="story-description">${story.description}</p>
                     ${story.fullScript ? `
                         <div class="audio-controls">
                             <span class="audio-label">🎙️ Click Card to Hear Full STAR Story</span>
