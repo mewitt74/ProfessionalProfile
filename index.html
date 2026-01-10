@@ -130,12 +130,53 @@
                             <span class="meet-me-icon" id="meetMeIcon">🎙️</span>
                             <span id="meetMeText">Meet Me</span>
                         </button>
+                        <div style="margin-top: 20px;">
+                            <h2 style="color: var(--primary); font-size: 18px; margin-bottom: 6px; text-align: center;">Explore Profile</h2>
+                            <p style="color: var(--text-light); font-size: 13px; margin-bottom: 16px; text-align: center;">Discover proven strategies, certifications, and leadership testimonials</p>
+                            <div class="cta-buttons">
+                                <button class="cta-btn" onclick="showSection('experience')">
+                                    <span class="cta-btn-icon">💼</span>
+                                    <span class="cta-btn-label">Experience</span>
+                                    <span class="cta-btn-desc">18+ years at Microsoft</span>
+                                </button>
+                                <button class="cta-btn" onclick="showSection('references')">
+                                    <span class="cta-btn-icon">📖</span>
+                                    <span class="cta-btn-label">Testimonials</span>
+                                    <span class="cta-btn-desc">See Why Leaders Recommend Me</span>
+                                </button>
+                                <button class="cta-btn" onclick="showSection('certifications')">
+                                    <span class="cta-btn-icon">🎓</span>
+                                    <span class="cta-btn-label">Credentials</span>
+                                    <span class="cta-btn-desc">ISO Lead Auditor Credentials</span>
+                                </button>
+                                <button class="cta-btn" onclick="showSection('expertise')">
+                                    <span class="cta-btn-icon">💡</span>
+                                    <span class="cta-btn-label">Impact</span>
+                                    <span class="cta-btn-desc">Measurable Business Results</span>
+                                </button>
+                                <button class="cta-btn" onclick="window.open('star-stories.html','_blank')">
+                                    <span class="cta-btn-icon">🌟</span>
+                                    <span class="cta-btn-label">STAR Stories</span>
+                                    <span class="cta-btn-desc">Compliance Impact Stories</span>
+                                </button>
+                                <button class="cta-btn" onclick="window.open('iso-matrix.html','_blank')">
+                                    <span class="cta-btn-icon">📊</span>
+                                    <span class="cta-btn-label">ISO Matrix</span>
+                                    <span class="cta-btn-desc">Standards Mapping Tool</span>
+                                </button>
+                                <button class="cta-btn" onclick="showSection('volunteer')">
+                                    <span class="cta-btn-icon">🤝</span>
+                                    <span class="cta-btn-label">Volunteer</span>
+                                    <span class="cta-btn-desc">Community Leadership</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Testimonial Carousel -->
-            <div class="testimonial-carousel" id="testimonialCarousel">
+            <div class="testimonial-carousel" id="testimonialCarousel" style="margin-top: 20px;">
                 <div class="carousel-quote" id="carouselQuote">"Her contributions were critical to the success of the Microsoft Cloud Business."</div>
                 <div class="carousel-author" id="carouselAuthor">R. Mark Plesnicher</div>
                 <div class="carousel-title" id="carouselTitle">GM, Critical Infrastructure & Risk | Microsoft Corporation</div>
@@ -147,52 +188,10 @@
                 </div>
             </div>
 
-            <div class="cta-section">
-                <h2 class="cta-title">Explore Profile</h2>
-                <p class="cta-subtitle">Discover proven strategies, certifications, and leadership testimonials</p>
-                <div class="cta-buttons">
-                    <button class="cta-btn" onclick="showSection('experience')">
-                        <span class="cta-btn-icon">💼</span>
-                        <span class="cta-btn-label">Experience</span>
-                        <span class="cta-btn-desc">18+ years at Microsoft</span>
-                    </button>
-                    <button class="cta-btn" onclick="showSection('references')">
-                        <span class="cta-btn-icon">📖</span>
-                        <span class="cta-btn-label">Testimonials</span>
-                        <span class="cta-btn-desc">See Why Leaders Recommend Me</span>
-                    </button>
-                    <button class="cta-btn" onclick="showSection('certifications')">
-                        <span class="cta-btn-icon">🎓</span>
-                        <span class="cta-btn-label">Credentials</span>
-                        <span class="cta-btn-desc">ISO Lead Auditor Credentials</span>
-                    </button>
-                    <button class="cta-btn" onclick="showSection('expertise')">
-                        <span class="cta-btn-icon">💡</span>
-                        <span class="cta-btn-label">Impact</span>
-                        <span class="cta-btn-desc">Measurable Business Results</span>
-                    </button>
-                    <button class="cta-btn" onclick="window.open('star-stories.html','_blank')">
-                        <span class="cta-btn-icon">🌟</span>
-                        <span class="cta-btn-label">STAR Stories</span>
-                        <span class="cta-btn-desc">Compliance Impact Stories</span>
-                    </button>
-                    <button class="cta-btn" onclick="window.open('iso-matrix.html','_blank')">
-                        <span class="cta-btn-icon">📊</span>
-                        <span class="cta-btn-label">ISO Matrix</span>
-                        <span class="cta-btn-desc">Standards Mapping Tool</span>
-                    </button>
-                    <button class="cta-btn" onclick="showSection('volunteer')">
-                        <span class="cta-btn-icon">🤝</span>
-                        <span class="cta-btn-label">Volunteer</span>
-                        <span class="cta-btn-desc">Community Leadership</span>
-                    </button>
-                </div>
-            </div>
+            <div class="divider" style="margin: 24px 0;"></div>
 
-            <div class="divider"></div>
-
-            <h2>Key Achievements</h2>
-            <p>Proven track record of delivering measurable business impact</p>
+            <h2 style="margin-bottom: 8px;">Key Achievements</h2>
+            <p style="margin-bottom: 16px;">Proven track record of delivering measurable business impact</p>
             <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-value">96.5%</span>
@@ -205,8 +204,8 @@
             </div>
 
             <!-- Preferred Work Environment -->
-            <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 24px; border-radius: 12px; margin: 32px 0; border: 2px solid rgba(33, 128, 195, 0.2);">
-                <h3 style="color: var(--primary); text-align: center; font-size: 20px; margin-bottom: 16px;">💼 Work Preferences</h3>
+            <div style="background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%); padding: 16px; border-radius: 12px; margin: 20px 0; border: 2px solid rgba(33, 128, 195, 0.2);">
+                <h3 style="color: var(--primary); text-align: center; font-size: 18px; margin-bottom: 12px;">💼 Work Preferences</h3>
                 <ul style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0;">
                     <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Remote</li>
                     <li style="background: var(--primary); color: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;">✅ Hybrid</li>
@@ -215,7 +214,7 @@
                 </ul>
             </div>
 
-            <h2 style="margin-top: 48px; color: var(--primary); text-align: center; font-size: 24px;">Contact Information</h2>
+            <h2 style="margin-top: 24px; margin-bottom: 16px; color: var(--primary); text-align: center; font-size: 22px;">Contact Information</h2>
             <div class="contact-grid">
                 <a href="tel:+14258943566" class="contact-card" style="text-decoration: none;">
                     <div class="contact-icon">📱</div>
@@ -238,7 +237,7 @@
                     <div class="contact-value">Kirkland, Washington</div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <div style="text-align: center; margin-top: 20px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                 <button class="download-btn" onclick="downloadAsPDF()" aria-label="Download full profile as PDF">
                     <span class="download-btn-icon">📄</span>
                     <span>Print Full Profile</span>

@@ -222,8 +222,8 @@ header {
 /* Hero Section Styles */
 .hero {
     background: var(--bg-white);
-    padding: 32px 24px;
-    margin-bottom: 24px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border);
@@ -235,7 +235,7 @@ header {
 .hero-content {
     display: flex;
     align-items: flex-start;
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: flex-start;
     text-align: left;
@@ -297,30 +297,30 @@ header {
     background: linear-gradient(135deg, rgba(33, 128, 195, 0.05) 0%, rgba(50, 184, 198, 0.05) 100%);
     border: 2px solid rgba(33, 128, 195, 0.2);
     border-radius: 12px;
-    padding: 24px;
-    margin: 24px 0;
+    padding: 20px;
+    margin: 20px 0;
     text-align: center;
 }
 
 .carousel-quote {
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     font-style: italic;
 }
 
 .carousel-author {
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     color: var(--primary);
     margin-bottom: 4px;
 }
 
 .carousel-title {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: var(--text-light);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 /* CTA Section Styles */
@@ -362,12 +362,12 @@ header {
 .divider {
     height: 2px;
     background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
-    margin: 32px 0;
+    margin: 20px 0;
     border: none;
 }
 
 .section h2 {
-    margin-top: 24px;
+    margin-top: 16px;
     color: var(--primary);
     text-align: center;
     font-size: 22px;
@@ -384,10 +384,10 @@ header {
 
 .hero-stats {
     margin-top: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
+    gap: 12px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -398,21 +398,21 @@ header {
     color: white;
     box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3);
     border-radius: 16px;
-    padding: 20px;
+    padding: 16px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .stat-value {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     display: block;
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: 13px;
     opacity: 0.95;
     display: block;
 }
@@ -1107,7 +1107,7 @@ header {
 
 /* Section Styles */
 .section {
-    padding: 40px 20px;
+    padding: 24px 20px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -1118,7 +1118,7 @@ header {
 
 .section-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .section-icon {
