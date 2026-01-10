@@ -87,7 +87,6 @@ industry_map = {
     'Zania': 'Emerging Technology', 'Mozilla': 'Emerging Technology', 'Popl': 'Emerging Technology'
 }
 
-total_apps = 0
 unique_companies = set()
 unique_positions = set()
 
@@ -97,7 +96,6 @@ for row in ws_data.iter_rows(min_row=4, values_only=True):
         position = str(row[2]).strip()
         pos_lower = position.lower()
         
-        total_apps += 1
         unique_companies.add(company)
         unique_positions.add(position)
         
@@ -138,9 +136,16 @@ for ind in companies_by_industry:
 
 wb.close()
 
+# Get total submissions from Sheet1 (daily counts)
+ws_timeline_calc = wb = openpyxl.load_workbook('certificates/Resume Submissions.xlsx')['Sheet1']
+total_submissions = 0
+for row in ws_timeline_calc.iter_rows(min_row=4, values_only=True):
+    if row[0] and isinstance(row[0], datetime) and row[1]:
+        total_submissions += int(row[1])
+
 # Calculate totals for cards
 total_companies = len(unique_companies)
-total_positions = len(unique_positions)
+total_title_groups = len([role for role, positions in positions_by_role.items() if positions])
 
 # Generate timeline HTML (monthly aggregation)
 timeline_html = ""
@@ -469,7 +474,7 @@ html = f'''<!DOCTYPE html>
         <!-- Key Metrics -->
         <div class="key-metrics">
             <div class="metric-card">
-                <div class="metric-value">{total_apps}</div>
+                <div class="metric-value">{total_submissions}</div>
                 <div class="metric-label">Total Applications</div>
             </div>
             <div class="metric-card">
@@ -477,8 +482,8 @@ html = f'''<!DOCTYPE html>
                 <div class="metric-label">Companies Targeted</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">{total_positions}</div>
-                <div class="metric-label">Unique Titles</div>
+                <div class="metric-value">{total_title_groups}</div>
+                <div class="metric-label">Title Categories</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">46</div>
@@ -560,7 +565,7 @@ with open('stats.html', 'w') as f:
     f.write(html)
 
 print(f"✅ Generated optimized stats.html")
-print(f"   Total Applications: {total_apps}")
+print(f"   Total Submissions: {total_submissions}")
 print(f"   Companies: {total_companies}")
-print(f"   Unique Positions: {total_positions}")
+print(f"   Title Categories: {total_title_groups}")
 print(f"   Months: {len(sorted_months)}")
