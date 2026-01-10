@@ -137,11 +137,13 @@ for ind in companies_by_industry:
 wb.close()
 
 # Get total submissions from Sheet1 (daily counts)
-ws_timeline_calc = wb = openpyxl.load_workbook('certificates/Resume Submissions.xlsx')['Sheet1']
+wb2 = openpyxl.load_workbook('certificates/Resume Submissions.xlsx')
+ws_timeline_calc = wb2['Sheet1']
 total_submissions = 0
 for row in ws_timeline_calc.iter_rows(min_row=4, values_only=True):
     if row[0] and isinstance(row[0], datetime) and row[1]:
         total_submissions += int(row[1])
+wb2.close()
 
 # Calculate totals for cards
 total_companies = len(unique_companies)
@@ -160,34 +162,96 @@ for month, count in sorted_months:
             </div>
 '''
 
-# Generate positions HTML
-positions_html = ""
+# Generate role data for charts
+role_data = []
 for role, positions in positions_by_role.items():
     if positions:
-        positions_html += f'''            <div class="category-section">
-                <h3 class="category-title">{role} <span class="count-badge">{len(positions)}</span></h3>
-                <div class="titles-grid">
+        role_data.append({
+            'category': role,
+            'count': len(positions),
+            'positions': positions
+        })
+role_data.sort(key=lambda x: x['count'], reverse=True)
+
+# Generate positions HTML with visualizations
+positions_html = ""
+for item in role_data:
+    role = item['category']
+    count = item['count']
+    positions = item['positions']
+    
+    # Create visual bar
+    bar_width = int((count / max([r['count'] for r in role_data])) * 100)
+    
+    positions_html += f'''            <div class="category-visual">
+                <div class="category-header">
+                    <h3 class="category-name">{role}</h3>
+                    <span class="category-count">{count} position{"s" if count != 1 else ""}</span>
+                </div>
+                <div class="category-bar-container">
+                    <div class="category-bar" style="width: {bar_width}%;">
+                        <span class="bar-label">{count}</span>
+                    </div>
+                </div>
+                <details class="category-details">
+                    <summary>View all {count} positions</summary>
+                    <div class="positions-list">
 '''
-        for pos in positions:
-            positions_html += f'                    <div class="title-chip">{pos}</div>\n'
-        positions_html += '''                </div>
+    for pos in positions:
+        positions_html += f'                        <div class="position-item">• {pos}</div>\n'
+    positions_html += '''                    </div>
+                </details>
             </div>
 
 '''
 
-# Generate companies HTML
-companies_html = ""
+# Generate company data for heat map
+industry_data = []
 for industry, companies in companies_by_industry.items():
     if companies:
-        companies_html += f'''            <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>{industry} <span class="count-badge">{len(companies)}</span></h3>
-                <div class="companies-grid">
-'''
-        for comp in companies:
-            companies_html += f'                    <div class="company-chip">{comp}</div>\n'
-        companies_html += '''                </div>
-            </div>
+        industry_data.append({
+            'industry': industry,
+            'count': len(companies),
+            'companies': companies
+        })
+industry_data.sort(key=lambda x: x['count'], reverse=True)
 
+# Generate companies HTML as heat map grid
+companies_html = '''            <div class="heatmap-grid">
+'''
+for item in industry_data:
+    industry = item['industry']
+    count = item['count']
+    companies = item['companies']
+    
+    # Color intensity based on count
+    if count >= 20:
+        intensity_class = 'heat-very-high'
+    elif count >= 15:
+        intensity_class = 'heat-high'
+    elif count >= 10:
+        intensity_class = 'heat-medium'
+    elif count >= 5:
+        intensity_class = 'heat-low'
+    else:
+        intensity_class = 'heat-very-low'
+    
+    companies_html += f'''                <div class="heat-cell {intensity_class}">
+                    <div class="heat-header">
+                        <div class="heat-industry">{industry}</div>
+                        <div class="heat-count">{count}</div>
+                    </div>
+                    <details class="heat-details">
+                        <summary>{count} companies</summary>
+                        <div class="company-list">
+'''
+    for comp in companies:
+        companies_html += f'                            <div class="company-item">• {comp}</div>\n'
+    companies_html += '''                        </div>
+                    </details>
+                </div>
+'''
+companies_html += '''            </div>
 '''
 
 # Create complete HTML
@@ -322,101 +386,221 @@ html = f'''<!DOCTYPE html>
             white-space: nowrap;
         }}
 
-        /* Position Titles - Categorized by Role Similarity */
-        .category-section {{
-            margin-bottom: 40px;
+        /* Role Categories - Bar Chart Visualization */
+        .category-visual {{
+            background: var(--bg-white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            margin-bottom: 20px;
+            transition: var(--transition);
         }}
 
-        .category-title {{
+        .category-visual:hover {{
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }}
+
+        .category-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }}
+
+        .category-name {{
             font-size: 18px;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 16px;
+            color: var(--text);
+            margin: 0;
+        }}
+
+        .category-count {{
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            background: var(--bg-light);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }}
+
+        .category-bar-container {{
+            background: var(--bg-light);
+            border-radius: 8px;
+            height: 48px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }}
+
+        .category-bar {{
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: flex-end;
+            padding-right: 16px;
+            transition: width 0.5s ease;
+            position: relative;
+            min-width: 60px;
         }}
 
-        .count-badge {{
-            background: var(--primary);
+        .bar-label {{
             color: white;
-            padding: 2px 10px;
-            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }}
+
+        .category-details {{
+            margin-top: 12px;
+        }}
+
+        .category-details summary {{
+            cursor: pointer;
             font-size: 13px;
+            color: var(--primary);
             font-weight: 600;
+            padding: 8px 0;
+            user-select: none;
         }}
 
-        .titles-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 12px;
+        .category-details summary:hover {{
+            text-decoration: underline;
         }}
 
-        .title-chip {{
+        .positions-list {{
+            margin-top: 12px;
+            padding: 16px;
             background: var(--bg-light);
-            padding: 14px 16px;
             border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }}
+
+        .position-item {{
+            padding: 6px 0;
             font-size: 13px;
-            font-weight: 500;
             color: var(--text);
-            border: 1px solid var(--border);
+            line-height: 1.5;
+            border-bottom: 1px solid var(--border);
+        }}
+
+        .position-item:last-child {{
+            border-bottom: none;
+        }}
+
+        /* Heat Map for Companies by Industry */
+        .heatmap-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }}
+
+        .heat-cell {{
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px solid var(--border);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .heat-cell::before {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }}
+
+        .heat-very-high {{
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.25) 0%, rgba(50, 184, 198, 0.25) 100%);
+            border-color: var(--primary);
+        }}
+
+        .heat-high {{
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.18) 0%, rgba(50, 184, 198, 0.18) 100%);
+            border-color: var(--primary);
+        }}
+
+        .heat-medium {{
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);
+        }}
+
+        .heat-low {{
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+        }}
+
+        .heat-very-low {{
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.04) 0%, rgba(50, 184, 198, 0.04) 100%);
+        }}
+
+        .heat-cell:hover {{
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }}
+
+        .heat-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }}
+
+        .heat-industry {{
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+            flex: 1;
+        }}
+
+        .heat-count {{
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-left: 12px;
+        }}
+
+        .heat-details summary {{
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 8px 0;
+            user-select: none;
+        }}
+
+        .heat-details summary:hover {{
+            color: var(--primary);
+        }}
+
+        .company-list {{
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+        }}
+
+        .company-item {{
+            padding: 5px 0;
+            font-size: 12px;
+            color: var(--text);
             line-height: 1.4;
         }}
 
-        .title-chip:hover {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
-            border-color: var(--primary);
-            transform: translateX(4px);
-        }}
-
-        /* Companies - Grouped by Industry */
-        .industry-section {{
-            margin-bottom: 40px;
-        }}
-
-        .industry-title {{
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }}
-
-        .industry-icon {{
-            color: var(--accent);
-            font-size: 12px;
-        }}
-
-        .companies-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-        }}
-
-        .company-chip {{
-            background: var(--bg-light);
-            padding: 12px 16px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }}
-
-        .company-chip:hover {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }}
-
         @media (max-width: 768px) {{
-            .titles-grid, .companies-grid {{
+            .heatmap-grid {{
                 grid-template-columns: 1fr;
             }}
             
@@ -428,6 +612,16 @@ html = f'''<!DOCTYPE html>
             
             .timeline-month {{
                 min-width: auto;
+            }}
+
+            .category-header {{
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }}
+
+            .heat-count {{
+                font-size: 24px;
             }}
         }}
     </style>
@@ -497,10 +691,12 @@ html = f'''<!DOCTYPE html>
 {timeline_html}        </div>
 
         <!-- Position Titles by Role Similarity -->
-        <h2 class="section-title">💼 Title Categories & Role Groupings</h2>
+        <h2 class="section-title">💼 Application Distribution by Role Category</h2>
+        <p style="margin: -16px 0 24px 0; color: var(--text-light); font-size: 14px;">Horizontal bar chart showing position counts across 10 strategic role categories</p>
 {positions_html}
         <!-- Companies by Industry -->
-        <h2 class="section-title">🏢 Target Companies by Industry Sector</h2>
+        <h2 class="section-title">🏢 Industry Coverage Heat Map</h2>
+        <p style="margin: -16px 0 24px 0; color: var(--text-light); font-size: 14px;">Color intensity indicates company concentration across 8 industry sectors</p>
 {companies_html}
     </div>
 
