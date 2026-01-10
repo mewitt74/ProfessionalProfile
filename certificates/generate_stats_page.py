@@ -497,7 +497,7 @@ html = f'''<!DOCTYPE html>
 {timeline_html}        </div>
 
         <!-- Position Titles by Role Similarity -->
-        <h2 class="section-title">💼 Roles by Type & Function</h2>
+        <h2 class="section-title">💼 Title Categories & Role Groupings</h2>
 {positions_html}
         <!-- Companies by Industry -->
         <h2 class="section-title">🏢 Target Companies by Industry Sector</h2>
