@@ -28,23 +28,6 @@
         </div>
 
         <div class="iso-content">
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-box overlap"></div>
-                    <span><strong>Overlapping:</strong> Requirements shared across multiple standards</span>
-                </div>
-                <span style="color: var(--text-light); margin: 0 12px;">|</span>
-                <div class="legend-item">
-                    <div class="legend-box unique"></div>
-                    <span><strong>Unique:</strong> Domain-specific requirements</span>
-                </div>
-                <span style="color: var(--text-light); margin: 0 12px;">|</span>
-                <div class="legend-item">
-                    <div class="legend-box shared"></div>
-                    <span><strong>Shared Structure:</strong> Common Annex SL clauses</span>
-                </div>
-            </div>
-
             <!-- Tabs -->
             <div class="tabs">
                 <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
@@ -184,6 +167,23 @@
                 <p>
                     Detailed breakdown showing where standards overlap and where unique requirements emerge. This guides integration strategy.
                 </p>
+                
+                <div class="legend" style="margin-bottom: 24px;">
+                    <div class="legend-item">
+                        <div class="legend-box overlap"></div>
+                        <span><strong>Overlapping:</strong> Requirements shared across multiple standards</span>
+                    </div>
+                    <span style="color: var(--text-light); margin: 0 12px;">|</span>
+                    <div class="legend-item">
+                        <div class="legend-box unique"></div>
+                        <span><strong>Unique:</strong> Domain-specific requirements</span>
+                    </div>
+                    <span style="color: var(--text-light); margin: 0 12px;">|</span>
+                    <div class="legend-item">
+                        <div class="legend-box shared"></div>
+                        <span><strong>Shared Structure:</strong> Common Annex SL clauses</span>
+                    </div>
+                </div>
                 <div class="table-wrapper">
                     <table>
                         <thead>
