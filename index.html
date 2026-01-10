@@ -39,6 +39,63 @@
     
     <!-- Shared Styles -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .meet-me-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, #1976D2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(33, 128, 195, 0.3);
+        }
+
+        .meet-me-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 128, 195, 0.4);
+            background: linear-gradient(135deg, #1976D2 0%, var(--primary) 100%);
+        }
+
+        .meet-me-button:active {
+            transform: translateY(0);
+        }
+
+        .meet-me-button.playing {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(76, 175, 80, 0.6);
+            }
+        }
+
+        .meet-me-icon {
+            font-size: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .meet-me-button.playing .meet-me-icon {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <a href="#overview" class="skip-link">Skip to main content</a>
@@ -69,6 +126,10 @@
                         <h1>Transformational Compliance & Automation Leader</h1>
                         <p class="hero-subtitle">18+ Years of Excellence at Microsoft</p>
                         <p>ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 42001:2023 Lead Auditor, ISO 37001 Lead Implementer and Senior Compliance Technical Program Manager with 18+ years of proven expertise driving transformational compliance and GRC modernization at Microsoft. Specialized in AI-driven automation, enterprise risk management, and controls monitoring across 21+ international regions impacting millions of assets. Demonstrated ability to deliver exceptional results: 96.5% compliance accuracy, 46% year-over-year growth in program volumes, and 40% reduction in manual workload through intelligent automation. Strategic leader who transforms complex compliance challenges into scalable, efficient operations through technical innovation, process excellence, and cross-functional collaboration. Positioned to drive organizational resilience and competitive advantage through advanced GRC capabilities, data-driven decision-making, and responsible AI governance.</p>
+                        <button class="meet-me-button" id="meetMeButton" onclick="toggleIntroAudio()" aria-label="Play introduction">
+                            <span class="meet-me-icon" id="meetMeIcon">🎙️</span>
+                            <span id="meetMeText">Meet Me</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1875,6 +1936,56 @@
         document.addEventListener('DOMContentLoaded', function() {
             initViewCounter();
         });
+
+        // Meet Me Audio Functionality
+        let introAudio = null;
+
+        function toggleIntroAudio() {
+            const button = document.getElementById('meetMeButton');
+            const icon = document.getElementById('meetMeIcon');
+            const text = document.getElementById('meetMeText');
+            
+            if (introAudio && !introAudio.paused) {
+                // Stop intro audio
+                introAudio.pause();
+                introAudio.currentTime = 0;
+                button.classList.remove('playing');
+                icon.textContent = '🎙️';
+                text.textContent = 'Meet Me';
+                introAudio = null;
+            } else {
+                // Play intro audio
+                introAudio = new Audio('certificates/Intro.mp3?v=' + Date.now());
+                button.classList.add('playing');
+                icon.textContent = '⏸️';
+                text.textContent = 'Pause';
+                
+                introAudio.onended = () => {
+                    button.classList.remove('playing');
+                    icon.textContent = '🎙️';
+                    text.textContent = 'Meet Me';
+                    introAudio = null;
+                };
+                
+                introAudio.onerror = (e) => {
+                    console.error('Intro audio error:', e);
+                    alert('Error playing introduction. Please check if the file exists.');
+                    button.classList.remove('playing');
+                    icon.textContent = '🎙️';
+                    text.textContent = 'Meet Me';
+                    introAudio = null;
+                };
+                
+                introAudio.play().catch(error => {
+                    console.error('Intro play failed:', error);
+                    alert('Audio playback failed. Please try again.');
+                    button.classList.remove('playing');
+                    icon.textContent = '🎙️';
+                    text.textContent = 'Meet Me';
+                    introAudio = null;
+                });
+            }
+        }
     </script>
 </body>
 </html>
