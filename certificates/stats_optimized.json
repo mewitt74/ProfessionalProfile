@@ -1,0 +1,331 @@
+{
+  "timeline": [
+    {
+      "display": "11/24/25",
+      "count": 14
+    },
+    {
+      "display": "11/29/25",
+      "count": 6
+    },
+    {
+      "display": "11/30/25",
+      "count": 11
+    },
+    {
+      "display": "12/04/25",
+      "count": 5
+    },
+    {
+      "display": "12/13/25",
+      "count": 22
+    },
+    {
+      "display": "12/14/25",
+      "count": 6
+    },
+    {
+      "display": "12/15/25",
+      "count": 3
+    },
+    {
+      "display": "12/16/25",
+      "count": 5
+    },
+    {
+      "display": "12/21/25",
+      "count": 13
+    },
+    {
+      "display": "12/22/25",
+      "count": 2
+    },
+    {
+      "display": "12/23/25",
+      "count": 5
+    },
+    {
+      "display": "12/24/25",
+      "count": 19
+    },
+    {
+      "display": "12/26/25",
+      "count": 7
+    },
+    {
+      "display": "12/27/25",
+      "count": 1
+    },
+    {
+      "display": "12/29/25",
+      "count": 6
+    },
+    {
+      "display": "12/30/25",
+      "count": 3
+    },
+    {
+      "display": "01/06/26",
+      "count": 2
+    },
+    {
+      "display": "01/07/26",
+      "count": 1
+    },
+    {
+      "display": "01/08/26",
+      "count": 7
+    }
+  ],
+  "max_count": 22,
+  "positions_by_category": {
+    "Executive & Director Level": [
+      "Associate Director of Global Privacy and Compliance",
+      "Associate Director, Global Technology Solutions, Governance, Risk, & Compliance, NA & LATAM",
+      "Director Risk Management",
+      "Director of Compliance",
+      "Director of Compliance (titled \"Senior Compliance Manager\")",
+      "Director of Security, GRC",
+      "Director, AI Program Manager",
+      "Director, Customer Master Data & Governance",
+      "Director, Governance Risk and Compliance",
+      "Director, Privacy Compliance",
+      "Director, Risk, Data Science & Analytics",
+      "Director, Security AI, Analytics and Automation",
+      "Head of GRC / Senior Staff GRC Engineer",
+      "Senior Director, Product Compliance",
+      "Vice President of Compliance"
+    ],
+    "Senior Leadership": [
+      "Cloud Financial Operations & Compliance Senior Manager",
+      "Compliance ConMon (AMER) Principal PM",
+      "Principal Business Consultant - Regulatory & Quality (MedTech)",
+      "Principal Compliance Analyst",
+      "Principal Compliance Manager",
+      "Principal Marketing Compliance Manager",
+      "Senior Manager, Governance, Risk, and Compliance (GRC)",
+      "Senior Manager, InfoSec GRC",
+      "Senior Manager, Process & Execution Risk",
+      "Senior Manager, Program Manager",
+      "Senior Manager, Release & Program Management",
+      "Senior Manager, Risk (First Line of Defense)",
+      "Senior Manager, Strategic Governance & Policy Analyst",
+      "Sr. Compliance Principal",
+      "Sr. Manager, Security, Risk & Compliance"
+    ],
+    "Program & Product Management": [
+      "Customer Experience PM (EngOps)",
+      "Cybersecurity GRC Program Manager",
+      "Enterprise Risk Management (ERM) Program Manager",
+      "Federal Compliance, Security Technical Program Manager",
+      "Job Application for Staff Program Manager - Security Compliance Programs at Zscaler",
+      "PCI Compliance Program Manager",
+      "Product Manager, Compliance",
+      "Program Lead, GRC",
+      "Program Manager II (GRC)",
+      "Program Manager III, Risk and Compliance, Google Ads",
+      "Security GRC Program Lead",
+      "Security GRC Program Manager, Third Party",
+      "Senior GRC Product Manager \u2013 AI\u2011Powered Compliance",
+      "Senior Product Manager, GRC",
+      "Senior Program Manager - GRC - Compliance Assessments (Hybrid - Seattle)",
+      "Staff Security Risk & Compliance Program Manager (Insider Threat)",
+      "Strategic Project Lead, Compliance",
+      "Technical Program Manager",
+      "Technical Program Manager - GRC/InfoSec"
+    ],
+    "AI & Governance Focus": [
+      "AI Agent Security | GRC Manager | Zenity",
+      "AI Governance & Security Architect",
+      "AI Governance Lead - Remote",
+      "AI Governance Specialist Position",
+      "AI Risk & Compliance Expert",
+      "Data Governance Lead-Telecom",
+      "Data Governance Leader",
+      "GRC AI Subject Matter Expert, Product",
+      "Governance, Risk & Compliance Manager",
+      "Governance, Risk, and Compliance Analyst III",
+      "Privacy Governance Manager",
+      "Process Compliance and Governance Analyst",
+      "Security Governance Risk & Compliance (GRC) Analyst",
+      "Staff Applied AI Engineer (GRC)",
+      "Staff Governance, Rick & Compliance"
+    ],
+    "Compliance & Risk Management": [
+      "Compliance & Certifications Lead",
+      "Compliance Advisor, Remote",
+      "Compliance Analyst",
+      "Compliance Automation Engineer",
+      "Compliance Manager",
+      "Compliance Manager I",
+      "Compliance Manager, Servicing",
+      "Compliance Specialist",
+      "Compliance Specialist, GRCP",
+      "Compliance Tech Lead",
+      "Data Security Services Compliance Manager",
+      "GRC Analyst",
+      "GRC Lead",
+      "Internal Audit Security Sr. Mgr",
+      "Manager, Compliance Investigations",
+      "Manager, Compliance Operations Investigations",
+      "Manager, GRC",
+      "Member of Compliance, TPRM",
+      "Product GRC / Trust & Assurance Lead",
+      "Product Lifecycle Manager \u2013 Security & Compliance Certifications",
+      "Quality & Regulatory Operations Lead Position",
+      "Regulatory Compliance Manager",
+      "Risk Manager/Senior Negotiator - State, Local & Higher Education",
+      "Senior Associate, GRC Risk Transformation",
+      "Senior Compliance & GRC Program Analyst",
+      "Senior Compliance Manager",
+      "Senior Compliance Officer",
+      "Senior GRC Analyst",
+      "Senior Risk & Compliance Engineer",
+      "Senior Staff Analyst, GRC",
+      "ServiceNow IRM Compliance SME",
+      "Sr Tech Compliance PM",
+      "Sr. IT Risk and Compliance Analyst",
+      "Sr. IT SOX Audit & Compliance Manager",
+      "Staff Security Compliance Analyst - IntelliScript",
+      "Third-Party Compliance Manager"
+    ],
+    "Technical & Engineering": [
+      "Staff Security Engineer, Vulnerability Operations"
+    ],
+    "Analyst & Specialist": [
+      "Lead Certifications Analyst",
+      "Policy & Procedure Analyst"
+    ]
+  },
+  "companies_by_industry": {
+    "Cloud & Infrastructure": [
+      "Amazon",
+      "Amazon Prime Air",
+      "CoreWeave",
+      "F5",
+      "Google",
+      "Microsoft",
+      "NVIDIA",
+      "Oracle"
+    ],
+    "Enterprise Software & SaaS": [
+      "6sense(Growth-stageB2BSaaS)",
+      "Airtable",
+      "Amplitude",
+      "Asana",
+      "Atlassian",
+      "Avalara",
+      "Confluent",
+      "Docusign",
+      "Figma",
+      "FloQast",
+      "GrafanaLabs",
+      "Hubspot",
+      "Kyriba",
+      "MediaAlpha",
+      "Ncontracts",
+      "Teradata",
+      "Twilio",
+      "VeevaSystems",
+      "Vercel",
+      "VitalhubCorp",
+      "insightsoftware",
+      "interface.ai",
+      "phData"
+    ],
+    "FinTech & Financial Services": [
+      "Affirm",
+      "Allstate",
+      "AnchorageDigital",
+      "BECU",
+      "BILL",
+      "Blackstone Talent Group",
+      "Block",
+      "CIBC",
+      "Circle",
+      "Coinbase",
+      "Evergreen Home Loans",
+      "Experian",
+      "GreenDot",
+      "MeridianLink",
+      "Paxos",
+      "Ripple",
+      "Stripe",
+      "Symetra",
+      "Upstart",
+      "Wrapbook"
+    ],
+    "Security & Compliance": [
+      "CrowdStrike",
+      "Entrust",
+      "Forta",
+      "SecureCodeWarrior",
+      "Vanta",
+      "Virtru",
+      "Zenity",
+      "Zscaler"
+    ],
+    "Healthcare & Life Sciences": [
+      "Aledade",
+      "BALTGroup(Balt)",
+      "Baylor Scott & White Health",
+      "BeiGene(BeOne)",
+      "CardinalHealth",
+      "GlobalCommercialJazzPharma",
+      "HealthInTech",
+      "IncludedHealth",
+      "Milliman(IntelliScriptDivision)",
+      "PrecisionMedicineGroup",
+      "Radformation",
+      "SwordHealth",
+      "UnileverPrestige"
+    ],
+    "E-commerce & Consumer Tech": [
+      "AirBnB",
+      "Angi",
+      "DoorDash",
+      "Expedia Group",
+      "Meta",
+      "Nordstrom",
+      "RealPage",
+      "SnapChat",
+      "Zillow"
+    ],
+    "Consulting & Services": [
+      "CypressHCM",
+      "DecisionPointCorporation",
+      "Deloitte",
+      "HorizontalTalent",
+      "IBSS",
+      "KPMGUS",
+      "KornFerry",
+      "Polestar Analytics",
+      "Signify Technology",
+      "WilsonSonsini"
+    ],
+    "Emerging Technology": [
+      "AlphaSense",
+      "AnthologyInc",
+      "BEMO",
+      "Boeing",
+      "D-WaveQuantum",
+      "DolbyLaboratories",
+      "ExtremeNetworks",
+      "Fortress",
+      "Groq",
+      "Groq(Trust&AssuranceLead)",
+      "Gusto",
+      "Mozilla",
+      "Perplexity",
+      "Phaidra",
+      "Popl",
+      "RTX",
+      "SenecaResourcesCompanyLLC",
+      "Serve",
+      "Waymo",
+      "WingAviation",
+      "Zania",
+      "Ziply Fiber"
+    ]
+  }
+}

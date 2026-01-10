@@ -34,7 +34,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .metric-card {
@@ -44,12 +44,21 @@
             text-align: center;
             border: 2px solid var(--border);
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
 
         .metric-value {
             font-size: 48px;
             font-weight: 700;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
         }
 
@@ -58,65 +67,140 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .section-title {
-            font-size: 24px;
-            color: var(--primary);
-            margin: 40px 0 20px 0;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 50px 0 24px 0;
             display: flex;
             align-items: center;
             gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--primary);
         }
 
+        /* Timeline - Left to Right */
         .timeline-chart {
             background: var(--bg-white);
-            padding: 24px;
+            padding: 30px;
             border-radius: 12px;
             border: 2px solid var(--border);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            overflow-x: auto;
         }
 
-        .chart-bar {
+        .timeline-bar {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            padding: 8px;
-            border-radius: 8px;
-            transition: var(--transition);
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .chart-bar:hover {
-            background: var(--bg-light);
-        }
-
-        .chart-date {
-            min-width: 100px;
+        .timeline-date {
             font-weight: 600;
             color: var(--text);
-            font-size: 14px;
+            font-size: 13px;
+            min-width: 80px;
         }
 
-        .chart-bar-visual {
-            flex: 1;
-            height: 32px;
+        .timeline-visual {
+            height: 40px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 6px;
-            position: relative;
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            padding: 0 12px;
+            padding: 0 16px;
             color: white;
             font-weight: 600;
             font-size: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .timeline-visual:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-count {
+            white-space: nowrap;
+        }
+
+        /* Position Titles - Categorized */
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .count-badge {
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .titles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+        }
+
+        .title-chip {
+            background: var(--bg-light);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            line-height: 1.4;
+        }
+
+        .title-chip:hover {
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
+            border-color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        /* Companies - Grouped by Industry */
+        .industry-section {
+            margin-bottom: 40px;
+        }
+
+        .industry-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .industry-icon {
+            color: var(--accent);
+            font-size: 12px;
         }
 
         .companies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 12px;
-            margin-bottom: 40px;
         }
 
         .company-chip {
@@ -132,32 +216,16 @@
         }
 
         .company-chip:hover {
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.1) 0%, rgba(50, 184, 198, 0.1) 100%);
-            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(33, 128, 195, 0.15) 0%, rgba(50, 184, 198, 0.15) 100%);
+            border-color: var(--accent);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
-        .positions-list {
-            background: var(--bg-white);
-            padding: 24px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-        }
-
-        .position-item {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .position-item:last-child {
-            border-bottom: none;
-        }
-
-        .position-item:hover {
-            color: var(--primary);
+        @media (max-width: 768px) {
+            .titles-grid, .companies-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -174,14 +242,29 @@
         <div class="header-content">
             <div>
                 <div class="logo"><a href="index.html">Melissa Witte-Spencer</a></div>
-                <div class="logo-subtitle">Job Search Statistics & Activity Tracking</div>
+                <div class="logo-subtitle">Job Search Analytics & Strategic Targeting</div>
             </div>
         </div>
     </header>
 
+    <!-- Hamburger Navigation -->
+    <div class="floating-nav">
+        <button class="hamburger-btn" onclick="toggleNavMenu()" aria-label="Navigation Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-menu" id="navMenu" role="navigation">
+            <button onclick="navigateTo('index.html')">🏠 Home</button>
+            <button onclick="navigateTo('star-stories.html')">⭐ STAR Stories</button>
+            <button onclick="navigateTo('iso-matrix.html')">📊 ISO Matrix</button>
+            <button onclick="navigateTo('stats.html')" class="active">📈 Stats</button>
+        </div>
+    </div>
+
     <div class="stats-header">
-        <h1>📊 Job Search Statistics</h1>
-        <p>Active job search campaign tracking tailored applications and strategic outreach</p>
+        <h1>Job Search Activity Dashboard</h1>
+        <p>Strategic targeting across high-growth technology companies | GRC Leadership Roles</p>
     </div>
 
     <div class="stats-content" id="main">
@@ -208,476 +291,485 @@
         <!-- Application Timeline -->
         <h2 class="section-title">📈 Application Activity Timeline</h2>
         <div class="timeline-chart">
-            <div class="chart-bar">
-                <div class="chart-date">1/8/2026</div>
-                <div class="chart-bar-visual" style="width: 32%;">7 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">11/24/25</div>
+                <div class="timeline-visual" style="width: 63%;">
+                    <span class="timeline-count">14 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">1/7/2026</div>
-                <div class="chart-bar-visual" style="width: 5%;">1 Application</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">11/29/25</div>
+                <div class="timeline-visual" style="width: 27%;">
+                    <span class="timeline-count">6 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">1/6/2026</div>
-                <div class="chart-bar-visual" style="width: 9%;">2 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">11/30/25</div>
+                <div class="timeline-visual" style="width: 50%;">
+                    <span class="timeline-count">11 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/30/2025</div>
-                <div class="chart-bar-visual" style="width: 14%;">3 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/04/25</div>
+                <div class="timeline-visual" style="width: 22%;">
+                    <span class="timeline-count">5 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/29/2025</div>
-                <div class="chart-bar-visual" style="width: 27%;">6 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/13/25</div>
+                <div class="timeline-visual" style="width: 100%;">
+                    <span class="timeline-count">22 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/27/2025</div>
-                <div class="chart-bar-visual" style="width: 5%;">1 Application</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/14/25</div>
+                <div class="timeline-visual" style="width: 27%;">
+                    <span class="timeline-count">6 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/26/2025</div>
-                <div class="chart-bar-visual" style="width: 32%;">7 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/15/25</div>
+                <div class="timeline-visual" style="width: 13%;">
+                    <span class="timeline-count">3 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/24/2025</div>
-                <div class="chart-bar-visual" style="width: 86%;">19 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/16/25</div>
+                <div class="timeline-visual" style="width: 22%;">
+                    <span class="timeline-count">5 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/23/2025</div>
-                <div class="chart-bar-visual" style="width: 23%;">5 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/21/25</div>
+                <div class="timeline-visual" style="width: 59%;">
+                    <span class="timeline-count">13 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/22/2025</div>
-                <div class="chart-bar-visual" style="width: 9%;">2 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/22/25</div>
+                <div class="timeline-visual" style="width: 9%;">
+                    <span class="timeline-count">2 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/21/2025</div>
-                <div class="chart-bar-visual" style="width: 59%;">13 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/23/25</div>
+                <div class="timeline-visual" style="width: 22%;">
+                    <span class="timeline-count">5 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/16/2025</div>
-                <div class="chart-bar-visual" style="width: 23%;">5 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/24/25</div>
+                <div class="timeline-visual" style="width: 86%;">
+                    <span class="timeline-count">19 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/15/2025</div>
-                <div class="chart-bar-visual" style="width: 14%;">3 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/26/25</div>
+                <div class="timeline-visual" style="width: 31%;">
+                    <span class="timeline-count">7 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/14/2025</div>
-                <div class="chart-bar-visual" style="width: 27%;">6 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/27/25</div>
+                <div class="timeline-visual" style="width: 4%;">
+                    <span class="timeline-count">1 app</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/13/2025</div>
-                <div class="chart-bar-visual" style="width: 100%;">22 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/29/25</div>
+                <div class="timeline-visual" style="width: 27%;">
+                    <span class="timeline-count">6 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">12/4/2025</div>
-                <div class="chart-bar-visual" style="width: 23%;">5 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">12/30/25</div>
+                <div class="timeline-visual" style="width: 13%;">
+                    <span class="timeline-count">3 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">11/30/2025</div>
-                <div class="chart-bar-visual" style="width: 50%;">11 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">01/06/26</div>
+                <div class="timeline-visual" style="width: 9%;">
+                    <span class="timeline-count">2 apps</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">11/29/2025</div>
-                <div class="chart-bar-visual" style="width: 27%;">6 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">01/07/26</div>
+                <div class="timeline-visual" style="width: 4%;">
+                    <span class="timeline-count">1 app</span>
+                </div>
             </div>
-            <div class="chart-bar">
-                <div class="chart-date">11/24/2025</div>
-                <div class="chart-bar-visual" style="width: 64%;">14 Applications</div>
+            <div class="timeline-bar">
+                <div class="timeline-date">01/08/26</div>
+                <div class="timeline-visual" style="width: 31%;">
+                    <span class="timeline-count">7 apps</span>
+                </div>
             </div>
         </div>
 
-        <!-- Companies Applied To -->
-        <h2 class="section-title">🏢 Target Companies (113)</h2>
-        <div class="companies-grid">
-            <div class="company-chip">6sense</div>
-            <div class="company-chip">Affirm</div>
-            <div class="company-chip">AirBnB</div>
-            <div class="company-chip">Airtable</div>
-            <div class="company-chip">Aledade</div>
-            <div class="company-chip">Allstate</div>
-            <div class="company-chip">AlphaSense</div>
-            <div class="company-chip">Amazon</div>
-            <div class="company-chip">Amazon Prime Air</div>
-            <div class="company-chip">Amplitude</div>
-            <div class="company-chip">Anchorage Digital</div>
-            <div class="company-chip">Angi</div>
-            <div class="company-chip">Anthology Inc</div>
-            <div class="company-chip">Asana</div>
-            <div class="company-chip">Atlassian</div>
-            <div class="company-chip">Avalara</div>
-            <div class="company-chip">BALT Group</div>
-            <div class="company-chip">Baylor Scott & White Health</div>
-            <div class="company-chip">BECU</div>
-            <div class="company-chip">BeiGene</div>
-            <div class="company-chip">BEMO</div>
-            <div class="company-chip">BILL</div>
-            <div class="company-chip">Blackstone Talent Group</div>
-            <div class="company-chip">Block</div>
-            <div class="company-chip">Boeing</div>
-            <div class="company-chip">Cardinal Health</div>
-            <div class="company-chip">CIBC</div>
-            <div class="company-chip">Circle</div>
-            <div class="company-chip">Coinbase</div>
-            <div class="company-chip">Confluent</div>
-            <div class="company-chip">CoreWeave</div>
-            <div class="company-chip">CrowdStrike</div>
-            <div class="company-chip">Cypress HCM</div>
-            <div class="company-chip">DecisionPoint Corporation</div>
-            <div class="company-chip">Deloitte</div>
-            <div class="company-chip">Docusign</div>
-            <div class="company-chip">Dolby Laboratories</div>
-            <div class="company-chip">DoorDash</div>
-            <div class="company-chip">D-Wave Quantum</div>
-            <div class="company-chip">Entrust</div>
-            <div class="company-chip">Evergreen Home Loans</div>
-            <div class="company-chip">Expedia Group</div>
-            <div class="company-chip">Experian</div>
-            <div class="company-chip">Extreme Networks</div>
-            <div class="company-chip">F5</div>
-            <div class="company-chip">Figma</div>
-            <div class="company-chip">FloQast</div>
-            <div class="company-chip">Forta</div>
-            <div class="company-chip">Fortress</div>
-            <div class="company-chip">Global Commercial Jazz Pharma</div>
-            <div class="company-chip">Google</div>
-            <div class="company-chip">Grafana Labs</div>
-            <div class="company-chip">GreenDot</div>
-            <div class="company-chip">Groq</div>
-            <div class="company-chip">Gusto</div>
-            <div class="company-chip">HealthInTech</div>
-            <div class="company-chip">Horizontal Talent</div>
-            <div class="company-chip">Hubspot</div>
-            <div class="company-chip">IBSS</div>
-            <div class="company-chip">Included Health</div>
-            <div class="company-chip">insightsoftware</div>
-            <div class="company-chip">interface.ai</div>
-            <div class="company-chip">Korn Ferry</div>
-            <div class="company-chip">KPMG US</div>
-            <div class="company-chip">Kyriba</div>
-            <div class="company-chip">MediaAlpha</div>
-            <div class="company-chip">MeridianLink</div>
-            <div class="company-chip">Meta</div>
-            <div class="company-chip">Microsoft</div>
-            <div class="company-chip">Milliman</div>
-            <div class="company-chip">Mozilla</div>
-            <div class="company-chip">Ncontracts</div>
-            <div class="company-chip">Nordstrom</div>
-            <div class="company-chip">NVIDIA</div>
-            <div class="company-chip">Oracle</div>
-            <div class="company-chip">Paxos</div>
-            <div class="company-chip">Perplexity</div>
-            <div class="company-chip">Phaidra</div>
-            <div class="company-chip">phData</div>
-            <div class="company-chip">Polestar Analytics</div>
-            <div class="company-chip">Popl</div>
-            <div class="company-chip">Precision Medicine Group</div>
-            <div class="company-chip">Radformation</div>
-            <div class="company-chip">RealPage</div>
-            <div class="company-chip">Ripple</div>
-            <div class="company-chip">RTX</div>
-            <div class="company-chip">Secure Code Warrior</div>
-            <div class="company-chip">Seneca Resources</div>
-            <div class="company-chip">Serve</div>
-            <div class="company-chip">Signify Technology</div>
-            <div class="company-chip">SnapChat</div>
-            <div class="company-chip">Stripe</div>
-            <div class="company-chip">Sword Health</div>
-            <div class="company-chip">Symetra</div>
-            <div class="company-chip">Teradata</div>
-            <div class="company-chip">Twilio</div>
-            <div class="company-chip">Unilever Prestige</div>
-            <div class="company-chip">Upstart</div>
-            <div class="company-chip">Vanta</div>
-            <div class="company-chip">Veeva Systems</div>
-            <div class="company-chip">Vercel</div>
-            <div class="company-chip">Virtru</div>
-            <div class="company-chip">Vitalhub Corp</div>
-            <div class="company-chip">Waymo</div>
-            <div class="company-chip">Wilson Sonsini</div>
-            <div class="company-chip">Wing Aviation</div>
-            <div class="company-chip">Wrapbook</div>
-            <div class="company-chip">Zania</div>
-            <div class="company-chip">Zenity</div>
-            <div class="company-chip">Zillow</div>
-            <div class="company-chip">Ziply Fiber</div>
-            <div class="company-chip">Zscaler</div>
-        </div>
+        <!-- Position Titles by Category -->
+        <h2 class="section-title">💼 Role Alignment & Strategic Targeting</h2>
+            <div class="category-section">
+                <h3 class="category-title">Executive & Director Level <span class="count-badge">(15)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Associate Director of Global Privacy and Compliance</div>
+                    <div class="title-chip">Associate Director, Global Technology Solutions, Governance, Risk, & Compliance, NA & LATAM</div>
+                    <div class="title-chip">Director Risk Management</div>
+                    <div class="title-chip">Director of Compliance</div>
+                    <div class="title-chip">Director of Compliance (titled "Senior Compliance Manager")</div>
+                    <div class="title-chip">Director of Security, GRC</div>
+                    <div class="title-chip">Director, AI Program Manager</div>
+                    <div class="title-chip">Director, Customer Master Data & Governance</div>
+                    <div class="title-chip">Director, Governance Risk and Compliance</div>
+                    <div class="title-chip">Director, Privacy Compliance</div>
+                    <div class="title-chip">Director, Risk, Data Science & Analytics</div>
+                    <div class="title-chip">Director, Security AI, Analytics and Automation</div>
+                    <div class="title-chip">Head of GRC / Senior Staff GRC Engineer</div>
+                    <div class="title-chip">Senior Director, Product Compliance</div>
+                    <div class="title-chip">Vice President of Compliance</div>
+                </div>
+            </div>
 
-        <!-- Position Titles -->
-        <h2 class="section-title">💼 Position Titles Applied (128)</h2>
-        <div class="positions-list">
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Director-Level & Executive Positions</h3>
-            <div class="position-item">AI Agent Security</div>
-            <div class="position-item">Associate Director of Global Privacy and Compliance</div>
-            <div class="position-item">Associate Director, Global Technology Solutions, Governance, Risk, & Compliance, NA & LATAM</div>
-            <div class="position-item">Director of Compliance</div>
-            <div class="position-item">Director of Security, GRC</div>
-            <div class="position-item">Director of SOX, Business Process (Asset Management & Lease)</div>
-            <div class="position-item">Director Risk Management</div>
-            <div class="position-item">Director, AI Program Manager</div>
-            <div class="position-item">Director, Customer Master Data & Governance</div>
-            <div class="position-item">Director, Governance Risk and Compliance</div>
-            <div class="position-item">Director, Privacy Compliance</div>
-            <div class="position-item">Director, Risk, Data Science & Analytics</div>
-            <div class="position-item">Director, Security AI, Analytics and Automation</div>
-            <div class="position-item">Senior Director, Enterprise IT & SecOps</div>
-            <div class="position-item">Senior Director, GRC Engineering</div>
-            <div class="position-item">Senior Director, Product Compliance</div>
-            <div class="position-item">Vice President of Compliance</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Principal & Senior Manager Roles</h3>
-            <div class="position-item">Cloud Financial Operations & Compliance Senior Manager</div>
-            <div class="position-item">Internal Audit Security Senior Manager</div>
-            <div class="position-item">Internal Audit Security Sr. Mgr</div>
-            <div class="position-item">Principal Business Consultant - Regulatory & Quality (MedTech)</div>
-            <div class="position-item">Principal Compliance Analyst</div>
-            <div class="position-item">Principal Compliance Manager</div>
-            <div class="position-item">Principal Marketing Compliance Manager</div>
-            <div class="position-item">Senior Assurance Manager</div>
-            <div class="position-item">Senior Compliance Manager</div>
-            <div class="position-item">Senior Compliance Officer</div>
-            <div class="position-item">Senior Manager, Governance, Risk, and Compliance (GRC)</div>
-            <div class="position-item">Senior Manager, InfoSec GRC</div>
-            <div class="position-item">Senior Manager, Process & Execution Risk</div>
-            <div class="position-item">Senior Manager, Program Manager</div>
-            <div class="position-item">Senior Manager, Release & Program Management</div>
-            <div class="position-item">Senior Manager, Risk (First Line of Defense)</div>
-            <div class="position-item">Senior Manager, SOX-Business Process</div>
-            <div class="position-item">Senior Manager, Strategic Governance & Policy Analyst</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Program & Project Management</h3>
-            <div class="position-item">Customer Experience PM (EngOps)</div>
-            <div class="position-item">Enterprise Risk Management (ERM) Program Manager</div>
-            <div class="position-item">PCI Compliance Program Manager</div>
-            <div class="position-item">Program Lead, GRC</div>
-            <div class="position-item">Program Manager</div>
-            <div class="position-item">Program Manager II (GRC)</div>
-            <div class="position-item">Program Manager III, Risk and Compliance, Google Ads</div>
-            <div class="position-item">Program and Business Operations Lead</div>
-            <div class="position-item">Security GRC Program Manager, Third Party</div>
-            <div class="position-item">Senior Program Manager - GRC - Compliance Assessments (Hybrid - Seattle)</div>
-            <div class="position-item">Sr. Program Manager - Agentic AI for Azure Supportability</div>
-            <div class="position-item">Strategic Project Lead, Compliance</div>
-            <div class="position-item">Technical Program Manager</div>
-            <div class="position-item">Technical Program Manager - GRC/InfoSec</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Head & Lead Positions</h3>
-            <div class="position-item">AI Governance Lead - Remote</div>
-            <div class="position-item">Compliance & Certifications Lead</div>
-            <div class="position-item">Compliance Tech Lead</div>
-            <div class="position-item">GRC Lead</div>
-            <div class="position-item">Global Privacy Compliance Lead</div>
-            <div class="position-item">Head of GRC</div>
-            <div class="position-item">Head of GRC / Senior Staff GRC Engineer</div>
-            <div class="position-item">Lead Certifications Analyst</div>
-            <div class="position-item">Legal Operations Lead, CLM & Technology</div>
-            <div class="position-item">Product GRC / Trust & Assurance Lead</div>
-            <div class="position-item">Security GRC Program Lead</div>
-            <div class="position-item">Trust and Assurance Lead</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Manager-Level Positions</h3>
-            <div class="position-item">Compliance Manager</div>
-            <div class="position-item">Compliance Manager I</div>
-            <div class="position-item">Compliance Manager, Servicing</div>
-            <div class="position-item">Data Security Services Compliance Manager</div>
-            <div class="position-item">Governance, Risk & Compliance Manager</div>
-            <div class="position-item">Manager, Compliance Assurance</div>
-            <div class="position-item">Manager, Compliance Investigations</div>
-            <div class="position-item">Manager, Compliance Operations Investigations</div>
-            <div class="position-item">Manager, GRC</div>
-            <div class="position-item">Manager, Internal Audit</div>
-            <div class="position-item">Privacy Governance Manager</div>
-            <div class="position-item">Product Manager, Compliance</div>
-            <div class="position-item">Regulatory Compliance Manager</div>
-            <div class="position-item">Regulatory Compliance Snr Manager</div>
-            <div class="position-item">Risk Assurance & Control Testing Manager</div>
-            <div class="position-item">Risk Manager/Senior Negotiator - State, Local & Higher Education</div>
-            <div class="position-item">Senior Product Manager, GRC</div>
-            <div class="position-item">Strategic Support Operations Manager</div>
-            <div class="position-item">Third-Party Compliance Manager</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">AI & Emerging Technology Focus</h3>
-            <div class="position-item">AI Governance & Security Architect</div>
-            <div class="position-item">AI Governance Specialist Position</div>
-            <div class="position-item">AI Risk & Compliance Expert</div>
-            <div class="position-item">GRC AI Subject Matter Expert, Product</div>
-            <div class="position-item">Senior GRC Product Manager – AI‑Powered Compliance</div>
-            <div class="position-item">Staff Applied AI Engineer (GRC)</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Analyst & Specialist Roles</h3>
-            <div class="position-item">Compliance Analyst</div>
-            <div class="position-item">Compliance Advisor, Remote</div>
-            <div class="position-item">Compliance Specialist</div>
-            <div class="position-item">Compliance Specialist, GRCP</div>
-            <div class="position-item">GRC Analyst</div>
-            <div class="position-item">Governance, Risk, and Compliance Analyst III</div>
-            <div class="position-item">Governance, Risk, and Compliance Specialist - Customer Assurance</div>
-            <div class="position-item">Policy & Procedure Analyst</div>
-            <div class="position-item">Process Compliance and Governance Analyst</div>
-            <div class="position-item">Regulatory Compliance Specialist 3</div>
-            <div class="position-item">Security Governance Risk & Compliance (GRC) Analyst</div>
-            <div class="position-item">Senior Associate, GRC Risk Transformation</div>
-            <div class="position-item">Senior Compliance & GRC Program Analyst</div>
-            <div class="position-item">Senior GRC Analyst</div>
-            <div class="position-item">Senior Risk & Compliance Engineer</div>
-            <div class="position-item">Senior Staff Analyst, GRC</div>
-            <div class="position-item">Sr Cyber GRC Analyst</div>
-            <div class="position-item">Sr. Compliance Principal</div>
-            <div class="position-item">Sr. IT Risk and Compliance Analyst</div>
-            <div class="position-item">Staff Security Compliance Analyst - IntelliScript</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Staff & Senior Engineer/Architect Roles</h3>
-            <div class="position-item">Compliance Automation Engineer</div>
-            <div class="position-item">Senior Risk Manager, Audit, Finance Operations Risk, Governance, & Experience</div>
-            <div class="position-item">Staff Governance, Rick & Compliance</div>
-            <div class="position-item">Staff Security Engineer, Vulnerability Operations</div>
-            <div class="position-item">Staff Security Program Manager</div>
-            <div class="position-item">Staff Security Risk & Compliance Program Manager (Insider Threat)</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Specialized Compliance & Audit</h3>
-            <div class="position-item">AML PM</div>
-            <div class="position-item">Compliance ConMon (AMER) Principal PM</div>
-            <div class="position-item">Federal Compliance, Security Technical Program Manager</div>
-            <div class="position-item">Member of Compliance, TPRM</div>
-            <div class="position-item">Product Lifecycle Manager – Security & Compliance Certifications</div>
-            <div class="position-item">Quality & Regulatory Operations Lead Position</div>
-            <div class="position-item">ServiceNow IRM Compliance SME</div>
-            <div class="position-item">Sr. Disaster Recovery & Compliance Specialist (Remote)</div>
-            <div class="position-item">Sr. Finance Compliance Manager</div>
-            <div class="position-item">Sr. IT SOX Audit & Compliance Manager</div>
-            <div class="position-item">Sr. Manager, Security, Risk & Compliance</div>
-            <div class="position-item">Sr Tech Compliance PM</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Data Governance</h3>
-            <div class="position-item">Cybersecurity GRC Program Manager</div>
-            <div class="position-item">Data Governance Lead-Telecom</div>
-            <div class="position-item">Data Governance Leader</div>
-            
-            <h3 style="color: var(--primary); margin: 20px 0 12px 0; font-size: 18px;">Operations & Business Roles</h3>
-            <div class="position-item">Business Operations Lead</div>
-        </div>
+            <div class="category-section">
+                <h3 class="category-title">Senior Leadership <span class="count-badge">(15)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Cloud Financial Operations & Compliance Senior Manager</div>
+                    <div class="title-chip">Compliance ConMon (AMER) Principal PM</div>
+                    <div class="title-chip">Principal Business Consultant - Regulatory & Quality (MedTech)</div>
+                    <div class="title-chip">Principal Compliance Analyst</div>
+                    <div class="title-chip">Principal Compliance Manager</div>
+                    <div class="title-chip">Principal Marketing Compliance Manager</div>
+                    <div class="title-chip">Senior Manager, Governance, Risk, and Compliance (GRC)</div>
+                    <div class="title-chip">Senior Manager, InfoSec GRC</div>
+                    <div class="title-chip">Senior Manager, Process & Execution Risk</div>
+                    <div class="title-chip">Senior Manager, Program Manager</div>
+                    <div class="title-chip">Senior Manager, Release & Program Management</div>
+                    <div class="title-chip">Senior Manager, Risk (First Line of Defense)</div>
+                    <div class="title-chip">Senior Manager, Strategic Governance & Policy Analyst</div>
+                    <div class="title-chip">Sr. Compliance Principal</div>
+                    <div class="title-chip">Sr. Manager, Security, Risk & Compliance</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Program & Product Management <span class="count-badge">(19)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Customer Experience PM (EngOps)</div>
+                    <div class="title-chip">Cybersecurity GRC Program Manager</div>
+                    <div class="title-chip">Enterprise Risk Management (ERM) Program Manager</div>
+                    <div class="title-chip">Federal Compliance, Security Technical Program Manager</div>
+                    <div class="title-chip">Job Application for Staff Program Manager - Security Compliance Programs at Zscaler</div>
+                    <div class="title-chip">PCI Compliance Program Manager</div>
+                    <div class="title-chip">Product Manager, Compliance</div>
+                    <div class="title-chip">Program Lead, GRC</div>
+                    <div class="title-chip">Program Manager II (GRC)</div>
+                    <div class="title-chip">Program Manager III, Risk and Compliance, Google Ads</div>
+                    <div class="title-chip">Security GRC Program Lead</div>
+                    <div class="title-chip">Security GRC Program Manager, Third Party</div>
+                    <div class="title-chip">Senior GRC Product Manager – AI‑Powered Compliance</div>
+                    <div class="title-chip">Senior Product Manager, GRC</div>
+                    <div class="title-chip">Senior Program Manager - GRC - Compliance Assessments (Hybrid - Seattle)</div>
+                    <div class="title-chip">Staff Security Risk & Compliance Program Manager (Insider Threat)</div>
+                    <div class="title-chip">Strategic Project Lead, Compliance</div>
+                    <div class="title-chip">Technical Program Manager</div>
+                    <div class="title-chip">Technical Program Manager - GRC/InfoSec</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">AI & Governance Focus <span class="count-badge">(15)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">AI Agent Security | GRC Manager | Zenity</div>
+                    <div class="title-chip">AI Governance & Security Architect</div>
+                    <div class="title-chip">AI Governance Lead - Remote</div>
+                    <div class="title-chip">AI Governance Specialist Position</div>
+                    <div class="title-chip">AI Risk & Compliance Expert</div>
+                    <div class="title-chip">Data Governance Lead-Telecom</div>
+                    <div class="title-chip">Data Governance Leader</div>
+                    <div class="title-chip">GRC AI Subject Matter Expert, Product</div>
+                    <div class="title-chip">Governance, Risk & Compliance Manager</div>
+                    <div class="title-chip">Governance, Risk, and Compliance Analyst III</div>
+                    <div class="title-chip">Privacy Governance Manager</div>
+                    <div class="title-chip">Process Compliance and Governance Analyst</div>
+                    <div class="title-chip">Security Governance Risk & Compliance (GRC) Analyst</div>
+                    <div class="title-chip">Staff Applied AI Engineer (GRC)</div>
+                    <div class="title-chip">Staff Governance, Rick & Compliance</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Compliance & Risk Management <span class="count-badge">(36)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Compliance & Certifications Lead</div>
+                    <div class="title-chip">Compliance Advisor, Remote</div>
+                    <div class="title-chip">Compliance Analyst</div>
+                    <div class="title-chip">Compliance Automation Engineer</div>
+                    <div class="title-chip">Compliance Manager</div>
+                    <div class="title-chip">Compliance Manager I</div>
+                    <div class="title-chip">Compliance Manager, Servicing</div>
+                    <div class="title-chip">Compliance Specialist</div>
+                    <div class="title-chip">Compliance Specialist, GRCP</div>
+                    <div class="title-chip">Compliance Tech Lead</div>
+                    <div class="title-chip">Data Security Services Compliance Manager</div>
+                    <div class="title-chip">GRC Analyst</div>
+                    <div class="title-chip">GRC Lead</div>
+                    <div class="title-chip">Internal Audit Security Sr. Mgr</div>
+                    <div class="title-chip">Manager, Compliance Investigations</div>
+                    <div class="title-chip">Manager, Compliance Operations Investigations</div>
+                    <div class="title-chip">Manager, GRC</div>
+                    <div class="title-chip">Member of Compliance, TPRM</div>
+                    <div class="title-chip">Product GRC / Trust & Assurance Lead</div>
+                    <div class="title-chip">Product Lifecycle Manager – Security & Compliance Certifications</div>
+                    <div class="title-chip">Quality & Regulatory Operations Lead Position</div>
+                    <div class="title-chip">Regulatory Compliance Manager</div>
+                    <div class="title-chip">Risk Manager/Senior Negotiator - State, Local & Higher Education</div>
+                    <div class="title-chip">Senior Associate, GRC Risk Transformation</div>
+                    <div class="title-chip">Senior Compliance & GRC Program Analyst</div>
+                    <div class="title-chip">Senior Compliance Manager</div>
+                    <div class="title-chip">Senior Compliance Officer</div>
+                    <div class="title-chip">Senior GRC Analyst</div>
+                    <div class="title-chip">Senior Risk & Compliance Engineer</div>
+                    <div class="title-chip">Senior Staff Analyst, GRC</div>
+                    <div class="title-chip">ServiceNow IRM Compliance SME</div>
+                    <div class="title-chip">Sr Tech Compliance PM</div>
+                    <div class="title-chip">Sr. IT Risk and Compliance Analyst</div>
+                    <div class="title-chip">Sr. IT SOX Audit & Compliance Manager</div>
+                    <div class="title-chip">Staff Security Compliance Analyst - IntelliScript</div>
+                    <div class="title-chip">Third-Party Compliance Manager</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Technical & Engineering <span class="count-badge">(1)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Staff Security Engineer, Vulnerability Operations</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Analyst & Specialist <span class="count-badge">(2)</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Lead Certifications Analyst</div>
+                    <div class="title-chip">Policy & Procedure Analyst</div>
+                </div>
+            </div>
+
+
+        <!-- Companies by Industry -->
+        <h2 class="section-title">🏢 Target Companies by Industry Sector</h2>
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Cloud & Infrastructure <span class="count-badge">(8)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">Amazon</div>
+                    <div class="company-chip">Amazon Prime Air</div>
+                    <div class="company-chip">CoreWeave</div>
+                    <div class="company-chip">F5</div>
+                    <div class="company-chip">Google</div>
+                    <div class="company-chip">Microsoft</div>
+                    <div class="company-chip">NVIDIA</div>
+                    <div class="company-chip">Oracle</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Enterprise Software & SaaS <span class="count-badge">(23)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">6sense(Growth-stageB2BSaaS)</div>
+                    <div class="company-chip">Airtable</div>
+                    <div class="company-chip">Amplitude</div>
+                    <div class="company-chip">Asana</div>
+                    <div class="company-chip">Atlassian</div>
+                    <div class="company-chip">Avalara</div>
+                    <div class="company-chip">Confluent</div>
+                    <div class="company-chip">Docusign</div>
+                    <div class="company-chip">Figma</div>
+                    <div class="company-chip">FloQast</div>
+                    <div class="company-chip">GrafanaLabs</div>
+                    <div class="company-chip">Hubspot</div>
+                    <div class="company-chip">Kyriba</div>
+                    <div class="company-chip">MediaAlpha</div>
+                    <div class="company-chip">Ncontracts</div>
+                    <div class="company-chip">Teradata</div>
+                    <div class="company-chip">Twilio</div>
+                    <div class="company-chip">VeevaSystems</div>
+                    <div class="company-chip">Vercel</div>
+                    <div class="company-chip">VitalhubCorp</div>
+                    <div class="company-chip">insightsoftware</div>
+                    <div class="company-chip">interface.ai</div>
+                    <div class="company-chip">phData</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>FinTech & Financial Services <span class="count-badge">(20)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">Affirm</div>
+                    <div class="company-chip">Allstate</div>
+                    <div class="company-chip">AnchorageDigital</div>
+                    <div class="company-chip">BECU</div>
+                    <div class="company-chip">BILL</div>
+                    <div class="company-chip">Blackstone Talent Group</div>
+                    <div class="company-chip">Block</div>
+                    <div class="company-chip">CIBC</div>
+                    <div class="company-chip">Circle</div>
+                    <div class="company-chip">Coinbase</div>
+                    <div class="company-chip">Evergreen Home Loans</div>
+                    <div class="company-chip">Experian</div>
+                    <div class="company-chip">GreenDot</div>
+                    <div class="company-chip">MeridianLink</div>
+                    <div class="company-chip">Paxos</div>
+                    <div class="company-chip">Ripple</div>
+                    <div class="company-chip">Stripe</div>
+                    <div class="company-chip">Symetra</div>
+                    <div class="company-chip">Upstart</div>
+                    <div class="company-chip">Wrapbook</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Security & Compliance <span class="count-badge">(8)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">CrowdStrike</div>
+                    <div class="company-chip">Entrust</div>
+                    <div class="company-chip">Forta</div>
+                    <div class="company-chip">SecureCodeWarrior</div>
+                    <div class="company-chip">Vanta</div>
+                    <div class="company-chip">Virtru</div>
+                    <div class="company-chip">Zenity</div>
+                    <div class="company-chip">Zscaler</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Healthcare & Life Sciences <span class="count-badge">(13)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">Aledade</div>
+                    <div class="company-chip">BALTGroup(Balt)</div>
+                    <div class="company-chip">Baylor Scott & White Health</div>
+                    <div class="company-chip">BeiGene(BeOne)</div>
+                    <div class="company-chip">CardinalHealth</div>
+                    <div class="company-chip">GlobalCommercialJazzPharma</div>
+                    <div class="company-chip">HealthInTech</div>
+                    <div class="company-chip">IncludedHealth</div>
+                    <div class="company-chip">Milliman(IntelliScriptDivision)</div>
+                    <div class="company-chip">PrecisionMedicineGroup</div>
+                    <div class="company-chip">Radformation</div>
+                    <div class="company-chip">SwordHealth</div>
+                    <div class="company-chip">UnileverPrestige</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>E-commerce & Consumer Tech <span class="count-badge">(9)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">AirBnB</div>
+                    <div class="company-chip">Angi</div>
+                    <div class="company-chip">DoorDash</div>
+                    <div class="company-chip">Expedia Group</div>
+                    <div class="company-chip">Meta</div>
+                    <div class="company-chip">Nordstrom</div>
+                    <div class="company-chip">RealPage</div>
+                    <div class="company-chip">SnapChat</div>
+                    <div class="company-chip">Zillow</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Consulting & Services <span class="count-badge">(10)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">CypressHCM</div>
+                    <div class="company-chip">DecisionPointCorporation</div>
+                    <div class="company-chip">Deloitte</div>
+                    <div class="company-chip">HorizontalTalent</div>
+                    <div class="company-chip">IBSS</div>
+                    <div class="company-chip">KPMGUS</div>
+                    <div class="company-chip">KornFerry</div>
+                    <div class="company-chip">Polestar Analytics</div>
+                    <div class="company-chip">Signify Technology</div>
+                    <div class="company-chip">WilsonSonsini</div>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h3 class="industry-title"><span class="industry-icon">●</span>Emerging Technology <span class="count-badge">(22)</span></h3>
+                <div class="companies-grid">
+                    <div class="company-chip">AlphaSense</div>
+                    <div class="company-chip">AnthologyInc</div>
+                    <div class="company-chip">BEMO</div>
+                    <div class="company-chip">Boeing</div>
+                    <div class="company-chip">D-WaveQuantum</div>
+                    <div class="company-chip">DolbyLaboratories</div>
+                    <div class="company-chip">ExtremeNetworks</div>
+                    <div class="company-chip">Fortress</div>
+                    <div class="company-chip">Groq</div>
+                    <div class="company-chip">Groq(Trust&AssuranceLead)</div>
+                    <div class="company-chip">Gusto</div>
+                    <div class="company-chip">Mozilla</div>
+                    <div class="company-chip">Perplexity</div>
+                    <div class="company-chip">Phaidra</div>
+                    <div class="company-chip">Popl</div>
+                    <div class="company-chip">RTX</div>
+                    <div class="company-chip">SenecaResourcesCompanyLLC</div>
+                    <div class="company-chip">Serve</div>
+                    <div class="company-chip">Waymo</div>
+                    <div class="company-chip">WingAviation</div>
+                    <div class="company-chip">Zania</div>
+                    <div class="company-chip">Ziply Fiber</div>
+                </div>
+            </div>
+
+
     </div>
 
-    <!-- Floating Navigation -->
-    <nav class="floating-nav" id="floatingNav" aria-label="Quick navigation menu">
-        <div class="nav-menu" id="navMenu" role="menu">
-            <button class="nav-menu-item" onclick="navigateTo('index.html')" role="menuitem" aria-label="Navigate to Home">
-                <span class="nav-menu-icon" aria-hidden="true">🏠</span>
-                <span>Home</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('index.html#experience')" role="menuitem" aria-label="Navigate to Experience">
-                <span class="nav-menu-icon" aria-hidden="true">💼</span>
-                <span>Experience</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('index.html#certifications')" role="menuitem" aria-label="Navigate to Credentials">
-                <span class="nav-menu-icon" aria-hidden="true">🎓</span>
-                <span>Credentials</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('index.html#expertise')" role="menuitem" aria-label="Navigate to Impact">
-                <span class="nav-menu-icon" aria-hidden="true">💡</span>
-                <span>Impact</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('index.html#references')" role="menuitem" aria-label="Navigate to Testimonials">
-                <span class="nav-menu-icon" aria-hidden="true">⭐</span>
-                <span>Testimonials</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('star-stories.html')" role="menuitem" aria-label="Open STAR Stories">
-                <span class="nav-menu-icon" aria-hidden="true">🌟</span>
-                <span>STAR Stories</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('iso-matrix.html')" role="menuitem" aria-label="Navigate to ISO Matrix">
-                <span class="nav-menu-icon" aria-hidden="true">📊</span>
-                <span>ISO Matrix</span>
-            </button>
-            <button class="nav-menu-item" onclick="navigateTo('index.html#volunteer')" role="menuitem" aria-label="Navigate to Volunteer">
-                <span class="nav-menu-icon" aria-hidden="true">🤝</span>
-                <span>Volunteer</span>
-            </button>
-            <button class="nav-menu-item active" onclick="navigateTo('stats.html')" role="menuitem" aria-label="View Stats">
-                <span class="nav-menu-icon" aria-hidden="true">📈</span>
-                <span>Stats</span>
-            </button>
-        </div>
-        <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
-            <span aria-hidden="true">☰</span>
-        </button>
-    </nav>
+    <footer>
+        <p>&copy; 2026 Melissa Witte-Spencer. All rights reserved. | Last Updated: January 10, 2026</p>
+    </footer>
 
     <script>
-        // Navigation helper function
-        function navigateTo(url) {
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+            if (newTheme === 'dark') {
+                icon.textContent = '☀️';
+                label.textContent = 'Light';
+            } else {
+                icon.textContent = '🌙';
+                label.textContent = 'Dark';
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        }
+
+        function toggleNavMenu() {
             const menu = document.getElementById('navMenu');
-            const toggle = document.getElementById('navToggle');
-            
-            // Close menu first
-            menu.classList.remove('show');
-            toggle.setAttribute('aria-expanded', 'false');
-            
-            // Navigate after brief delay to ensure menu closes
+            const hamburger = document.querySelector('.hamburger-btn');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function navigateTo(page) {
+            const menu = document.getElementById('navMenu');
+            menu.classList.remove('active');
+            document.querySelector('.hamburger-btn').classList.remove('active');
             setTimeout(() => {
-                window.location.href = url;
+                window.location.href = page;
             }, 100);
         }
 
-        // Navigation menu toggle
-        function toggleNavMenu() {
-            const menu = document.getElementById('navMenu');
-            const toggle = document.getElementById('navToggle');
-            const isExpanded = menu.classList.contains('show');
-            
-            menu.classList.toggle('show');
-            toggle.setAttribute('aria-expanded', !isExpanded);
-        }
-
-        // Theme toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-            const themeLabel = document.getElementById('themeLabel');
-            const currentTheme = html.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '🌙';
-                themeLabel.textContent = 'Dark';
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                themeLabel.textContent = 'Light';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Load saved theme
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-            const themeLabel = document.getElementById('themeLabel');
-            
+        // Apply saved theme on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
             if (savedTheme === 'dark') {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                themeLabel.textContent = 'Light';
-            }
-
-            // Show floating nav
-            const floatingNav = document.getElementById('floatingNav');
-            if (floatingNav) {
-                floatingNav.classList.add('visible');
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const floatingNav = document.getElementById('floatingNav');
-            const navMenu = document.getElementById('navMenu');
-            const navToggle = document.getElementById('navToggle');
-            
-            if (floatingNav && !floatingNav.contains(event.target)) {
-                navMenu.classList.remove('show');
-                navToggle.setAttribute('aria-expanded', 'false');
+                icon.textContent = '☀️';
+                label.textContent = 'Light';
             }
         });
     </script>
