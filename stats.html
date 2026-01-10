@@ -82,40 +82,40 @@
             border-bottom: 3px solid var(--primary);
         }
 
-        /* Timeline - Left to Right */
+        /* Timeline - Monthly View */
         .timeline-chart {
             background: var(--bg-white);
             padding: 30px;
             border-radius: 12px;
             border: 2px solid var(--border);
             margin-bottom: 50px;
-            overflow-x: auto;
         }
 
         .timeline-bar {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
         }
 
-        .timeline-date {
-            font-weight: 600;
+        .timeline-month {
+            font-weight: 700;
             color: var(--text);
-            font-size: 13px;
-            min-width: 80px;
+            font-size: 14px;
+            min-width: 100px;
         }
 
         .timeline-visual {
-            height: 40px;
+            flex: 1;
+            height: 44px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             border-radius: 8px;
             display: flex;
             align-items: center;
             padding: 0 16px;
             color: white;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 15px;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
@@ -129,7 +129,7 @@
             white-space: nowrap;
         }
 
-        /* Position Titles - Categorized */
+        /* Position Titles - Categorized by Role Similarity */
         .category-section {
             margin-bottom: 40px;
         }
@@ -226,6 +226,16 @@
             .titles-grid, .companies-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .timeline-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            
+            .timeline-month {
+                min-width: auto;
+            }
         }
     </style>
 </head>
@@ -289,128 +299,32 @@
         </div>
 
         <!-- Application Timeline -->
-        <h2 class="section-title">📈 Application Activity Timeline</h2>
+        <h2 class="section-title">📈 Application Activity by Month</h2>
         <div class="timeline-chart">
             <div class="timeline-bar">
-                <div class="timeline-date">11/24/25</div>
-                <div class="timeline-visual" style="width: 63%;">
-                    <span class="timeline-count">14 apps</span>
+                <div class="timeline-month">Nov 2025</div>
+                <div class="timeline-visual" style="width: 31%;">
+                    <span class="timeline-count">31 apps</span>
                 </div>
             </div>
             <div class="timeline-bar">
-                <div class="timeline-date">11/29/25</div>
-                <div class="timeline-visual" style="width: 27%;">
-                    <span class="timeline-count">6 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">11/30/25</div>
-                <div class="timeline-visual" style="width: 50%;">
-                    <span class="timeline-count">11 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/04/25</div>
-                <div class="timeline-visual" style="width: 22%;">
-                    <span class="timeline-count">5 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/13/25</div>
+                <div class="timeline-month">Dec 2025</div>
                 <div class="timeline-visual" style="width: 100%;">
-                    <span class="timeline-count">22 apps</span>
+                    <span class="timeline-count">97 apps</span>
                 </div>
             </div>
             <div class="timeline-bar">
-                <div class="timeline-date">12/14/25</div>
-                <div class="timeline-visual" style="width: 27%;">
-                    <span class="timeline-count">6 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/15/25</div>
-                <div class="timeline-visual" style="width: 13%;">
-                    <span class="timeline-count">3 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/16/25</div>
-                <div class="timeline-visual" style="width: 22%;">
-                    <span class="timeline-count">5 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/21/25</div>
-                <div class="timeline-visual" style="width: 59%;">
-                    <span class="timeline-count">13 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/22/25</div>
-                <div class="timeline-visual" style="width: 9%;">
-                    <span class="timeline-count">2 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/23/25</div>
-                <div class="timeline-visual" style="width: 22%;">
-                    <span class="timeline-count">5 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/24/25</div>
-                <div class="timeline-visual" style="width: 86%;">
-                    <span class="timeline-count">19 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/26/25</div>
-                <div class="timeline-visual" style="width: 31%;">
-                    <span class="timeline-count">7 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/27/25</div>
-                <div class="timeline-visual" style="width: 4%;">
-                    <span class="timeline-count">1 app</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/29/25</div>
-                <div class="timeline-visual" style="width: 27%;">
-                    <span class="timeline-count">6 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">12/30/25</div>
-                <div class="timeline-visual" style="width: 13%;">
-                    <span class="timeline-count">3 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">01/06/26</div>
-                <div class="timeline-visual" style="width: 9%;">
-                    <span class="timeline-count">2 apps</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">01/07/26</div>
-                <div class="timeline-visual" style="width: 4%;">
-                    <span class="timeline-count">1 app</span>
-                </div>
-            </div>
-            <div class="timeline-bar">
-                <div class="timeline-date">01/08/26</div>
-                <div class="timeline-visual" style="width: 31%;">
-                    <span class="timeline-count">7 apps</span>
+                <div class="timeline-month">Jan 2026</div>
+                <div class="timeline-visual" style="width: 10%;">
+                    <span class="timeline-count">10 apps</span>
                 </div>
             </div>
         </div>
 
-        <!-- Position Titles by Category -->
-        <h2 class="section-title">💼 Role Alignment & Strategic Targeting</h2>
+        <!-- Position Titles by Role Similarity -->
+        <h2 class="section-title">💼 Roles by Type & Function</h2>
             <div class="category-section">
-                <h3 class="category-title">Executive & Director Level <span class="count-badge">(15)</span></h3>
+                <h3 class="category-title">Director Level <span class="count-badge">13</span></h3>
                 <div class="titles-grid">
                     <div class="title-chip">Associate Director of Global Privacy and Compliance</div>
                     <div class="title-chip">Associate Director, Global Technology Solutions, Governance, Risk, & Compliance, NA & LATAM</div>
@@ -424,14 +338,30 @@
                     <div class="title-chip">Director, Privacy Compliance</div>
                     <div class="title-chip">Director, Risk, Data Science & Analytics</div>
                     <div class="title-chip">Director, Security AI, Analytics and Automation</div>
-                    <div class="title-chip">Head of GRC / Senior Staff GRC Engineer</div>
                     <div class="title-chip">Senior Director, Product Compliance</div>
-                    <div class="title-chip">Vice President of Compliance</div>
                 </div>
             </div>
 
             <div class="category-section">
-                <h3 class="category-title">Senior Leadership <span class="count-badge">(15)</span></h3>
+                <h3 class="category-title">Technical Program Manager <span class="count-badge">3</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Federal Compliance, Security Technical Program Manager</div>
+                    <div class="title-chip">Technical Program Manager</div>
+                    <div class="title-chip">Technical Program Manager - GRC/InfoSec</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Compliance Program Manager <span class="count-badge">3</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Job Application for Staff Program Manager - Security Compliance Programs at Zscaler</div>
+                    <div class="title-chip">PCI Compliance Program Manager</div>
+                    <div class="title-chip">Staff Security Risk & Compliance Program Manager (Insider Threat)</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Senior Manager & Principal <span class="count-badge">15</span></h3>
                 <div class="titles-grid">
                     <div class="title-chip">Cloud Financial Operations & Compliance Senior Manager</div>
                     <div class="title-chip">Compliance ConMon (AMER) Principal PM</div>
@@ -452,34 +382,29 @@
             </div>
 
             <div class="category-section">
-                <h3 class="category-title">Program & Product Management <span class="count-badge">(19)</span></h3>
+                <h3 class="category-title">GRC Manager <span class="count-badge">4</span></h3>
                 <div class="titles-grid">
-                    <div class="title-chip">Customer Experience PM (EngOps)</div>
-                    <div class="title-chip">Cybersecurity GRC Program Manager</div>
-                    <div class="title-chip">Enterprise Risk Management (ERM) Program Manager</div>
-                    <div class="title-chip">Federal Compliance, Security Technical Program Manager</div>
-                    <div class="title-chip">Job Application for Staff Program Manager - Security Compliance Programs at Zscaler</div>
-                    <div class="title-chip">PCI Compliance Program Manager</div>
-                    <div class="title-chip">Product Manager, Compliance</div>
-                    <div class="title-chip">Program Lead, GRC</div>
-                    <div class="title-chip">Program Manager II (GRC)</div>
-                    <div class="title-chip">Program Manager III, Risk and Compliance, Google Ads</div>
-                    <div class="title-chip">Security GRC Program Lead</div>
-                    <div class="title-chip">Security GRC Program Manager, Third Party</div>
-                    <div class="title-chip">Senior GRC Product Manager – AI‑Powered Compliance</div>
+                    <div class="title-chip">AI Agent Security | GRC Manager | Zenity</div>
+                    <div class="title-chip">Governance, Risk & Compliance Manager</div>
+                    <div class="title-chip">Manager, GRC</div>
                     <div class="title-chip">Senior Product Manager, GRC</div>
-                    <div class="title-chip">Senior Program Manager - GRC - Compliance Assessments (Hybrid - Seattle)</div>
-                    <div class="title-chip">Staff Security Risk & Compliance Program Manager (Insider Threat)</div>
-                    <div class="title-chip">Strategic Project Lead, Compliance</div>
-                    <div class="title-chip">Technical Program Manager</div>
-                    <div class="title-chip">Technical Program Manager - GRC/InfoSec</div>
                 </div>
             </div>
 
             <div class="category-section">
-                <h3 class="category-title">AI & Governance Focus <span class="count-badge">(15)</span></h3>
+                <h3 class="category-title">Security & Risk Manager <span class="count-badge">5</span></h3>
                 <div class="titles-grid">
-                    <div class="title-chip">AI Agent Security | GRC Manager | Zenity</div>
+                    <div class="title-chip">Cybersecurity GRC Program Manager</div>
+                    <div class="title-chip">Data Security Services Compliance Manager</div>
+                    <div class="title-chip">Product Lifecycle Manager – Security & Compliance Certifications</div>
+                    <div class="title-chip">Risk Manager/Senior Negotiator - State, Local & Higher Education</div>
+                    <div class="title-chip">Security GRC Program Manager, Third Party</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">AI & Governance Specialist <span class="count-badge">9</span></h3>
+                <div class="titles-grid">
                     <div class="title-chip">AI Governance & Security Architect</div>
                     <div class="title-chip">AI Governance Lead - Remote</div>
                     <div class="title-chip">AI Governance Specialist Position</div>
@@ -487,70 +412,84 @@
                     <div class="title-chip">Data Governance Lead-Telecom</div>
                     <div class="title-chip">Data Governance Leader</div>
                     <div class="title-chip">GRC AI Subject Matter Expert, Product</div>
-                    <div class="title-chip">Governance, Risk & Compliance Manager</div>
-                    <div class="title-chip">Governance, Risk, and Compliance Analyst III</div>
                     <div class="title-chip">Privacy Governance Manager</div>
-                    <div class="title-chip">Process Compliance and Governance Analyst</div>
-                    <div class="title-chip">Security Governance Risk & Compliance (GRC) Analyst</div>
                     <div class="title-chip">Staff Applied AI Engineer (GRC)</div>
-                    <div class="title-chip">Staff Governance, Rick & Compliance</div>
                 </div>
             </div>
 
             <div class="category-section">
-                <h3 class="category-title">Compliance & Risk Management <span class="count-badge">(36)</span></h3>
+                <h3 class="category-title">Compliance Analyst & Specialist <span class="count-badge">9</span></h3>
                 <div class="titles-grid">
-                    <div class="title-chip">Compliance & Certifications Lead</div>
                     <div class="title-chip">Compliance Advisor, Remote</div>
                     <div class="title-chip">Compliance Analyst</div>
+                    <div class="title-chip">Compliance Specialist</div>
+                    <div class="title-chip">Compliance Specialist, GRCP</div>
+                    <div class="title-chip">GRC Analyst</div>
+                    <div class="title-chip">Governance, Risk, and Compliance Analyst III</div>
+                    <div class="title-chip">Senior GRC Analyst</div>
+                    <div class="title-chip">Sr. IT Risk and Compliance Analyst</div>
+                    <div class="title-chip">Staff Security Compliance Analyst - IntelliScript</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Lead & Head Roles <span class="count-badge">14</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">Business Operations Lead, Growth at Upstart</div>
+                    <div class="title-chip">Compliance & Certifications Lead</div>
+                    <div class="title-chip">Compliance Tech Lead</div>
+                    <div class="title-chip">GRC Lead</div>
+                    <div class="title-chip">Head of GRC / Senior Staff GRC Engineer</div>
+                    <div class="title-chip">Lead Certifications Analyst</div>
+                    <div class="title-chip">Legal Operations Lead, CLM & Technology</div>
+                    <div class="title-chip">Product GRC / Trust & Assurance Lead</div>
+                    <div class="title-chip">Program Lead, GRC</div>
+                    <div class="title-chip">Program and Business Operations Lead</div>
+                    <div class="title-chip">Quality & Regulatory Operations Lead Position</div>
+                    <div class="title-chip">Security GRC Program Lead</div>
+                    <div class="title-chip">Strategic Project Lead, Compliance</div>
+                    <div class="title-chip">Trust and Assurance Lead</div>
+                </div>
+            </div>
+
+            <div class="category-section">
+                <h3 class="category-title">Other Roles <span class="count-badge">35</span></h3>
+                <div class="titles-grid">
+                    <div class="title-chip">AML PM</div>
                     <div class="title-chip">Compliance Automation Engineer</div>
                     <div class="title-chip">Compliance Manager</div>
                     <div class="title-chip">Compliance Manager I</div>
                     <div class="title-chip">Compliance Manager, Servicing</div>
-                    <div class="title-chip">Compliance Specialist</div>
-                    <div class="title-chip">Compliance Specialist, GRCP</div>
-                    <div class="title-chip">Compliance Tech Lead</div>
-                    <div class="title-chip">Data Security Services Compliance Manager</div>
-                    <div class="title-chip">GRC Analyst</div>
-                    <div class="title-chip">GRC Lead</div>
+                    <div class="title-chip">Customer Experience PM (EngOps)</div>
+                    <div class="title-chip">Enterprise Risk Management (ERM) Program Manager</div>
                     <div class="title-chip">Internal Audit Security Sr. Mgr</div>
                     <div class="title-chip">Manager, Compliance Investigations</div>
                     <div class="title-chip">Manager, Compliance Operations Investigations</div>
-                    <div class="title-chip">Manager, GRC</div>
                     <div class="title-chip">Member of Compliance, TPRM</div>
-                    <div class="title-chip">Product GRC / Trust & Assurance Lead</div>
-                    <div class="title-chip">Product Lifecycle Manager – Security & Compliance Certifications</div>
-                    <div class="title-chip">Quality & Regulatory Operations Lead Position</div>
+                    <div class="title-chip">Policy & Procedure Analyst</div>
+                    <div class="title-chip">Process Compliance and Governance Analyst</div>
+                    <div class="title-chip">Product Manager, Compliance</div>
+                    <div class="title-chip">Program Manager II (GRC)</div>
+                    <div class="title-chip">Program Manager III, Risk and Compliance, Google Ads</div>
                     <div class="title-chip">Regulatory Compliance Manager</div>
-                    <div class="title-chip">Risk Manager/Senior Negotiator - State, Local & Higher Education</div>
+                    <div class="title-chip">Security Governance Risk & Compliance (GRC) Analyst</div>
                     <div class="title-chip">Senior Associate, GRC Risk Transformation</div>
+                    <div class="title-chip">Senior Assurance Manager</div>
                     <div class="title-chip">Senior Compliance & GRC Program Analyst</div>
                     <div class="title-chip">Senior Compliance Manager</div>
                     <div class="title-chip">Senior Compliance Officer</div>
-                    <div class="title-chip">Senior GRC Analyst</div>
+                    <div class="title-chip">Senior GRC Product Manager – AI‑Powered Compliance</div>
+                    <div class="title-chip">Senior Program Manager - GRC - Compliance Assessments (Hybrid - Seattle)</div>
                     <div class="title-chip">Senior Risk & Compliance Engineer</div>
                     <div class="title-chip">Senior Staff Analyst, GRC</div>
                     <div class="title-chip">ServiceNow IRM Compliance SME</div>
                     <div class="title-chip">Sr Tech Compliance PM</div>
-                    <div class="title-chip">Sr. IT Risk and Compliance Analyst</div>
                     <div class="title-chip">Sr. IT SOX Audit & Compliance Manager</div>
-                    <div class="title-chip">Staff Security Compliance Analyst - IntelliScript</div>
-                    <div class="title-chip">Third-Party Compliance Manager</div>
-                </div>
-            </div>
-
-            <div class="category-section">
-                <h3 class="category-title">Technical & Engineering <span class="count-badge">(1)</span></h3>
-                <div class="titles-grid">
+                    <div class="title-chip">Staff Governance, Rick & Compliance</div>
                     <div class="title-chip">Staff Security Engineer, Vulnerability Operations</div>
-                </div>
-            </div>
-
-            <div class="category-section">
-                <h3 class="category-title">Analyst & Specialist <span class="count-badge">(2)</span></h3>
-                <div class="titles-grid">
-                    <div class="title-chip">Lead Certifications Analyst</div>
-                    <div class="title-chip">Policy & Procedure Analyst</div>
+                    <div class="title-chip">Strategic Support Operations Manager</div>
+                    <div class="title-chip">Third-Party Compliance Manager</div>
+                    <div class="title-chip">Vice President of Compliance</div>
                 </div>
             </div>
 
@@ -558,7 +497,7 @@
         <!-- Companies by Industry -->
         <h2 class="section-title">🏢 Target Companies by Industry Sector</h2>
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Cloud & Infrastructure <span class="count-badge">(8)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Cloud & Infrastructure <span class="count-badge">8</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">Amazon</div>
                     <div class="company-chip">Amazon Prime Air</div>
@@ -572,7 +511,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Enterprise Software & SaaS <span class="count-badge">(23)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Enterprise Software & SaaS <span class="count-badge">23</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">6sense(Growth-stageB2BSaaS)</div>
                     <div class="company-chip">Airtable</div>
@@ -601,7 +540,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>FinTech & Financial Services <span class="count-badge">(20)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>FinTech & Financial Services <span class="count-badge">20</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">Affirm</div>
                     <div class="company-chip">Allstate</div>
@@ -627,7 +566,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Security & Compliance <span class="count-badge">(8)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Security & Compliance <span class="count-badge">8</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">CrowdStrike</div>
                     <div class="company-chip">Entrust</div>
@@ -641,7 +580,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Healthcare & Life Sciences <span class="count-badge">(13)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Healthcare & Life Sciences <span class="count-badge">13</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">Aledade</div>
                     <div class="company-chip">BALTGroup(Balt)</div>
@@ -660,7 +599,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>E-commerce & Consumer Tech <span class="count-badge">(9)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>E-commerce & Consumer Tech <span class="count-badge">9</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">AirBnB</div>
                     <div class="company-chip">Angi</div>
@@ -675,7 +614,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Consulting & Services <span class="count-badge">(10)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Consulting & Services <span class="count-badge">10</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">CypressHCM</div>
                     <div class="company-chip">DecisionPointCorporation</div>
@@ -691,7 +630,7 @@
             </div>
 
             <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>Emerging Technology <span class="count-badge">(22)</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>Emerging Technology <span class="count-badge">22</span></h3>
                 <div class="companies-grid">
                     <div class="company-chip">AlphaSense</div>
                     <div class="company-chip">AnthologyInc</div>

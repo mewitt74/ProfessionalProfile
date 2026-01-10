@@ -1,28 +1,166 @@
 import json
+import openpyxl
+from datetime import datetime
+from collections import defaultdict
 
-# Load optimized data
-with open('certificates/stats_optimized.json') as f:
-    data = json.load(f)
+# Load the workbook to recalculate
+wb = openpyxl.load_workbook('certificates/Resume Submissions.xlsx')
 
-# Generate timeline HTML
+# Get timeline and aggregate by month
+ws_timeline = wb['Sheet1']
+monthly_data = defaultdict(int)
+for row in ws_timeline.iter_rows(min_row=4, values_only=True):
+    if row[0] and isinstance(row[0], datetime) and row[1]:
+        month_key = row[0].strftime('%b %Y')
+        monthly_data[month_key] += int(row[1])
+
+# Sort by date
+sorted_months = sorted(monthly_data.items(), key=lambda x: datetime.strptime(x[0], '%b %Y'))
+max_count = max([count for _, count in sorted_months]) if sorted_months else 1
+
+# Get positions and companies
+ws_data = wb['Sheet2']
+
+# More specific role groupings based on similarity
+positions_by_role = {
+    'Director Level': [],
+    'Technical Program Manager': [],
+    'Compliance Program Manager': [],
+    'Senior Manager & Principal': [],
+    'GRC Manager': [],
+    'Security & Risk Manager': [],
+    'AI & Governance Specialist': [],
+    'Compliance Analyst & Specialist': [],
+    'Lead & Head Roles': [],
+    'Other Roles': []
+}
+
+companies_by_industry = {
+    'Cloud & Infrastructure': [],
+    'Enterprise Software & SaaS': [],
+    'FinTech & Financial Services': [],
+    'Security & Compliance': [],
+    'Healthcare & Life Sciences': [],
+    'E-commerce & Consumer Tech': [],
+    'Consulting & Services': [],
+    'Emerging Technology': []
+}
+
+# Industry mapping
+industry_map = {
+    'Amazon': 'Cloud & Infrastructure', 'Amazon Prime Air': 'Cloud & Infrastructure', 'Google': 'Cloud & Infrastructure',
+    'Microsoft': 'Cloud & Infrastructure', 'CoreWeave': 'Cloud & Infrastructure', 'NVIDIA': 'Cloud & Infrastructure',
+    'Oracle': 'Cloud & Infrastructure', 'F5': 'Cloud & Infrastructure',
+    'Atlassian': 'Enterprise Software & SaaS', 'Docusign': 'Enterprise Software & SaaS', 'Asana': 'Enterprise Software & SaaS',
+    'Hubspot': 'Enterprise Software & SaaS', 'Twilio': 'Enterprise Software & SaaS', 'Avalara': 'Enterprise Software & SaaS',
+    'Teradata': 'Enterprise Software & SaaS', 'VeevaSystems': 'Enterprise Software & SaaS', 'insightsoftware': 'Enterprise Software & SaaS',
+    'Ncontracts': 'Enterprise Software & SaaS', 'Figma': 'Enterprise Software & SaaS', 'GrafanaLabs': 'Enterprise Software & SaaS',
+    'Amplitude': 'Enterprise Software & SaaS', 'Confluent': 'Enterprise Software & SaaS', 'Vercel': 'Enterprise Software & SaaS',
+    'FloQast': 'Enterprise Software & SaaS', '6sense(Growth-stageB2BSaaS)': 'Enterprise Software & SaaS', 'Airtable': 'Enterprise Software & SaaS',
+    'interface.ai': 'Enterprise Software & SaaS', 'MediaAlpha': 'Enterprise Software & SaaS', 'phData': 'Enterprise Software & SaaS',
+    'Kyriba': 'Enterprise Software & SaaS', 'VitalhubCorp': 'Enterprise Software & SaaS',
+    'Affirm': 'FinTech & Financial Services', 'Block': 'FinTech & Financial Services', 'Stripe': 'FinTech & Financial Services',
+    'Coinbase': 'FinTech & Financial Services', 'Circle': 'FinTech & Financial Services', 'Paxos': 'FinTech & Financial Services',
+    'Ripple': 'FinTech & Financial Services', 'AnchorageDigital': 'FinTech & Financial Services', 'GreenDot': 'FinTech & Financial Services',
+    'Upstart': 'FinTech & Financial Services', 'Wrapbook': 'FinTech & Financial Services', 'BILL': 'FinTech & Financial Services',
+    'BECU': 'FinTech & Financial Services', 'Allstate': 'FinTech & Financial Services', 'Symetra': 'FinTech & Financial Services',
+    'CIBC': 'FinTech & Financial Services', 'Blackstone Talent Group': 'FinTech & Financial Services',
+    'Evergreen Home Loans': 'FinTech & Financial Services', 'MeridianLink': 'FinTech & Financial Services', 'Experian': 'FinTech & Financial Services',
+    'CrowdStrike': 'Security & Compliance', 'Zscaler': 'Security & Compliance', 'Vanta': 'Security & Compliance',
+    'SecureCodeWarrior': 'Security & Compliance', 'Zenity': 'Security & Compliance', 'Entrust': 'Security & Compliance',
+    'Virtru': 'Security & Compliance', 'Forta': 'Security & Compliance',
+    'Milliman(IntelliScriptDivision)': 'Healthcare & Life Sciences', 'IncludedHealth': 'Healthcare & Life Sciences',
+    'Baylor Scott & White Health': 'Healthcare & Life Sciences', 'CardinalHealth': 'Healthcare & Life Sciences',
+    'BeiGene(BeOne)': 'Healthcare & Life Sciences', 'GlobalCommercialJazzPharma': 'Healthcare & Life Sciences',
+    'SwordHealth': 'Healthcare & Life Sciences', 'HealthInTech': 'Healthcare & Life Sciences', 'Aledade': 'Healthcare & Life Sciences',
+    'UnileverPrestige': 'Healthcare & Life Sciences', 'PrecisionMedicineGroup': 'Healthcare & Life Sciences',
+    'BALTGroup(Balt)': 'Healthcare & Life Sciences', 'Radformation': 'Healthcare & Life Sciences',
+    'AirBnB': 'E-commerce & Consumer Tech', 'DoorDash': 'E-commerce & Consumer Tech', 'Zillow': 'E-commerce & Consumer Tech',
+    'Expedia Group': 'E-commerce & Consumer Tech', 'SnapChat': 'E-commerce & Consumer Tech', 'Meta': 'E-commerce & Consumer Tech',
+    'Nordstrom': 'E-commerce & Consumer Tech', 'Angi': 'E-commerce & Consumer Tech', 'RealPage': 'E-commerce & Consumer Tech',
+    'Deloitte': 'Consulting & Services', 'KPMGUS': 'Consulting & Services', 'KornFerry': 'Consulting & Services',
+    'WilsonSonsini': 'Consulting & Services', 'HorizontalTalent': 'Consulting & Services', 'CypressHCM': 'Consulting & Services',
+    'DecisionPointCorporation': 'Consulting & Services', 'Signify Technology': 'Consulting & Services',
+    'IBSS': 'Consulting & Services', 'Polestar Analytics': 'Consulting & Services',
+    'D-WaveQuantum': 'Emerging Technology', 'Groq': 'Emerging Technology', 'Perplexity': 'Emerging Technology',
+    'Waymo': 'Emerging Technology', 'WingAviation': 'Emerging Technology', 'Phaidra': 'Emerging Technology',
+    'Zania': 'Emerging Technology', 'Mozilla': 'Emerging Technology', 'Popl': 'Emerging Technology'
+}
+
+total_apps = 0
+unique_companies = set()
+unique_positions = set()
+
+for row in ws_data.iter_rows(min_row=4, values_only=True):
+    if row[1] and row[2]:
+        company = str(row[1]).strip()
+        position = str(row[2]).strip()
+        pos_lower = position.lower()
+        
+        total_apps += 1
+        unique_companies.add(company)
+        unique_positions.add(position)
+        
+        # More specific categorization
+        if any(x in pos_lower for x in ['director of', 'director,', 'director risk', 'director security', 'associate director']):
+            positions_by_role['Director Level'].append(position)
+        elif 'technical program manager' in pos_lower or 'technical pm' in pos_lower or ('program manager' in pos_lower and 'technical' in pos_lower):
+            positions_by_role['Technical Program Manager'].append(position)
+        elif any(x in pos_lower for x in ['compliance program', 'pci compliance program', 'program manager, compliance']):
+            positions_by_role['Compliance Program Manager'].append(position)
+        elif any(x in pos_lower for x in ['senior manager', 'senior director', 'principal', 'sr. manager', 'sr manager']):
+            positions_by_role['Senior Manager & Principal'].append(position)
+        elif 'grc manager' in pos_lower or 'governance, risk & compliance manager' in pos_lower or 'manager, grc' in pos_lower:
+            positions_by_role['GRC Manager'].append(position)
+        elif any(x in pos_lower for x in ['security', 'risk manager', 'risk & compliance', 'cybersecurity']) and 'manager' in pos_lower:
+            positions_by_role['Security & Risk Manager'].append(position)
+        elif any(x in pos_lower for x in ['ai ', 'governance lead', 'governance specialist', 'privacy']):
+            positions_by_role['AI & Governance Specialist'].append(position)
+        elif any(x in pos_lower for x in ['compliance analyst', 'compliance specialist', 'grc analyst', 'compliance advisor']):
+            positions_by_role['Compliance Analyst & Specialist'].append(position)
+        elif any(x in pos_lower for x in ['lead', 'head of']):
+            positions_by_role['Lead & Head Roles'].append(position)
+        else:
+            positions_by_role['Other Roles'].append(position)
+        
+        # Categorize company
+        if company in industry_map:
+            companies_by_industry[industry_map[company]].append(company)
+        else:
+            companies_by_industry['Emerging Technology'].append(company)
+
+# Remove duplicates and sort
+for role in positions_by_role:
+    positions_by_role[role] = sorted(set(positions_by_role[role]))
+
+for ind in companies_by_industry:
+    companies_by_industry[ind] = sorted(set(companies_by_industry[ind]))
+
+wb.close()
+
+# Calculate totals for cards
+total_companies = len(unique_companies)
+total_positions = len(unique_positions)
+
+# Generate timeline HTML (monthly aggregation)
 timeline_html = ""
-for entry in data['timeline']:
-    width = int((entry['count'] / data['max_count']) * 100)
-    plural = 's' if entry['count'] != 1 else ''
+for month, count in sorted_months:
+    width = int((count / max_count) * 100)
+    plural = 's' if count != 1 else ''
     timeline_html += f'''            <div class="timeline-bar">
-                <div class="timeline-date">{entry["display"]}</div>
+                <div class="timeline-month">{month}</div>
                 <div class="timeline-visual" style="width: {width}%;">
-                    <span class="timeline-count">{entry["count"]} app{plural}</span>
+                    <span class="timeline-count">{count} app{plural}</span>
                 </div>
             </div>
 '''
 
 # Generate positions HTML
 positions_html = ""
-for category, positions in data['positions_by_category'].items():
+for role, positions in positions_by_role.items():
     if positions:
         positions_html += f'''            <div class="category-section">
-                <h3 class="category-title">{category} <span class="count-badge">({len(positions)})</span></h3>
+                <h3 class="category-title">{role} <span class="count-badge">{len(positions)}</span></h3>
                 <div class="titles-grid">
 '''
         for pos in positions:
@@ -34,10 +172,10 @@ for category, positions in data['positions_by_category'].items():
 
 # Generate companies HTML
 companies_html = ""
-for industry, companies in data['companies_by_industry'].items():
+for industry, companies in companies_by_industry.items():
     if companies:
         companies_html += f'''            <div class="industry-section">
-                <h3 class="industry-title"><span class="industry-icon">●</span>{industry} <span class="count-badge">({len(companies)})</span></h3>
+                <h3 class="industry-title"><span class="industry-icon">●</span>{industry} <span class="count-badge">{len(companies)}</span></h3>
                 <div class="companies-grid">
 '''
         for comp in companies:
@@ -132,40 +270,40 @@ html = f'''<!DOCTYPE html>
             border-bottom: 3px solid var(--primary);
         }}
 
-        /* Timeline - Left to Right */
+        /* Timeline - Monthly View */
         .timeline-chart {{
             background: var(--bg-white);
             padding: 30px;
             border-radius: 12px;
             border: 2px solid var(--border);
             margin-bottom: 50px;
-            overflow-x: auto;
         }}
 
         .timeline-bar {{
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
         }}
 
-        .timeline-date {{
-            font-weight: 600;
+        .timeline-month {{
+            font-weight: 700;
             color: var(--text);
-            font-size: 13px;
-            min-width: 80px;
+            font-size: 14px;
+            min-width: 100px;
         }}
 
         .timeline-visual {{
-            height: 40px;
+            flex: 1;
+            height: 44px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             border-radius: 8px;
             display: flex;
             align-items: center;
             padding: 0 16px;
             color: white;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 15px;
             box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }}
@@ -179,7 +317,7 @@ html = f'''<!DOCTYPE html>
             white-space: nowrap;
         }}
 
-        /* Position Titles - Categorized */
+        /* Position Titles - Categorized by Role Similarity */
         .category-section {{
             margin-bottom: 40px;
         }}
@@ -276,6 +414,16 @@ html = f'''<!DOCTYPE html>
             .titles-grid, .companies-grid {{
                 grid-template-columns: 1fr;
             }}
+            
+            .timeline-bar {{
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }}
+            
+            .timeline-month {{
+                min-width: auto;
+            }}
         }}
     </style>
 </head>
@@ -321,15 +469,15 @@ html = f'''<!DOCTYPE html>
         <!-- Key Metrics -->
         <div class="key-metrics">
             <div class="metric-card">
-                <div class="metric-value">113</div>
+                <div class="metric-value">{total_apps}</div>
                 <div class="metric-label">Total Applications</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">113</div>
+                <div class="metric-value">{total_companies}</div>
                 <div class="metric-label">Companies Targeted</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">110</div>
+                <div class="metric-value">{total_positions}</div>
                 <div class="metric-label">Unique Titles</div>
             </div>
             <div class="metric-card">
@@ -339,12 +487,12 @@ html = f'''<!DOCTYPE html>
         </div>
 
         <!-- Application Timeline -->
-        <h2 class="section-title">📈 Application Activity Timeline</h2>
+        <h2 class="section-title">📈 Application Activity by Month</h2>
         <div class="timeline-chart">
 {timeline_html}        </div>
 
-        <!-- Position Titles by Category -->
-        <h2 class="section-title">💼 Role Alignment & Strategic Targeting</h2>
+        <!-- Position Titles by Role Similarity -->
+        <h2 class="section-title">💼 Roles by Type & Function</h2>
 {positions_html}
         <!-- Companies by Industry -->
         <h2 class="section-title">🏢 Target Companies by Industry Sector</h2>
@@ -411,4 +559,8 @@ html = f'''<!DOCTYPE html>
 with open('stats.html', 'w') as f:
     f.write(html)
 
-print("✅ Generated optimized stats.html successfully")
+print(f"✅ Generated optimized stats.html")
+print(f"   Total Applications: {total_apps}")
+print(f"   Companies: {total_companies}")
+print(f"   Unique Positions: {total_positions}")
+print(f"   Months: {len(sorted_months)}")
