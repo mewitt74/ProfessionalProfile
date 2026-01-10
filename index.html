@@ -1125,11 +1125,11 @@
                 <span class="nav-menu-icon" aria-hidden="true">⭐</span>
                 <span>Testimonials</span>
             </button>
-            <button class="nav-menu-item" onclick="window.open('star-stories.html','_blank')" role="menuitem" aria-label="Open STAR Stories">
+            <button class="nav-menu-item" onclick="openNewTab('star-stories.html')" role="menuitem" aria-label="Open STAR Stories">
                 <span class="nav-menu-icon" aria-hidden="true">🌟</span>
                 <span>STAR Stories</span>
             </button>
-            <button class="nav-menu-item" onclick="window.open('iso-matrix.html','_blank')" role="menuitem" aria-label="Open ISO Matrix">
+            <button class="nav-menu-item" onclick="openNewTab('iso-matrix.html')" role="menuitem" aria-label="Open ISO Matrix">
                 <span class="nav-menu-icon" aria-hidden="true">📊</span>
                 <span>ISO Matrix</span>
             </button>
@@ -1156,6 +1156,18 @@
         function navigateToSection(sectionId) {
             switchToSection(sectionId);
             toggleNavMenu(); // Close menu after navigation
+        }
+
+        function openNewTab(url) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('navToggle');
+            
+            // Close menu first
+            menu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            
+            // Open in new tab
+            window.open(url, '_blank');
         }
 
         function switchToSection(sectionId) {

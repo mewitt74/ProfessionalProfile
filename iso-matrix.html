@@ -482,35 +482,35 @@
     <!-- Floating Navigation -->
     <nav class="floating-nav" id="floatingNav" aria-label="Quick navigation menu">
         <div class="nav-menu" id="navMenu" role="menu">
-            <button class="nav-menu-item" onclick="window.location.href='index.html'" role="menuitem" aria-label="Navigate to Home">
+            <button class="nav-menu-item" onclick="navigateTo('index.html')" role="menuitem" aria-label="Navigate to Home">
                 <span class="nav-menu-icon" aria-hidden="true">🏠</span>
                 <span>Home</span>
             </button>
-            <button class="nav-menu-item" onclick="window.location.href='index.html#experience'" role="menuitem" aria-label="Navigate to Experience">
+            <button class="nav-menu-item" onclick="navigateTo('index.html#experience')" role="menuitem" aria-label="Navigate to Experience">
                 <span class="nav-menu-icon" aria-hidden="true">💼</span>
                 <span>Experience</span>
             </button>
-            <button class="nav-menu-item" onclick="window.location.href='index.html#certifications'" role="menuitem" aria-label="Navigate to Credentials">
+            <button class="nav-menu-item" onclick="navigateTo('index.html#certifications')" role="menuitem" aria-label="Navigate to Credentials">
                 <span class="nav-menu-icon" aria-hidden="true">🎓</span>
                 <span>Credentials</span>
             </button>
-            <button class="nav-menu-item" onclick="window.location.href='index.html#expertise'" role="menuitem" aria-label="Navigate to Impact">
+            <button class="nav-menu-item" onclick="navigateTo('index.html#expertise')" role="menuitem" aria-label="Navigate to Impact">
                 <span class="nav-menu-icon" aria-hidden="true">💡</span>
                 <span>Impact</span>
             </button>
-            <button class="nav-menu-item" onclick="window.location.href='index.html#references'" role="menuitem" aria-label="Navigate to Testimonials">
+            <button class="nav-menu-item" onclick="navigateTo('index.html#references')" role="menuitem" aria-label="Navigate to Testimonials">
                 <span class="nav-menu-icon" aria-hidden="true">⭐</span>
                 <span>Testimonials</span>
             </button>
-            <button class="nav-menu-item" onclick="window.open('star-stories.html','_blank')" role="menuitem" aria-label="Open STAR Stories">
+            <button class="nav-menu-item" onclick="openNewTab('star-stories.html')" role="menuitem" aria-label="Open STAR Stories">
                 <span class="nav-menu-icon" aria-hidden="true">🌟</span>
                 <span>STAR Stories</span>
             </button>
-            <button class="nav-menu-item active" onclick="window.location.href='iso-matrix.html'" role="menuitem" aria-label="Navigate to ISO Matrix">
+            <button class="nav-menu-item active" onclick="navigateTo('iso-matrix.html')" role="menuitem" aria-label="Navigate to ISO Matrix">
                 <span class="nav-menu-icon" aria-hidden="true">📊</span>
                 <span>ISO Matrix</span>
             </button>
-            <button class="nav-menu-item" onclick="window.location.href='index.html#volunteer'" role="menuitem" aria-label="Navigate to Volunteer">
+            <button class="nav-menu-item" onclick="navigateTo('index.html#volunteer')" role="menuitem" aria-label="Navigate to Volunteer">
                 <span class="nav-menu-icon" aria-hidden="true">🤝</span>
                 <span>Volunteer</span>
             </button>
@@ -560,6 +560,33 @@
                 floatingNav.classList.add('visible');
             }
         });
+
+        // Navigation helper function
+        function navigateTo(url) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('navToggle');
+            
+            // Close menu first
+            menu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            
+            // Navigate after brief delay to ensure menu closes
+            setTimeout(() => {
+                window.location.href = url;
+            }, 100);
+        }
+
+        function openNewTab(url) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.getElementById('navToggle');
+            
+            // Close menu first
+            menu.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            
+            // Open in new tab
+            window.open(url, '_blank');
+        }
 
         // Navigation menu toggle
         function toggleNavMenu() {
