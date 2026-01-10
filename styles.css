@@ -36,15 +36,17 @@
 }
 
 [data-theme="dark"] body {
-    background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
 }
 
 [data-theme="dark"] header {
-    background: linear-gradient(135deg, #1a365d 0%, #1e4d7b 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border-bottom-color: var(--primary);
 }
 
-[data-theme="dark"] .cta-section {
-    background: linear-gradient(135deg, #1a365d 0%, #1e4d7b 100%);
+[data-theme="dark"] .footer, [data-theme="dark"] footer {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    border-top-color: var(--primary);
 }
 
 [data-theme="dark"] .cert-card,
@@ -176,56 +178,62 @@ a:focus {
     font-size: 16px;
 }
 
-/* Header Styles */
+/* Header Styles - Executive C-Suite Aesthetic */
 header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    padding: 18px 0 12px 0;
-    margin-bottom: 8px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 16px 0;
+    margin-bottom: 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     color: white;
+    border-bottom: 2px solid var(--primary);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 600;
     color: white;
+    letter-spacing: -0.5px;
 }
 
 .logo a {
     color: white;
     text-decoration: none;
     cursor: pointer;
+    transition: var(--transition);
 }
 
 .logo a:hover {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .logo-subtitle {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 400;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
 }
 
-/* Hero Section Styles */
+/* Hero Section Styles - Compact */
 .hero {
     background: var(--bg-white);
-    padding: 24px 20px;
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: var(--shadow-md);
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     border: 1px solid var(--border);
     width: 100%;
     max-width: 100%;
@@ -351,9 +359,9 @@ header {
     opacity: 1;
 }
 
-/* Layout and Section Styles */
+/* Layout and Section Styles - Executive Compact */
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
@@ -361,26 +369,27 @@ header {
 }
 
 .divider {
-    height: 2px;
+    height: 1px;
     background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
-    margin: 20px 0;
+    margin: 16px 0;
     border: none;
 }
 
 .section h2 {
-    margin-top: 16px;
+    margin-top: 12px;
     color: var(--primary);
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 6px;
+    letter-spacing: -0.3px;
 }
 
 .section p {
     text-align: center;
     color: var(--text-light);
     font-size: 13px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .hero-stats {
@@ -836,12 +845,14 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 8px;
-    min-height: 210px;
-    max-height: 210px;
+    gap: 6px;
+    min-height: 190px;
+    max-height: 190px;
     position: relative;
     overflow: hidden;
     padding: 12px;
+    border-radius: 8px;
+    transition: var(--transition);
 }
 
 .cert-card::after {
@@ -1164,14 +1175,15 @@ header {
     color: var(--text-light);
 }
 
-/* Footer */
-.footer {
-    background: var(--bg-light);
-    padding: 20px;
+/* Footer - Executive Style */
+.footer, footer {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 16px;
     text-align: center;
-    color: var(--text-light);
-    font-size: 14px;
-    border-top: 1px solid var(--border);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    border-top: 2px solid var(--primary);
+    margin-top: 0;
 }
 
 /* Responsive Design */
