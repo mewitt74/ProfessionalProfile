@@ -149,19 +149,6 @@ wb2.close()
 total_companies = len(unique_companies)
 total_title_groups = len([role for role, positions in positions_by_role.items() if positions])
 
-# Generate timeline HTML (monthly aggregation)
-timeline_html = ""
-for month, count in sorted_months:
-    width = int((count / max_count) * 100)
-    plural = 's' if count != 1 else ''
-    timeline_html += f'''            <div class="timeline-bar">
-                <div class="timeline-month">{month}</div>
-                <div class="timeline-visual" style="width: {width}%;">
-                    <span class="timeline-count">{count} app{plural}</span>
-                </div>
-            </div>
-'''
-
 # Generate role data for charts
 role_data = []
 for role, positions in positions_by_role.items():
@@ -172,38 +159,6 @@ for role, positions in positions_by_role.items():
             'positions': positions
         })
 role_data.sort(key=lambda x: x['count'], reverse=True)
-
-# Generate positions HTML with visualizations
-positions_html = ""
-for item in role_data:
-    role = item['category']
-    count = item['count']
-    positions = item['positions']
-    
-    # Create visual bar
-    bar_width = int((count / max([r['count'] for r in role_data])) * 100)
-    
-    positions_html += f'''            <div class="category-visual">
-                <div class="category-header">
-                    <h3 class="category-name">{role}</h3>
-                    <span class="category-count">{count} position{"s" if count != 1 else ""}</span>
-                </div>
-                <div class="category-bar-container">
-                    <div class="category-bar" style="width: {bar_width}%;">
-                        <span class="bar-label">{count}</span>
-                    </div>
-                </div>
-                <details class="category-details">
-                    <summary>View all {count} positions</summary>
-                    <div class="positions-list">
-'''
-    for pos in positions:
-        positions_html += f'                        <div class="position-item">• {pos}</div>\n'
-    positions_html += '''                    </div>
-                </details>
-            </div>
-
-'''
 
 # Generate company data for heat map
 industry_data = []
@@ -216,412 +171,303 @@ for industry, companies in companies_by_industry.items():
         })
 industry_data.sort(key=lambda x: x['count'], reverse=True)
 
-# Generate companies HTML as heat map grid
-companies_html = '''            <div class="heatmap-grid">
-'''
-for item in industry_data:
-    industry = item['industry']
-    count = item['count']
-    companies = item['companies']
-    
-    # Color intensity based on count
-    if count >= 20:
-        intensity_class = 'heat-very-high'
-    elif count >= 15:
-        intensity_class = 'heat-high'
-    elif count >= 10:
-        intensity_class = 'heat-medium'
-    elif count >= 5:
-        intensity_class = 'heat-low'
-    else:
-        intensity_class = 'heat-very-low'
-    
-    companies_html += f'''                <div class="heat-cell {intensity_class}">
-                    <div class="heat-header">
-                        <div class="heat-industry">{industry}</div>
-                        <div class="heat-count">{count}</div>
-                    </div>
-                    <details class="heat-details">
-                        <summary>{count} companies</summary>
-                        <div class="company-list">
-'''
-    for comp in companies:
-        companies_html += f'                            <div class="company-item">• {comp}</div>\n'
-    companies_html += '''                        </div>
-                    </details>
-                </div>
-'''
-companies_html += '''            </div>
-'''
-
 # Create complete HTML
 html = f'''<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Search Statistics | Melissa Witte-Spencer</title>
+    <title>Job Search Analytics | Melissa Witte-Spencer</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        * {{
+            box-sizing: border-box;
+        }}
+
         .stats-header {{
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white;
-            padding: 40px 30px;
-            text-align: center;
+            padding: 20px 30px;
+            border-bottom: 2px solid var(--primary);
         }}
 
         .stats-header h1 {{
-            margin: 0 0 12px 0;
-            font-size: 32px;
-        }}
-
-        .stats-header p {{
             margin: 0;
-            font-size: 16px;
-            opacity: 0.95;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }}
 
         .stats-content {{
-            padding: 30px;
-            max-width: 1400px;
+            padding: 20px;
+            max-width: 1600px;
             margin: 0 auto;
+            background: var(--bg-light);
         }}
 
-        .key-metrics {{
+        /* Dashboard Grid Layout */
+        .dashboard-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
         }}
 
         .metric-card {{
             background: var(--bg-white);
-            padding: 24px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid var(--border);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }}
-
-        .metric-card:hover {{
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }}
 
         .metric-value {{
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 8px;
+            line-height: 1;
+            margin-bottom: 4px;
         }}
 
         .metric-label {{
-            font-size: 14px;
+            font-size: 11px;
             color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             font-weight: 600;
         }}
 
-        .section-title {{
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text);
-            margin: 50px 0 24px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid var(--primary);
-        }}
-
-        /* Timeline - Monthly View */
-        .timeline-chart {{
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            margin-bottom: 50px;
-        }}
-
-        .timeline-bar {{
-            display: flex;
-            align-items: center;
+        /* Two Column Layout for Main Content */
+        .content-grid {{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
             margin-bottom: 16px;
         }}
 
-        .timeline-month {{
+        .panel {{
+            background: var(--bg-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }}
+
+        .panel-header {{
+            font-size: 16px;
             font-weight: 700;
             color: var(--text);
-            font-size: 14px;
-            min-width: 100px;
-        }}
-
-        .timeline-visual {{
-            flex: 1;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            color: white;
-            font-weight: 700;
-            font-size: 15px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }}
-
-        .timeline-visual:hover {{
-            transform: scale(1.02);
-            box-shadow: var(--shadow-md);
-        }}
-
-        .timeline-count {{
-            white-space: nowrap;
-        }}
-
-        /* Role Categories - Bar Chart Visualization */
-        .category-visual {{
-            background: var(--bg-white);
-            padding: 24px;
-            border-radius: 12px;
-            border: 2px solid var(--border);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }}
-
-        .category-visual:hover {{
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary);
-        }}
-
-        .category-header {{
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
         }}
 
-        .category-name {{
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            margin: 0;
+        .panel-subtitle {{
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
         }}
 
-        .category-count {{
-            font-size: 14px;
+        /* Compact Timeline */
+        .timeline-compact {{
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }}
+
+        .timeline-item {{
+            flex: 1;
+            background: var(--bg-light);
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }}
+
+        .timeline-month {{
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-light);
-            background: var(--bg-light);
-            padding: 4px 12px;
-            border-radius: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
         }}
 
-        .category-bar-container {{
-            background: var(--bg-light);
-            border-radius: 8px;
-            height: 48px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }}
-
-        .category-bar {{
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 16px;
-            transition: width 0.5s ease;
-            position: relative;
-            min-width: 60px;
-        }}
-
-        .bar-label {{
-            color: white;
-            font-weight: 700;
-            font-size: 16px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }}
-
-        .category-details {{
-            margin-top: 12px;
-        }}
-
-        .category-details summary {{
-            cursor: pointer;
-            font-size: 13px;
-            color: var(--primary);
-            font-weight: 600;
-            padding: 8px 0;
-            user-select: none;
-        }}
-
-        .category-details summary:hover {{
-            text-decoration: underline;
-        }}
-
-        .positions-list {{
-            margin-top: 12px;
-            padding: 16px;
-            background: var(--bg-light);
-            border-radius: 8px;
-            max-height: 300px;
-            overflow-y: auto;
-        }}
-
-        .position-item {{
-            padding: 6px 0;
-            font-size: 13px;
-            color: var(--text);
-            line-height: 1.5;
-            border-bottom: 1px solid var(--border);
-        }}
-
-        .position-item:last-child {{
-            border-bottom: none;
-        }}
-
-        /* Heat Map for Companies by Industry */
-        .heatmap-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }}
-
-        .heat-cell {{
-            border-radius: 12px;
-            padding: 24px;
-            border: 2px solid var(--border);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }}
-
-        .heat-cell::before {{
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-        }}
-
-        .heat-very-high {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.25) 0%, rgba(50, 184, 198, 0.25) 100%);
-            border-color: var(--primary);
-        }}
-
-        .heat-high {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.18) 0%, rgba(50, 184, 198, 0.18) 100%);
-            border-color: var(--primary);
-        }}
-
-        .heat-medium {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.12) 0%, rgba(50, 184, 198, 0.12) 100%);
-        }}
-
-        .heat-low {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
-        }}
-
-        .heat-very-low {{
-            background: linear-gradient(135deg, rgba(33, 128, 195, 0.04) 0%, rgba(50, 184, 198, 0.04) 100%);
-        }}
-
-        .heat-cell:hover {{
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }}
-
-        .heat-header {{
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }}
-
-        .heat-industry {{
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.3;
-            flex: 1;
-        }}
-
-        .heat-count {{
+        .timeline-number {{
             font-size: 28px;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-left: 12px;
         }}
 
-        .heat-details summary {{
-            cursor: pointer;
+        .timeline-number {{
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }}
+
+        /* Compact Role Bars */
+        .role-bar {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
             font-size: 13px;
-            color: var(--text-light);
-            font-weight: 600;
-            padding: 8px 0;
-            user-select: none;
         }}
 
-        .heat-details summary:hover {{
+        .role-name {{
+            min-width: 180px;
+            font-weight: 600;
+            color: var(--text);
+        }}
+
+        .role-viz {{
+            flex: 1;
+            height: 24px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .role-fill {{
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 40px;
+        }}
+
+        /* Compact Heat Grid */
+        .heat-grid {{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }}
+
+        .heat-item {{
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }}
+
+        .heat-item:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }}
+
+        .heat-very-high {{ background: linear-gradient(135deg, rgba(33,128,195,0.25), rgba(50,184,198,0.25)); border-left: 4px solid var(--primary); }}
+        .heat-high {{ background: linear-gradient(135deg, rgba(33,128,195,0.18), rgba(50,184,198,0.18)); border-left: 4px solid var(--primary); }}
+        .heat-medium {{ background: linear-gradient(135deg, rgba(33,128,195,0.12), rgba(50,184,198,0.12)); border-left: 3px solid var(--accent); }}
+        .heat-low {{ background: linear-gradient(135deg, rgba(33,128,195,0.08), rgba(50,184,198,0.08)); border-left: 3px solid var(--accent); }}
+        .heat-very-low {{ background: linear-gradient(135deg, rgba(33,128,195,0.04), rgba(50,184,198,0.04)); border-left: 2px solid var(--border); }}
+
+        .heat-row {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+
+        .heat-industry {{
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }}
+
+        .heat-number {{
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }}
+
+        .heat-companies {{
+            font-size: 10px;
+            color: var(--text-light);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }}
+
+        /* Full Width Bottom Panel */
+        .full-panel {{
+            background: var(--bg-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }}
+
+        .summary-stats {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }}
+
+        .summary-item {{
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }}
+
+        .summary-value {{
+            font-size: 20px;
+            font-weight: 700;
             color: var(--primary);
         }}
 
-        .company-list {{
-            margin-top: 12px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 8px;
-            max-height: 250px;
-            overflow-y: auto;
+        .summary-label {{
+            font-size: 10px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-top: 4px;
         }}
 
-        .company-item {{
-            padding: 5px 0;
-            font-size: 12px;
-            color: var(--text);
-            line-height: 1.4;
+        @media (max-width: 1024px) {{
+            .dashboard-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
+            
+            .content-grid {{
+                grid-template-columns: 1fr;
+            }}
+
+            .heat-grid {{
+                grid-template-columns: 1fr;
+            }}
         }}
 
         @media (max-width: 768px) {{
-            .heatmap-grid {{
-                grid-template-columns: 1fr;
+            .dashboard-grid {{
+                grid-template-columns: 1fr 1fr;
             }}
             
-            .timeline-bar {{
+            .timeline-compact {{
                 flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-            }}
-            
-            .timeline-month {{
-                min-width: auto;
             }}
 
-            .category-header {{
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }}
-
-            .heat-count {{
-                font-size: 24px;
+            .role-name {{
+                min-width: 120px;
+                font-size: 12px;
             }}
         }}
     </style>
@@ -660,24 +506,23 @@ html = f'''<!DOCTYPE html>
     </div>
 
     <div class="stats-header">
-        <h1>Job Search Activity Dashboard</h1>
-        <p>Strategic targeting across high-growth technology companies | GRC Leadership Roles</p>
+        <h1>📊 Executive Job Search Dashboard | GRC Leadership Targeting</h1>
     </div>
 
     <div class="stats-content" id="main">
-        <!-- Key Metrics -->
-        <div class="key-metrics">
+        <!-- Key Metrics Row -->
+        <div class="dashboard-grid">
             <div class="metric-card">
                 <div class="metric-value">{total_submissions}</div>
-                <div class="metric-label">Total Applications</div>
+                <div class="metric-label">Applications</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">{total_companies}</div>
-                <div class="metric-label">Companies Targeted</div>
+                <div class="metric-label">Companies</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">{total_title_groups}</div>
-                <div class="metric-label">Title Categories</div>
+                <div class="metric-label">Categories</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">46</div>
@@ -685,23 +530,115 @@ html = f'''<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- Application Timeline -->
-        <h2 class="section-title">📈 Application Activity by Month</h2>
-        <div class="timeline-chart">
-{timeline_html}        </div>
+        <!-- Timeline Compact -->
+        <div class="panel">
+            <div class="panel-header">
+                Monthly Activity
+                <span class="panel-subtitle">Application volume trend</span>
+            </div>
+            <div class="timeline-compact">
+'''
 
-        <!-- Position Titles by Role Similarity -->
-        <h2 class="section-title">💼 Application Distribution by Role Category</h2>
-        <p style="margin: -16px 0 24px 0; color: var(--text-light); font-size: 14px;">Horizontal bar chart showing position counts across 10 strategic role categories</p>
-{positions_html}
-        <!-- Companies by Industry -->
-        <h2 class="section-title">🏢 Industry Coverage Heat Map</h2>
-        <p style="margin: -16px 0 24px 0; color: var(--text-light); font-size: 14px;">Color intensity indicates company concentration across 8 industry sectors</p>
-{companies_html}
+for month, count in sorted_months:
+    html += f'''                <div class="timeline-item">
+                    <div class="timeline-month">{month}</div>
+                    <div class="timeline-number">{count}</div>
+                </div>
+'''
+
+html += '''            </div>
+        </div>
+
+        <!-- Two Column Grid -->
+        <div class="content-grid">
+            <!-- Left: Role Distribution -->
+            <div class="panel">
+                <div class="panel-header">
+                    Role Category Distribution
+                    <span class="panel-subtitle">{total_submissions} total positions</span>
+                </div>
+'''
+
+for item in role_data[:10]:  # Top 10
+    role = item['category']
+    count = item['count']
+    width = int((count / max([r['count'] for r in role_data])) * 100)
+    
+    html += f'''                <div class="role-bar">
+                    <div class="role-name">{role}</div>
+                    <div class="role-viz">
+                        <div class="role-fill" style="width: {width}%;">{count}</div>
+                    </div>
+                </div>
+'''
+
+html += '''            </div>
+
+            <!-- Right: Industry Heat Map -->
+            <div class="panel">
+                <div class="panel-header">
+                    Industry Coverage Map
+                    <span class="panel-subtitle">{total_companies} companies across 8 sectors</span>
+                </div>
+                <div class="heat-grid">
+'''
+
+for item in industry_data:
+    industry = item['industry']
+    count = item['count']
+    companies = item['companies']
+    
+    # Determine intensity
+    if count >= 20:
+        intensity_class = 'heat-very-high'
+    elif count >= 15:
+        intensity_class = 'heat-high'
+    elif count >= 10:
+        intensity_class = 'heat-medium'
+    elif count >= 5:
+        intensity_class = 'heat-low'
+    else:
+        intensity_class = 'heat-very-low'
+    
+    html += f'''                    <div class="heat-item {intensity_class}" title="{', '.join(companies[:5])}...">
+                        <div class="heat-row">
+                            <div class="heat-industry">{industry}</div>
+                            <div class="heat-number">{count}</div>
+                        </div>
+                        <div class="heat-companies">{count} companies targeted</div>
+                    </div>
+'''
+
+html += f'''                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Summary Panel -->
+        <div class="full-panel">
+            <div class="panel-header">Strategic Focus Summary</div>
+            <div class="summary-stats">
+                <div class="summary-item">
+                    <div class="summary-value">{int((total_submissions/46)*7)}</div>
+                    <div class="summary-label">Weekly Avg</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">{int((total_companies/total_submissions)*100)}%</div>
+                    <div class="summary-label">Company Coverage</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">{industry_data[0]['industry'].split()[0]}</div>
+                    <div class="summary-label">Top Industry</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">{role_data[0]['category'].split()[0]}</div>
+                    <div class="summary-label">Top Category</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Melissa Witte-Spencer. All rights reserved. | Last Updated: January 10, 2026</p>
+        <p>&copy; 2026 Melissa Witte-Spencer | Strategic GRC Leadership</p>
     </footer>
 
     <script>
