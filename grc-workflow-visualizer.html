@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRC Workflow Visualizer - Melissa Witte-Spencer</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .workflow-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .workflow-header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .workflow-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .controls {
+            background: #f8f9fa;
+            padding: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .workflow-container {
+            padding: 60px 40px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+            overflow-x: auto;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .workflow {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            min-width: 1400px;
+            position: relative;
+        }
+
+        .workflow-stage {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 15px;
+        }
+
+        .stage-node {
+            background: white;
+            border: 4px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 0 auto 20px;
+            max-width: 180px;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stage-node.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+            }
+        }
+
+        .stage-node.completed {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .stage-node.failed {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+
+        .stage-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stage-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .stage-node.active .stage-number {
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .stage-node.completed .stage-number {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .stage-node.failed .stage-number {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .stage-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stage-role {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .stage-status {
+            font-size: 0.75em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.3);
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .connector {
+            position: absolute;
+            top: 80px;
+            left: calc(50% + 90px);
+            width: calc(100% - 180px);
+            height: 4px;
+            background: #e0e0e0;
+            z-index: -1;
+        }
+
+        .connector::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: -12px;
+            font-size: 1.5em;
+            color: #e0e0e0;
+        }
+
+        .connector.active {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            animation: flowAnimation 2s infinite;
+        }
+
+        .connector.active::after {
+            color: #764ba2;
+        }
+
+        @keyframes flowAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .stage-details {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 0.85em;
+            text-align: left;
+            max-width: 180px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .stage-node.active + .stage-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stage-details h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .stage-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stage-details li {
+            padding: 4px 0;
+            padding-left: 15px;
+            position: relative;
+            color: #666;
+        }
+
+        .stage-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .timeline-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-stat h3 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .timeline-stat p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .scenario-selector {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .scenario-selector h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .scenario-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .scenario-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .scenario-card p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .scenario-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .legend {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .legend h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 3px solid;
+        }
+
+        .legend-box.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .legend-box.completed {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .legend-box.failed {
+            border-color: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        .legend-box.pending {
+            border-color: #e0e0e0;
+            background: white;
+        }
+
+        @media (max-width: 1200px) {
+            .workflow {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workflow-stage {
+                margin-bottom: 40px;
+            }
+
+            .connector {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="workflow-header">
+            <h1>🔄 GRC Workflow Visualizer</h1>
+            <p>Interactive Animated Process Flow - From Campaign Launch to Closure</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="startAnimation()">▶️ Start Workflow</button>
+            <button class="btn btn-secondary" onclick="pauseAnimation()">⏸️ Pause</button>
+            <button class="btn btn-success" onclick="resetAnimation()">🔄 Reset</button>
+            <button class="btn btn-danger" onclick="simulateFailure()">❌ Simulate Test Failure</button>
+        </div>
+
+        <div class="timeline-info" id="timelineInfo">
+            <div class="timeline-stat">
+                <h3 id="currentStage">0</h3>
+                <p>Current Stage</p>
+            </div>
+            <div class="timeline-stat">
+                <h3 id="completedSteps">0</h3>
+                <p>Completed Steps</p>
+            </div>
+            <div class="timeline-stat">
+                <h3 id="elapsedTime">0</h3>
+                <p>Days Elapsed</p>
+            </div>
+            <div class="timeline-stat">
+                <h3 id="statusText">Ready</h3>
+                <p>Status</p>
+            </div>
+        </div>
+
+        <div class="workflow-container">
+            <div class="workflow" id="workflow">
+                <!-- Stages will be dynamically inserted -->
+            </div>
+        </div>
+
+        <div class="legend">
+            <h4>Status Legend</h4>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-box active"></div>
+                    <span>Active/In Progress</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box completed"></div>
+                    <span>Completed</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box failed"></div>
+                    <span>Failed/Remediation Required</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box pending"></div>
+                    <span>Pending</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-selector">
+            <h3>📋 Pre-built Scenarios</h3>
+            <div class="scenario-grid">
+                <div class="scenario-card" onclick="loadScenario('success')">
+                    <h4>✅ Successful Test Campaign</h4>
+                    <p>All controls pass testing, no findings generated. Complete workflow from launch to closure in 21 days.</p>
+                    <span class="scenario-badge badge-success">Happy Path</span>
+                </div>
+                <div class="scenario-card" onclick="loadScenario('failure')">
+                    <h4>❌ Failed Control with Remediation</h4>
+                    <p>Control test fails, finding created, remediation plan required with management approval chain.</p>
+                    <span class="scenario-badge badge-danger">Remediation Path</span>
+                </div>
+                <div class="scenario-card" onclick="loadScenario('deferred')">
+                    <h4>⏸️ Deferred Testing</h4>
+                    <p>Testing deferred due to missing evidence or system unavailability. Requires follow-up in next campaign.</p>
+                    <span class="scenario-badge badge-warning">Deferred Path</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stages = [
+            {
+                id: 1,
+                icon: '🚀',
+                title: 'Campaign Launch',
+                role: 'CMF Admin',
+                duration: 1,
+                activities: ['Create test records', 'Assign testers', 'Send notifications', 'Set deadlines']
+            },
+            {
+                id: 2,
+                icon: '📋',
+                title: 'Testing',
+                role: 'Tester',
+                duration: 15,
+                activities: ['Gather evidence', 'Execute test procedures', 'Document findings', 'Submit for review']
+            },
+            {
+                id: 3,
+                icon: '🔍',
+                title: 'Review',
+                role: 'Compliance Manager',
+                duration: 5,
+                activities: ['Validate evidence', 'Assess completeness', 'Determine pass/fail', 'Create findings if needed']
+            },
+            {
+                id: 4,
+                icon: '✅',
+                title: 'Pass/Fail Decision',
+                role: 'System/Reviewer',
+                duration: 1,
+                activities: ['Automated status update', 'Trigger workflows', 'Generate reports', 'Close or escalate']
+            },
+            {
+                id: 5,
+                icon: '⚠️',
+                title: 'Finding Created',
+                role: 'Finder',
+                duration: 2,
+                activities: ['Document gap', 'Assign severity', 'Notify stakeholders', 'Create finding record']
+            },
+            {
+                id: 6,
+                icon: '🛠️',
+                title: 'Owner Response',
+                role: 'Finding Owner',
+                duration: 10,
+                activities: ['Acknowledge finding', 'Create remediation plan', 'Assign resources', 'Set timeline']
+            },
+            {
+                id: 7,
+                icon: '✍️',
+                title: 'Management Approval',
+                role: 'Compliance/Senior Owner',
+                duration: 5,
+                activities: ['Review plan', 'Approve resources', 'Accept risk', 'Authorize remediation']
+            },
+            {
+                id: 8,
+                icon: '🎯',
+                title: 'Closure',
+                role: 'Compliance Manager',
+                duration: 2,
+                activities: ['Validate remediation', 'Close finding', 'Update status', 'Generate reports']
+            }
+        ];
+
+        let currentStage = 0;
+        let animationInterval = null;
+        let isPaused = false;
+        let totalDays = 0;
+        let completedSteps = 0;
+        let currentScenario = 'success';
+
+        function renderWorkflow() {
+            const workflow = document.getElementById('workflow');
+            workflow.innerHTML = stages.map((stage, index) => `
+                <div class="workflow-stage">
+                    ${index < stages.length - 1 ? '<div class="connector" id="connector-' + index + '"></div>' : ''}
+                    <div class="stage-node" id="stage-${stage.id}">
+                        <div class="stage-number">${stage.id}</div>
+                        <span class="stage-icon">${stage.icon}</span>
+                        <div class="stage-title">${stage.title}</div>
+                        <div class="stage-role">${stage.role}</div>
+                        <div class="stage-status" id="status-${stage.id}">Pending</div>
+                    </div>
+                    <div class="stage-details">
+                        <h4>Activities:</h4>
+                        <ul>
+                            ${stage.activities.map(activity => `<li>${activity}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            document.getElementById('currentStage').textContent = currentStage + 1;
+            document.getElementById('completedSteps').textContent = completedSteps;
+            document.getElementById('elapsedTime').textContent = totalDays;
+
+            if (currentStage >= stages.length) {
+                document.getElementById('statusText').textContent = 'Complete';
+            } else if (isPaused) {
+                document.getElementById('statusText').textContent = 'Paused';
+            } else {
+                document.getElementById('statusText').textContent = 'In Progress';
+            }
+        }
+
+        function startAnimation() {
+            if (animationInterval) {
+                clearInterval(animationInterval);
+            }
+
+            isPaused = false;
+
+            animationInterval = setInterval(() => {
+                if (currentStage < stages.length) {
+                    if (currentStage > 0) {
+                        const prevStage = document.getElementById('stage-' + stages[currentStage - 1].id);
+                        prevStage.classList.remove('active');
+                        prevStage.classList.add('completed');
+                        document.getElementById('status-' + stages[currentStage - 1].id).textContent = 'Completed';
+                        completedSteps++;
+
+                        const connector = document.getElementById('connector-' + (currentStage - 1));
+                        if (connector) {
+                            connector.classList.add('active');
+                        }
+                    }
+
+                    const currentStageNode = document.getElementById('stage-' + stages[currentStage].id);
+                    currentStageNode.classList.add('active');
+                    document.getElementById('status-' + stages[currentStage].id).textContent = 'In Progress';
+
+                    totalDays += stages[currentStage].duration;
+                    currentStage++;
+                    updateStats();
+                } else {
+                    const lastStage = document.getElementById('stage-' + stages[stages.length - 1].id);
+                    lastStage.classList.remove('active');
+                    lastStage.classList.add('completed');
+                    document.getElementById('status-' + stages[stages.length - 1].id).textContent = 'Completed';
+                    completedSteps++;
+                    updateStats();
+
+                    clearInterval(animationInterval);
+                }
+            }, 2000);
+        }
+
+        function pauseAnimation() {
+            isPaused = true;
+            clearInterval(animationInterval);
+            updateStats();
+        }
+
+        function resetAnimation() {
+            clearInterval(animationInterval);
+            currentStage = 0;
+            totalDays = 0;
+            completedSteps = 0;
+            isPaused = false;
+
+            stages.forEach(stage => {
+                const stageNode = document.getElementById('stage-' + stage.id);
+                stageNode.classList.remove('active', 'completed', 'failed');
+                document.getElementById('status-' + stage.id).textContent = 'Pending';
+            });
+
+            document.querySelectorAll('.connector').forEach(connector => {
+                connector.classList.remove('active');
+            });
+
+            updateStats();
+        }
+
+        function simulateFailure() {
+            resetAnimation();
+
+            let failureStage = 0;
+            const failureInterval = setInterval(() => {
+                if (failureStage < 4) {
+                    if (failureStage > 0) {
+                        const prevStage = document.getElementById('stage-' + stages[failureStage - 1].id);
+                        prevStage.classList.remove('active');
+                        prevStage.classList.add('completed');
+                        document.getElementById('status-' + stages[failureStage - 1].id).textContent = 'Completed';
+                        completedSteps++;
+
+                        const connector = document.getElementById('connector-' + (failureStage - 1));
+                        if (connector) {
+                            connector.classList.add('active');
+                        }
+                    }
+
+                    const currentStageNode = document.getElementById('stage-' + stages[failureStage].id);
+                    currentStageNode.classList.add('active');
+                    document.getElementById('status-' + stages[failureStage].id).textContent = 'In Progress';
+
+                    totalDays += stages[failureStage].duration;
+                    failureStage++;
+                    currentStage = failureStage;
+                    updateStats();
+                } else {
+                    const testStage = document.getElementById('stage-2');
+                    testStage.classList.remove('active');
+                    testStage.classList.add('failed');
+                    document.getElementById('status-2').textContent = 'Failed';
+
+                    const decisionStage = document.getElementById('stage-4');
+                    decisionStage.classList.remove('active');
+                    decisionStage.classList.add('failed');
+                    document.getElementById('status-4').textContent = 'Failed';
+
+                    completedSteps++;
+                    updateStats();
+
+                    setTimeout(() => {
+                        continueRemediationFlow();
+                    }, 2000);
+
+                    clearInterval(failureInterval);
+                }
+            }, 1500);
+        }
+
+        function continueRemediationFlow() {
+            let remediationStage = 4;
+            const remediationInterval = setInterval(() => {
+                if (remediationStage < stages.length) {
+                    if (remediationStage > 4) {
+                        const prevStage = document.getElementById('stage-' + stages[remediationStage - 1].id);
+                        prevStage.classList.remove('active');
+                        prevStage.classList.add('completed');
+                        document.getElementById('status-' + stages[remediationStage - 1].id).textContent = 'Completed';
+                        completedSteps++;
+
+                        const connector = document.getElementById('connector-' + (remediationStage - 1));
+                        if (connector) {
+                            connector.classList.add('active');
+                        }
+                    }
+
+                    const currentStageNode = document.getElementById('stage-' + stages[remediationStage].id);
+                    currentStageNode.classList.add('active');
+                    document.getElementById('status-' + stages[remediationStage].id).textContent = 'In Progress';
+
+                    totalDays += stages[remediationStage].duration;
+                    remediationStage++;
+                    currentStage = remediationStage;
+                    updateStats();
+                } else {
+                    const lastStage = document.getElementById('stage-' + stages[stages.length - 1].id);
+                    lastStage.classList.remove('active');
+                    lastStage.classList.add('completed');
+                    document.getElementById('status-' + stages[stages.length - 1].id).textContent = 'Completed';
+                    completedSteps++;
+                    updateStats();
+
+                    clearInterval(remediationInterval);
+                }
+            }, 2000);
+        }
+
+        function loadScenario(scenario) {
+            currentScenario = scenario;
+            resetAnimation();
+
+            if (scenario === 'success') {
+                startAnimation();
+            } else if (scenario === 'failure') {
+                simulateFailure();
+            } else if (scenario === 'deferred') {
+                let deferredStage = 0;
+                const deferredInterval = setInterval(() => {
+                    if (deferredStage < 3) {
+                        if (deferredStage > 0) {
+                            const prevStage = document.getElementById('stage-' + stages[deferredStage - 1].id);
+                            prevStage.classList.remove('active');
+                            prevStage.classList.add('completed');
+                            document.getElementById('status-' + stages[deferredStage - 1].id).textContent = 'Completed';
+                            completedSteps++;
+                        }
+
+                        const currentStageNode = document.getElementById('stage-' + stages[deferredStage].id);
+                        currentStageNode.classList.add('active');
+                        document.getElementById('status-' + stages[deferredStage].id).textContent = 'In Progress';
+
+                        totalDays += stages[deferredStage].duration;
+                        deferredStage++;
+                        currentStage = deferredStage;
+                        updateStats();
+                    } else {
+                        const reviewStage = document.getElementById('stage-3');
+                        reviewStage.classList.remove('active');
+                        reviewStage.style.borderColor = '#ffc107';
+                        reviewStage.style.background = 'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)';
+                        reviewStage.style.color = 'white';
+                        document.getElementById('status-3').textContent = 'Deferred';
+                        document.getElementById('statusText').textContent = 'Deferred';
+
+                        clearInterval(deferredInterval);
+                    }
+                }, 1500);
+            }
+        }
+
+        renderWorkflow();
+        updateStats();
+    </script>
+</body>
+</html>
