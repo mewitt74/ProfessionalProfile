@@ -846,8 +846,8 @@ header {
     align-items: center;
     justify-content: flex-start;
     gap: 6px;
-    min-height: 190px;
-    max-height: 190px;
+    min-height: 200px;
+    max-height: 200px;
     position: relative;
     overflow: hidden;
     padding: 12px;
@@ -897,15 +897,20 @@ header {
 .cert-name {
     font-weight: 600;
     color: var(--text);
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 2px;
     line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .cert-issuer {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-light);
     line-height: 1.3;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .expertise-card {
@@ -1605,7 +1610,20 @@ header {
 
     /* Cards Extra Small */
     .cert-card, .expertise-card, .reference-card, .contact-card {
-        padding: 16px;
+        padding: 12px 8px;
+    }
+
+    .cert-card {
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    .cert-name {
+        font-size: 11px;
+    }
+
+    .cert-issuer {
+        font-size: 9px;
     }
 
     /* Competency Badges Extra Small */

@@ -597,7 +597,7 @@
                         <img src="certificates/iso-iec-27001-2022-lead-auditor.png" alt="ISO/IEC 27001:2022 Lead Auditor" loading="lazy" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 27001:2022 Lead Auditor</div>
                         <div class="cert-issuer">Mastermind Assurance | Dec 2025 | Valid thru Dec 2028</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Expert in InfoSec Management Systems auditing</div>
+                        <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">InfoSec Management Systems auditing</div>
                     </div>
                 </a>
                 <a href="certificates/ISO42001-Lead-Auditor.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor ai-governance" data-keywords="iso 42001 artificial intelligence ai management auditor mastermind 2025">
@@ -605,7 +605,7 @@
                         <img src="certificates/iso-iec-42001-2023-lead-auditor.png" alt="ISO/IEC 42001:2023 Lead Auditor" loading="lazy" style="width: 80px; height: 80px; margin-bottom: 12px;">
                         <div class="cert-name">ISO/IEC 42001:2023 Lead Auditor</div>
                         <div class="cert-issuer">Mastermind Assurance | Dec 2025 | Valid thru Dec 2028</div>
-                        <div style="font-size: 13px; color: var(--text-light); margin-top: 4px;">Master of AI Management System auditing</div>
+                        <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">AI Management System auditing</div>
                     </div>
                 </a>
                 <a href="certificates/ISO37001-Lead-Implementer.pdf" target="_blank" style="text-decoration: none; color: inherit;" class="cert-link" data-category="lead-auditor security" data-keywords="iso 37001 anti-bribery implementer pecb 2020">
@@ -1137,10 +1137,6 @@
                 <span class="nav-menu-icon" aria-hidden="true">🤝</span>
                 <span>Volunteer</span>
             </button>
-            <button class="nav-menu-item" onclick="openNewTab('stats.html')" role="menuitem" aria-label="View Stats">
-                <span class="nav-menu-icon" aria-hidden="true">📈</span>
-                <span>Stats</span>
-            </button>
         </div>
         <button class="nav-toggle" id="navToggle" onclick="toggleNavMenu()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
             <span aria-hidden="true">☰</span>
@@ -1217,6 +1213,11 @@
             const floatingNav = document.getElementById('floatingNav');
             const navMenu = document.getElementById('navMenu');
             const navToggle = document.getElementById('navToggle');
+            
+            // Don't close if clicking on nav menu items or toggle button
+            if (event.target.closest('.nav-menu-item') || event.target.closest('.nav-toggle')) {
+                return;
+            }
             
             if (floatingNav && !floatingNav.contains(event.target)) {
                 navMenu.classList.remove('show');
