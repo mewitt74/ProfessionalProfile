@@ -6,3 +6,27 @@
 # EMAIL_USER = your-email@gmail.com
 # EMAIL_PASSWORD = your-app-password
 # Or use SENDGRID_API_KEY for SendGrid
+
+# Cache control for audio files - ensures updated voice files are served
+[[headers]]
+  for = "/certificates/*.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Cache control for HTML files - ensure they're always fresh
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+
+# Cache control for CSS and JS - longer cache with versioning
+[[headers]]
+  for = "/styles.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
